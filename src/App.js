@@ -25,6 +25,20 @@ export const App = () => (
     <PersistGate loading={null} persistor={persistor}>
       <Navigation />
     </PersistGate>
+componentDidMount() {
+      console.log(this.props);
+  this.interval = setInterval(
+      () => this.props.dispatch({type:”TIME_STAMP"}),1000);
+
+  this.props.fetchProfiles(); ---> action creators
+  this.props.fetchUser(); ---> action creators
+}
+
+componentWillUnmount () {
+      clearInterval(this.interval);
+}
+
+
   </Provider>
   
   render() {
