@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./LoginForm.css";
-
+import { adduser} from '../../redux/actions/defaultuser'
 export const LoginForm = ({ login }) => {
   const { loading, error } = useSelector((state) => ({
     loading: state.auth.loading,
@@ -12,6 +12,16 @@ export const LoginForm = ({ login }) => {
 
   const dispatch = useDispatch();
 
+  const defaultUser =
+  {
+    username: 'user',
+    display: 'dis',
+    password: 'pass',
+ 
+  }
+  const addDefault = (defaultUser) => {
+    dispatch(adduser(defaultUser))
+}
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -51,7 +61,11 @@ export const LoginForm = ({ login }) => {
         <button type="submit" disabled={loading}>
           Login
         </button>
+        
       </form>
+      <button>
+          default user
+        </button>
       {loading && <Loader />}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </React.Fragment>
