@@ -10,6 +10,13 @@ const KWITTER = {
   store,
   persistor,
 };
+//Added Delete Profile Function
+deleteProfile = (id) => {
+  let profiles = this.StaticRange.profiles.filter(profile => {
+    return profile.this.id !== id
+  })
+}
+id.setState({profiles: profiles})
 
 window.KWITTER = KWITTER;
 
@@ -19,4 +26,8 @@ export const App = () => (
       <Navigation />
     </PersistGate>
   </Provider>
+  
+  render() {
+  <Profile deleteProfile ={this.deleteProfile}
+  }
 );
