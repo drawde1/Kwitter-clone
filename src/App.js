@@ -10,13 +10,7 @@ const KWITTER = {
   store,
   persistor,
 };
-//Added Delete Profile Function
-deleteProfile = (id) => {
-  let profiles = this.StaticRange.profiles.filter(profile => {
-    return profile.this.id !== id
-  })
-}
-id.setState({profiles: profiles})
+
 
 window.KWITTER = KWITTER;
 
@@ -25,14 +19,7 @@ export const App = () => (
     <PersistGate loading={null} persistor={persistor}>
       <Navigation />
     </PersistGate>
-componentDidMount() {
-      console.log(this.props);
-  this.interval = setInterval(
-      () => this.props.dispatch({type:”TIME_STAMP"}),1000);
 
-  this.props.fetchProfiles(); ---> action creators
-  this.props.fetchUser(); ---> action creators
-}
 
 componentWillUnmount () {
       clearInterval(this.interval);
@@ -41,7 +28,5 @@ componentWillUnmount () {
 
   </Provider>
   
-  render() {
-  <Profile deleteProfile ={this.deleteProfile}
-  }
+  
 );
