@@ -62,6 +62,19 @@ class API {
       throw err;
     }
   }
+  async getMessageList({limit,offset}) {
+    try {
+      const result = await this.axiosInstance.get("/messages?limit="+limit+"offset="+offset, {
+        limit,
+        offset
+      });
+      
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
 
   async login({ username, password }) {
     try {

@@ -4,9 +4,8 @@ import { addMessage } from "../../redux/actions/messages";
 
 
 
-export const Feed = () => {
+export const Feed = (props) => {
  
-
   const dispatch = useDispatch();
 
   const initialState = {
@@ -25,9 +24,9 @@ export const Feed = () => {
   const postMessage = (event) => {
     event.preventDefault();
     const msg = dispatch(addMessage(state));
-     setState((state)=>({...state,text: ""}))
     
-    console.log(state)
+    
+    console.log(msg)
     
   };
   
