@@ -35,6 +35,23 @@ class API {
     this.axiosInstance = axiosInstance;
   }
 
+  async adduser({ username,displaname,password}) {
+    try {
+      const result = await this.axiosInstance.post("/user", {
+        username,
+        displaname,
+        password
+      });
+      
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+    
+  
+
   async login({ username, password }) {
     try {
       const result = await this.axiosInstance.post("/auth/login", {
