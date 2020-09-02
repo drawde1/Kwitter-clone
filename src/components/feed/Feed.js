@@ -1,13 +1,37 @@
-import React, { useState, useEffect } from "react";
-import {  useDispatch } from "react-redux";
-import { addMessage } from "../../redux/actions/messages";
+import React, { useState} from "react";
+import {  useDispatch,useSelector} from "react-redux";
+import { addMessage, getMessageList } from "../../redux/actions/messages";
 
 
 
 export const Feed = (props) => {
  
-  const dispatch = useDispatch();
+    // const { loading, error } = useSelector((state) => ({
+    //     loading: state.auth.loading,
+    //     error: state.auth.error,
+    //   }));
 
+    // id: 0,
+    // text:'',
+    // username: '',
+    // createdAT:'',
+    // likes:[],
+    // loading: false,
+    // error: ''
+    const {id,text,likes,messageList} = useSelector((state)=>({
+        id: state.addMsg.id,
+        text: state.addMsg.text,
+        likes: state.addMsg.likes,
+        // messageList: state.getMessageList
+    })) 
+   
+//   const msgListParams =
+//   {
+//     limit: 10,
+//     offset: 0
+//   }
+//   const dispatch = useDispatch();
+//     dispatch(getMessageList(msgListParams))
   const initialState = {
     text: "",
   }
@@ -23,11 +47,8 @@ export const Feed = (props) => {
   };
   const postMessage = (event) => {
     event.preventDefault();
-    const msg = dispatch(addMessage(state));
-    
-    
-    console.log(msg)
-    
+     dispatch(addMessage(state));
+     
   };
   
  
@@ -47,7 +68,9 @@ export const Feed = (props) => {
         <button type="submit" >
           send
         </button>
-        <p> {}</p>
+        <p> {id}</p>
+        <p>{text}</p>
+        
       </form>
       
       
