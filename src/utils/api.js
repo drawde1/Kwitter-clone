@@ -68,8 +68,14 @@ class API {
         limit,
         offset
       });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
       
-
+  
   async updateuser({password,about,displayName}) {
     try {
       const result = await this.axiosInstance.patch('/users/{username}', {

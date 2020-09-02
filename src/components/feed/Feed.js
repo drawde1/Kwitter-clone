@@ -30,7 +30,7 @@ export const Feed = (props) => {
 //     limit: 10,
 //     offset: 0
 //   }
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 //     dispatch(getMessageList(msgListParams))
   const initialState = {
     text: "",
