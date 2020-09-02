@@ -56,6 +56,18 @@ class API {
       throw err;
     }
   }
+
+  async likes({ messageId }) {
+    try {
+      const result = await this.axiosInstance.post("/likes", {
+        messageId
+      });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
 }
 
 // WARNING.. do not touch below this line if you want to have a good day =]
