@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch } from "react-router-dom";
-import { HomeScreen, ProfileScreen, NotFoundScreen } from "../../screens";
+import { HomeScreen, ProfileScreen, NotFoundScreen, Feed } from "../../screens";
 import { ConnectedRoute } from "../connected-route/ConnectedRoute";
 
 export const Navigation = () => (
@@ -11,6 +11,13 @@ export const Navigation = () => (
         path="/"
         redirectIfAuthenticated
         component={HomeScreen}
+      />
+      
+      <ConnectedRoute
+        exact
+        isProtected
+        path="/feed"
+        component={Feed}
       />
       <ConnectedRoute
         exact
