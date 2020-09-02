@@ -2,27 +2,22 @@
 import {ADD_PICTURE, UPDATE_PICTURE, NO_PICTURE} from '../actions/userpicture'
 
 const INITIAL_STATE = {
-    username: "",
-    picture: "",
+    error: "",
   };
 
-export const userReducer = (state = { ...INITIAL_STATE }, action) => {
+export const picReducer = (state = { ...INITIAL_STATE }, action) => {
     switch (action.type) {
       case ADD_PICTURE:
         return {
           ...INITIAL_STATE, 
-          username,
-          picture
         };
         case UPDATE_PICTURE:
         return {
-          ...state, 
-          username,
-          picture
+          ...INITIAL_STATE, 
         };
         case NO_PICTURE:
             return {
-              ...INITIAL_STATE,
+              ...INITIAL_STATE, error: action.payload
         };
         default:
         return { state }

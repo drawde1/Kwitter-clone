@@ -57,11 +57,13 @@ class API {
     }
   }
   async addPicture({ username, picture }) {
+    
     try {
-      const result = await this.axiosInstance.post("/users/{username}/picture", {
+      const result = await this.axiosInstance.put("/users/"+username+"/picture", {
         username, 
         picture
       });
+      console.log(result)
       return result;
     } catch (err) {
       helpMeInstructor(err);

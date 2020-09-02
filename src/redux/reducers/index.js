@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 import { authReducer } from "./auth";
-import { userReducer } from "./users"
+import { picReducer } from "./users"
 
-export default combineReducers({ auth: authReducer, userReducer });
+export default combineReducers({ auth: authReducer },
+{ pic: picReducer })
+;

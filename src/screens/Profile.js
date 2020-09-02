@@ -2,17 +2,17 @@ import React from "react";
 import { MenuContainer } from "../components";
 import api from "../utils/api";
 import { useDispatch } from "react-redux"
-import  getPicture  from "../redux/actions/userpicture"
+import { Picture } from "../components/profile/profile"
 
 const users = "user/username"
-const dispatch = useDispatch()
-const getPic = () => dispatch(actions.getPicture())
+//const dispatch = useDispatch()
+//const getPic = () => dispatch(actions.getPicture(state))
 export const ProfileScreen = () => (
   <>
     <MenuContainer />
     <h2>Profile</h2>
-    <h3>my name is  </h3>
-    {getPic}
+    <h3>Here is my picture  </h3>
+    <Picture />
     
   </>
 );
