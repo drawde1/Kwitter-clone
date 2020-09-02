@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./LoginForm.css";
-import { adduser} from '../../redux/actions/defaultuser'
+import {user} from '../../redux/actions/user'
 export const LoginForm = ({ login }) => {
   const { loading, error } = useSelector((state) => ({
     loading: state.auth.loading,
@@ -12,30 +12,45 @@ export const LoginForm = ({ login }) => {
 
   const dispatch = useDispatch();
 
-  const defaultUser =
+  const INITIALSTATE =
   {
-    username: 'user',
-    display: 'dis',
-    password: 'pass',
- 
+    username: '',
+    displayName: '',
+    password: '',
   }
+
   const addDefault = (defaultUser) => {
-    dispatch(adduser(defaultUser))
+    dispatch(user(defaultUser))
 }
   const [state, setState] = useState({
     username: "",
     password: "",
   });
 
+  const [registerState, setRegisterState] = useState({INITIALSTATE})
+
   const handleLogin = (event) => {
     event.preventDefault();
     dispatch(actions.login(state));
   };
 
+  const handleRegister = (event) => {
+    console.log(registerState)
+    event.preventDefault();
+    dispatch(user(registerState));
+  };
+
+  
   const handleChange = (event) => {
     const inputName = event.target.name;
     const inputValue = event.target.value;
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
+  };
+
+  const handleRegChange = (event) => {
+    const inputName = event.target.name;
+    const inputValue = event.target.value;
+    setRegisterState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
 
   return (
@@ -58,6 +73,39 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleChange}
         />
+        <button type="submit" disabled={loading}>
+          Login
+        </button>
+      </form>
+
+      <form id="register-form" onSubmit={handleRegister}>
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          value={registerState.username}
+          autoFocus
+          required
+          onChange={handleRegChange}
+        />
+        <label htmlFor="displayName">Display Name</label>
+        <input
+          type="text"
+          name="displayName"
+          value={registerState.displayName}
+          autoFocus
+          required
+          onChange={handleRegChange}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          value={registerState.password}
+          required
+          onChange={handleRegChange}
+        />
+        
         <button type="submit" disabled={loading}>
           Login
         </button>
