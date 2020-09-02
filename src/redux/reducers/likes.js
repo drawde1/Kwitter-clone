@@ -1,5 +1,5 @@
 // TODO: implement
-import { LIKES } from '../actions/likes'
+import { LIKES, LIKE_SUCCESS, LIKE_FAILURE } from '../actions/likes'
 
 // Default State
 const DEFAULT_STATE = {
