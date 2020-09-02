@@ -20,7 +20,7 @@ export const addMessage= (text) => async (dispatch, getState) => {
   export const getMessageList = (msgParams) => async (dispatch, getState) => {
     try {
       
-      const payload = await api.getMessageList(text);
+      const payload = await api.getMessageList(msgParams);
         console.log(payload)
       dispatch({ type: GET_MESSAGE_LIST, payload });
     } catch (err) {

@@ -1,30 +1,22 @@
-// TODO: implement
-import {ADD_MESSAGE, FAILURE} from '../actions'
+import {GET_MESSAGE_LIST} from '../actions/messages'
+import {FAILURE}  from '../actions/defaultuser'
 const INITIAL_STATE = {
-    id: 0,
-    text:'',
-    username: '',
-    createdAT:'',
-    likes:[],
     loading: false,
-    error: ''
+    error: "",
+
   };
 
 
 export const addMessageReducer = (state = { ...INITIAL_STATE }, action) => {
     switch (action.type) {
       
-      case ADD_MESSAGE:
-        const {id, text, username, createdAT, likes } = action.payload.message;
+      case GET_MESSAGE_LIST:
+          const {messages} = action.payload
+        
         return {
           ...INITIAL_STATE,
-          id,
-          text,
-          username,
-          createdAT,
-          likes,
-          loading: false
-
+          loading: false,
+          messages
         };
         
 
