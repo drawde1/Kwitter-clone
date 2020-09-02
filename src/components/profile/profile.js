@@ -14,7 +14,7 @@ export const Picture = ({ username }) => {
 
   const [state, setState] = useState({
     username: "user",
-    picture: "https://ashleyfurniture.scene7.com/is/image/AshleyFurniture/A600002293-SW-KO?$AFHS-PDP-Zoomed$",
+    pictureLocation: "/public/logo192.png",
   });
 
   //const handleLogin = (event) => {
