@@ -22,16 +22,16 @@ export const Feed = (props) => {
         id: state.addMsg.id,
         text: state.addMsg.text,
         likes: state.addMsg.likes,
-        // messageList: state.getMessageList
+        messageList: state.getMessageList.messages
     })) 
    
-//   const msgListParams =
-//   {
-//     limit: 10,
-//     offset: 0
-//   }
+  const msgListParams =
+  {
+    limit: 10,
+    offset: 0
+  }
   const dispatch = useDispatch();
-//     dispatch(getMessageList(msgListParams))
+    
   const initialState = {
     text: "",
   }
@@ -48,6 +48,7 @@ export const Feed = (props) => {
   const postMessage = (event) => {
     event.preventDefault();
      dispatch(addMessage(state));
+     dispatch(getMessageList(msgListParams));
      
   };
   
