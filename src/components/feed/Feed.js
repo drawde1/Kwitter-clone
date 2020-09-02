@@ -24,7 +24,7 @@ export const Feed = (props) => {
         likes: state.addMsg.likes,
         messageList: state.getMessageList.messages
     })) 
-   
+   console.log(likes)
   const msgListParams =
   {
     limit: 10,
