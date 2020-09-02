@@ -35,11 +35,11 @@ class API {
     this.axiosInstance = axiosInstance;
   }
 
-  async adduser({ username,displaname,password}) {
+  async adduser({ username,displayName,password}) {
     try {
-      const result = await this.axiosInstance.post("/user", {
-        username,
-        displaname,
+    const result = await this.axiosInstance.post("/users", {
+        username,                               
+        displayName,
         password
       });
       
@@ -69,6 +69,15 @@ class API {
         offset
       });
       
+
+  async updateuser({password,about,displayName}) {
+    try {
+      const result = await this.axiosInstance.patch('/users/{username}', {
+        password,
+        about,
+        displayName
+      });
+       
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -125,3 +134,4 @@ function getToken() {
 }
 
 export default new API();
+// "I have a good idea of what I need to do with the API, but I'm a little unsure about where I should be implementing it. I am also not strong on redux."

@@ -12,7 +12,7 @@ export const adduser = (credentials) => async (dispatch, getState) => {
     try {
       dispatch({ type: LOAD });
       const payload = await api.adduser(credentials);
-     console.log(payload)
+     
       dispatch({ type: ADD_USER, payload });
     } catch (err) {
       dispatch({
