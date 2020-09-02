@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   };
 
 
-export const addMessageReducer = (state = { ...INITIAL_STATE }, action) => {
+export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
     switch (action.type) {
       
       case GET_MESSAGE_LIST:
