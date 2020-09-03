@@ -12,8 +12,7 @@ export const adduser = (credentials) => async (dispatch, getState) => {
     try {
       dispatch({ type: LOAD });
       const payload = await api.adduser(credentials);
-      // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
-      // console.log({ result })
+     
       dispatch({ type: ADD_USER, payload });
     } catch (err) {
       dispatch({
