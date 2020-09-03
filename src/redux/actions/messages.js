@@ -3,6 +3,7 @@ import {FAILURE} from './defaultuser'
 
 
 export const ADD_MESSAGE= 'ADD_MESSAGE'
+export const ADD_LIKE = 'ADD_LIKE'
 export const GET_MESSAGE_LIST = 'GET_MESSAGE_LIST'
 export const addMessage= (text) => async (dispatch, getState) => {
     try {
@@ -22,7 +23,7 @@ export const addMessage= (text) => async (dispatch, getState) => {
     try {
       
       const payload = await api.getMessageList(msgParams);
-        console.log(payload)
+        
       dispatch({ type: GET_MESSAGE_LIST, payload });
     } catch (err) {
       dispatch({
@@ -31,3 +32,4 @@ export const addMessage= (text) => async (dispatch, getState) => {
       });
     }
   };
+
