@@ -17,10 +17,10 @@ export const Menu = () => {
         {isAuthenticated ? (
           <>
             <Link to="/profiles/:username">Profile</Link>
-
+           
             <Link to="/users">Users</Link>
-            <Link to='/feed'>Message Feed</Link>
-            <Link to='/' onClick={logout}>
+            <Link to="/feed">Message Feed</Link>
+            <Link to="/" onClick={logout}>
               Logout
             </Link>
           </>

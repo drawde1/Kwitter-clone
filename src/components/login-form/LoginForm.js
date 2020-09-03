@@ -55,6 +55,8 @@ export const LoginForm = ({ login }) => {
 
   return (
     <React.Fragment>
+    <div id="login">
+      <div id="logform">
       <form id="login-form" onSubmit={handleLogin}>
         <label htmlFor="username">Username</label>
         <input
@@ -77,7 +79,8 @@ export const LoginForm = ({ login }) => {
           Login
         </button>
       </form>
-
+    </div>
+    <div id="regform">
       <form id="register-form" onSubmit={handleRegister}>
         <label htmlFor="username">Username</label>
         <input
@@ -109,8 +112,10 @@ export const LoginForm = ({ login }) => {
         <button type="submit" disabled={loading}>
           Login
         </button>
-        
+           
       </form>
+      </div>
+      </div>
       <button onClick = {addDefault}>
           default user
         </button>

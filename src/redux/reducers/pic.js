@@ -1,5 +1,5 @@
 // TODO: implement
-import {ADD_PICTURE, UPDATE_PICTURE, NO_PICTURE} from '../actions/userpicture'
+import {ADD_PICTURE, UPDATE_PICTURE, NO_PICTURE} from '../actions/photos'
 
 const INITIAL_STATE = {
     error: "",
