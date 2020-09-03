@@ -3,3 +3,4 @@ export * from './likes';
 export * from './defaultuser'
 export * from './messages'
 export * from './user'
+export * from "./userpicture"

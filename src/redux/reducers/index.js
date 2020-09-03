@@ -13,3 +13,8 @@ export default combineReducers({ auth: authReducer,
     addMsg: addMessageReducer,
     getMessageList: getMessageListReducer,user: defaultUserReducer, likes: likesReducer 
     });
+import { picReducer } from "./users"
+
+export default combineReducers({ auth: authReducer },
+{ pic: picReducer })
+;

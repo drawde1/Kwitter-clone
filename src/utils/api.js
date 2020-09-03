@@ -118,6 +118,14 @@ class API {
       const result = await this.axiosInstance.post("/likes", {
         messageId
       });
+  async addPicture({ username, picture }) {
+    
+    try {
+      const result = await this.axiosInstance.put("/users/"+username+"/picture", {
+        username, 
+        picture
+      });
+      console.log(result)
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -125,6 +133,9 @@ class API {
     }
   }
 }
+
+
+
 
 // WARNING.. do not touch below this line if you want to have a good day =]
 
