@@ -20,8 +20,7 @@ export const Menu = () => {
               Logout
             </Link>
           </>
-        ) ;
-           null}
+        ) : null}
       </div>
     </div>
   );

@@ -41,12 +41,6 @@ class API {
         username,
         displaname,
         password,
-  async adduser({ username,displayName,password}) {
-    try {
-    const result = await this.axiosInstance.post("/users", {
-        username,                               
-        displayName,
-        password
       });
 
       return result;
@@ -67,7 +61,7 @@ class API {
     }
   }
 
-  async deletemessage({ message }) {
+  async deleteMessage ({ message }) {
     try {
       const result = await this.axiosInstance.delete("/message/" + message);
 
@@ -77,41 +71,43 @@ class API {
       throw err;
     }
   }
-    
-  async addMessage({text}) {
+
+  async addMessage ({ text }) {
     try {
       const result = await this.axiosInstance.post("/messages", {
-        text
+        text,
       });
-      
+
       return result;
     } catch (err) {
       helpMeInstructor(err);
       throw err;
     }
   }
-  async getMessageList({limit,offset}) {
+  async getMessageList ({ limit, offset }) {
     try {
-      const result = await this.axiosInstance.get("/messages?limit="+limit+"offset="+offset, {
-        limit,
-        offset
-      });
+      const result = await this.axiosInstance.get(
+        "/messages?limit=" + limit + "offset=" + offset,
+        {
+          limit,
+          offset,
+        }
+      );
       return result;
     } catch (err) {
       helpMeInstructor(err);
       throw err;
     }
   }
-      
-  
-  async updateuser({password,about,displayName}) {
+
+  async updateuser ({ password, about, displayName }) {
     try {
-      const result = await this.axiosInstance.patch('/users/{username}', {
+      const result = await this.axiosInstance.patch("/users/{username}", {
         password,
         about,
-        displayName
+        displayName,
       });
-       
+
       return result;
     } catch (err) {
       helpMeInstructor(err);
