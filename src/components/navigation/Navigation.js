@@ -25,6 +25,7 @@ export const Navigation = () => (
         path="/profiles/:username"
         component={ProfileScreen}
       />
+      
       <ConnectedRoute path="*" component={NotFoundScreen} />
     </Switch>
   </BrowserRouter>
