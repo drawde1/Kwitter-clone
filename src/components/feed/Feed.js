@@ -18,8 +18,8 @@ export const Feed = (props) => {
     // likes:[],
     // loading: false,
     // error: ''
-    const {id,text,likes,messageList} = useSelector((state)=>({
-        id: state.addMsg.id,
+    const {username,text,likes,messageList} = useSelector((state)=>({
+        username: state.addMsg.username,
         text: state.addMsg.text,
         likes: state.addMsg.likes,
         // messageList: state.getMessageList
@@ -50,7 +50,6 @@ export const Feed = (props) => {
      dispatch(addMessage(state));
      
   };
-  
  
   return (
     <React.Fragment>
@@ -68,9 +67,12 @@ export const Feed = (props) => {
         <button type="submit" >
           send
         </button>
-        <p> {id}</p>
+        <p> {username}</p>
         <p>{text}</p>
-        
+        <button onClick={() => (likes + 1)}>
+          Like
+        </button>{likes.length}{" "} like(s)
+       
       </form>
       
       

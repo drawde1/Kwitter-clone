@@ -1,6 +1,7 @@
 import api from '../../utils/api'
 import {FAILURE} from './defaultuser'
 
+
 export const ADD_MESSAGE= 'ADD_MESSAGE'
 export const GET_MESSAGE_LIST = 'GET_MESSAGE_LIST'
 export const addMessage= (text) => async (dispatch, getState) => {

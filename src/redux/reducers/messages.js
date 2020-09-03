@@ -1,5 +1,6 @@
 // TODO: implement
 import {ADD_MESSAGE, FAILURE} from '../actions'
+import { LIKES } from './likes'
 const INITIAL_STATE = {
     id: 0,
     text:'',
