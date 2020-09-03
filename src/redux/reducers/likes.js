@@ -3,7 +3,7 @@ import { LIKES, LIKE_SUCCESS, LIKE_FAILURE } from '../actions/likes'
 
 // Default State
 const DEFAULT_STATE = {
-  messageId: ''
+  messageId: '',
 }
 
 export const likesReducer = (state = {...DEFAULT_STATE}, action) => {

@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+/*import React, { Component } from 'react'
 import Button from './Button'
 import { connect } from 'react-redux'
 import { incrementCount, decrementCount } from '.../redux/actions/likes'
-import { connect } from "react-redux"
 
 class Likes extends Component {
 
@@ -44,3 +43,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Likes)
+*/

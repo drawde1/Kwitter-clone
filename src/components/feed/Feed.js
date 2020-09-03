@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
+import { handleLikesIncrement, handleLikesDecrement } from '../likes/Likes'
 
 
 
@@ -18,8 +19,8 @@ export const Feed = (props) => {
     // likes:[],
     // loading: false,
     // error: ''
-    const {username,text,likes,messageList} = useSelector((state)=>({
-        username: state.addMsg.username,
+    const {id,text,likes,messageList} = useSelector((state)=>({
+        id: state.addMsg.id,
         text: state.addMsg.text,
         likes: state.addMsg.likes,
         // messageList: state.getMessageList
@@ -37,7 +38,6 @@ export const Feed = (props) => {
   }
   
   const [state, setState] = useState(initialState);
-
   
 
   const handleChange = (event) => {
@@ -50,6 +50,11 @@ export const Feed = (props) => {
      dispatch(addMessage(state));
      
   };
+
+  function addlikes() {
+    for (let i = 0; i <= likes.id.length; i++)
+  }
+
  
   return (
     <React.Fragment>
@@ -67,15 +72,13 @@ export const Feed = (props) => {
         <button type="submit" >
           send
         </button>
-        <p> {username}</p>
+        <p> {id}</p>
         <p>{text}</p>
-        <button onClick={() => (likes + 1)}>
-          Like
-        </button>{likes.length}{" "} like(s)
-       
       </form>
       
-      
+      <button onClick={""} >
+          Like
+      </button>{likes.length}{" "} like(s)
     </React.Fragment>
   );
 };

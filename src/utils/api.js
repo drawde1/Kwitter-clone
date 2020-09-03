@@ -118,8 +118,6 @@ class API {
       const result = await this.axiosInstance.post("/likes", {
         messageId
       });
-      console.log(result)
-      return result;
     } catch (err) {
       helpMeInstructor(err);
       throw err;
