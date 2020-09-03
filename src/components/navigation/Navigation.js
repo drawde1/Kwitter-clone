@@ -24,12 +24,6 @@ export const Navigation = () => (
         path="/messagefeed"
         component={MessageScreen}
       />
-      <ConnectedRoute
-        exact
-        isProtected
-        path="/users"
-        component={UsersScreen}
-      />
       <ConnectedRoute path="*" component={NotFoundScreen} />
     </Switch>
   </BrowserRouter>
