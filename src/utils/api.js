@@ -144,7 +144,6 @@ class API {
       throw err;
     }
   }
-  async addPicture({ username, picture }) {
     
   async addPicture( username, picture ) {
     try {

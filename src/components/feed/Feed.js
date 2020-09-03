@@ -98,14 +98,13 @@ export const Feed = (props) => {
         //////test/////
         <p> {id}</p>
         <p>{text}</p>
+        //////test/////
+        </div>
+        
       </form>
-      
       <button onClick={incrementLikes} >
           Like
       </button>{likes.length}{" "} like(s)
-        //////test/////
-        </div>
-    
       <br/>
       <br/>
       <br/>
