@@ -105,8 +105,7 @@ export const Feed = (props) => {
       </button>{likes.length}{" "} like(s)
         //////test/////
         </div>
-        
-      </form>
+    
       <br/>
       <br/>
       <br/>

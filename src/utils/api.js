@@ -90,13 +90,6 @@ class API {
         limit,
         offset
       });
-      const result = await this.axiosInstance.get(
-        "/messages?limit=" + limit + "offset=" + offset,
-        {
-          limit,
-          offset,
-        }
-      );
       return result;
     } catch (err) {
       helpMeInstructor(err);
