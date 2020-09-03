@@ -51,10 +51,6 @@ export const Feed = (props) => {
      
   };
 
-  function addlikes() {
-    for (let i = 0; i <= likes.id.length; i++)
-  }
-
  
   return (
     <React.Fragment>
