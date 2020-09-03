@@ -1,14 +1,11 @@
 import React, { useState} from "react";
 import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
-<<<<<<< HEAD
 import { handleLikesIncrement, handleLikesDecrement } from '../likes/Likes'
 
 
-=======
 import {Message} from './Message'
 import {createTimestamp} from '../../functions/createTimestamp'
->>>>>>> c67dbe6e8e7d21ca25af1e7c661742114be77730
 
 export const Feed = (props) => {
  
@@ -101,13 +98,11 @@ export const Feed = (props) => {
         //////test/////
         <p> {id}</p>
         <p>{text}</p>
-<<<<<<< HEAD
       </form>
       
       <button onClick={incrementLikes} >
           Like
       </button>{likes.length}{" "} like(s)
-=======
         //////test/////
         </div>
         
@@ -125,7 +120,6 @@ export const Feed = (props) => {
               createdAt ={message.createdAt}
               />
             ))}
->>>>>>> c67dbe6e8e7d21ca25af1e7c661742114be77730
     </React.Fragment>
   );
 };
