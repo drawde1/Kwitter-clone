@@ -2,7 +2,7 @@ import api from "../../utils/api";
 export const ADD_USER = "ADD_USER";
 export const FAILURE = "FAILURE";
 export const LOAD = "LOAD";
-export const DELETE_USER = "DELETE_USERÍ";
+export const DELETE_USER = "DELETE_USER";
 
 export const user = credentials => async (dispatch, getState) => {
   try {
