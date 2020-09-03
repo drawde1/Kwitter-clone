@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch } from "react-router-dom";
-import { HomeScreen, ProfileScreen, NotFoundScreen, Feed } from "../../screens";
-import { HomeScreen, ProfileScreen, NotFoundScreen, UsersScreen, MessageScreen } from "../../screens";
+import { HomeScreen, ProfileScreen, NotFoundScreen, Feed, UsersScreen, MessageScreen } from "../../screens";
 import { ConnectedRoute } from "../connected-route/ConnectedRoute";
 
 export const Navigation = () => (
