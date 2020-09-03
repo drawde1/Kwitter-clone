@@ -1,1 +1,1 @@
-export { Profile as ProfileContainer } from "./Profile";
+export { Profile as ProfileContainer } from "./profile";

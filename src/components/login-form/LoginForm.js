@@ -107,9 +107,6 @@ export const LoginForm = ({ login }) => {
         </button>
         
       </form>
-      <button>
-          default user
-      </button>
       {loading && <Loader />}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </React.Fragment>

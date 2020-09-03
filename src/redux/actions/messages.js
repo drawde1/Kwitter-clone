@@ -1,0 +1,32 @@
+import api from '../../utils/api'
+import {FAILURE} from './defaultuser'
+
+export const ADD_MESSAGE= 'ADD_MESSAGE'
+export const GET_MESSAGE_LIST = 'GET_MESSAGE_LIST'
+export const addMessage= (text) => async (dispatch, getState) => {
+    try {
+      
+      const payload = await api.addMessage(text);
+        
+      dispatch({ type: ADD_MESSAGE, payload });
+    } catch (err) {
+      dispatch({
+        type: FAILURE,
+        payload: err.message,
+      });
+    }
+  };
+
+  export const getMessageList = (msgParams) => async (dispatch, getState) => {
+    try {
+      
+      const payload = await api.getMessageList(msgParams);
+        console.log(payload)
+      dispatch({ type: GET_MESSAGE_LIST, payload });
+    } catch (err) {
+      dispatch({
+        type: FAILURE,
+        payload: err.message,
+      });
+    }
+  };

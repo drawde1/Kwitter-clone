@@ -1,9 +1,9 @@
 import { UPDATE_USER, FAILURE, LOAD } from '../action'
 
 const INITIALSTATE = {
-    username: "",
-    displayname: "",
-    about: ""
+    password: "",
+    about: "",
+    displayname: ""
 }
 
 export const updateUserReducer = (state = { ...INITIAL_STATE }, action) => {
@@ -14,12 +14,12 @@ export const updateUserReducer = (state = { ...INITIAL_STATE }, action) => {
           loading: true,
         };
       case UPDATE_USER:
-        const { username, displayname, about} = action.payload.updateuser;
+        const { password, about, displayname, } = action.payload.updateuser;
         return {
           ...INITIAL_STATE,
-          username,
-          displayname,
+          password,
           about,
+          displayname,
           loading: false,
         };
       case FAILURE:

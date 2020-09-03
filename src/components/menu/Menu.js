@@ -14,13 +14,11 @@ export const Menu = () => {
       <div id="menu-links">
         {isAuthenticated ? (
           <>
-            <Link to="/messagefeed">
-              Message Feed
-            </Link>
+            <Link to="/feed">Message Feed</Link>
             <Link to="/" onClick={logout}>
               Logout
             </Link>
-            <Link to="/profile/Profile">
+            <Link to="/profile">
               View Profile
             </Link>
           </>

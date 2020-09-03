@@ -25,7 +25,7 @@ export const updateuser = (credentials) => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
     const payload = await api.updateuser(credentials);
-    dispatch({ type: ADD_USER, payload })
+    dispatch({ type: UPDATE_USER, payload })
   } catch (err) {
     dispatch({
       type: FAILURE,
