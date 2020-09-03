@@ -49,7 +49,33 @@ class API {
       throw err;
     }
   }
-
+    
+  async addMessage({text}) {
+    try {
+      const result = await this.axiosInstance.post("/messages", {
+        text
+      });
+      
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+  async getMessageList({limit,offset}) {
+    try {
+      const result = await this.axiosInstance.get("/messages?limit="+limit+"offset="+offset, {
+        limit,
+        offset
+      });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+      
+  
   async updateuser({password,about,displayName}) {
     try {
       const result = await this.axiosInstance.patch('/users/{username}', {
