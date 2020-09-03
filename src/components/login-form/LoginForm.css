@@ -1,5 +1,22 @@
+#login {
+  display:flex;
+  flex-direction: row;
+
+}
+#logform {
+  width: 320px;
+}
 #login-form {
   display: flex;
   flex-direction: column;
+  width: 150px;
+  justify-items: center;
+}
+#register-form {
+  display: flex;
+  flex-direction: column;
   max-width: 20em;
+  justify-items: center;
+
+  
 }
