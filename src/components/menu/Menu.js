@@ -15,9 +15,15 @@ export const Menu = () => {
       <div id='menu-links'>
         {isAuthenticated ? (
           <>
+<<<<<<< HEAD
             <Link to='/messagefeed'>Message Feed</Link>
             <Link to='/' onClick={logout}>
               <Link to='/' onClick={logout}></Link>*/ Logout
+=======
+            <Link to="/feed">Message Feed</Link>
+            <Link to="/" onClick={logout}>
+              Logout
+>>>>>>> 4e6d2655debf5a91aefef16e9c57017d1cf53a6a
             </Link>
           </>
         ) : //  <Link to="/" onClick={kwit}>

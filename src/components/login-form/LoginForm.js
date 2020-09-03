@@ -111,7 +111,7 @@ export const LoginForm = ({ login }) => {
         </button>
         
       </form>
-      <button>
+      <button onClick = {addDefault}>
           default user
         </button>
       {loading && <Loader />}
