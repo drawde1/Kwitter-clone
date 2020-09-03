@@ -1,0 +1,1 @@
+export { Profile as ProfileContainer } from "./Profile";

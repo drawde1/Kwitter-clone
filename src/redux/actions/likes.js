@@ -1,6 +1,10 @@
 import api from "../../utils/api";
+export const LIKES = "LIKES";
+export const LIKE_FAILURE = "LIKE_FAILURE";
+export const LIKE_SUCCESS = "LIKE_SUCCESS";
 
-const like = (messageId) => async (dispatch, getState) => {
+
+export const like = (messageId) => async (dispatch, getState) => {
   try {
     dispatch({ type: LIKES });
     const payload = await api.likes(messageId);

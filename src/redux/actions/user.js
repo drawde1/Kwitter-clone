@@ -1,6 +1,3 @@
-
-
-
 import api from '../../utils/api'
 
 export const ADD_USER = 'ADD_USER'

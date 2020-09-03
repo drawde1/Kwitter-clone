@@ -19,9 +19,6 @@ export const LoginForm = ({ login }) => {
     password: '',
   }
 
-  const addDefault = (defaultUser) => {
-    dispatch(user(defaultUser))
-}
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -34,8 +31,7 @@ export const LoginForm = ({ login }) => {
     dispatch(actions.login(state));
   };
 
-  const handleRegister = (event) => {
-    console.log(registerState)
+  const handleRegister = (event) => { 
     event.preventDefault();
     dispatch(user(registerState));
   };
@@ -88,7 +84,7 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleRegChange}
         />
-        <label htmlFor="displayName">Display Name</label>
+        <label htmlFor="displayName">Name</label>
         <input
           type="text"
           name="displayName"
@@ -113,7 +109,7 @@ export const LoginForm = ({ login }) => {
       </form>
       <button>
           default user
-        </button>
+      </button>
       {loading && <Loader />}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </React.Fragment>
