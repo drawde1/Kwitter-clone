@@ -3,7 +3,7 @@ import axios from "axios";
 class API {
   axiosInstance = null;
 
-  constructor() {
+  constructor () {
     /* 
       🚨1 point EXTRA CREDIT 🚨 👉🏿 get the baseURL from the environment
       https://create-react-app.dev/docs/adding-custom-environment-variables/
@@ -16,74 +16,33 @@ class API {
 
     // Add a request interceptor to attach a
     axiosInstance.interceptors.request.use(
-      (config) => ({
+      config => ({
         ...config,
         headers: {
           ...config.headers,
           Authorization: `Bearer ${getToken()}`,
         },
       }),
-      (error) => Promise.reject(error)
+      error => Promise.reject(error)
     );
 
     // Add a response interceptor
     axiosInstance.interceptors.response.use(
       ({ data }) => data,
-      (error) => Promise.reject(error)
+      error => Promise.reject(error)
     );
 
     this.axiosInstance = axiosInstance;
   }
 
-  async adduser({ username,displayName,password}) {
+  async adduser ({ username, displaname, password }) {
     try {
-    const result = await this.axiosInstance.post("/users", {
-        username,                               
-        displayName,
-        password
-      });
-      
-      return result;
-    } catch (err) {
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
-    
-  async addMessage({text}) {
-    try {
-      const result = await this.axiosInstance.post("/messages", {
-        text
-      });
-      
-      return result;
-    } catch (err) {
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
-  async getMessageList({limit,offset}) {
-    try {
-      const result = await this.axiosInstance.get("/messages?limit="+limit+"&offset="+offset, {
-        limit,
-        offset
-      });
-      return result;
-    } catch (err) {
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
-      
-  
-  async updateuser({password,about,displayName}) {
-    try {
-      const result = await this.axiosInstance.patch('/users/{username}', {
+      const result = await this.axiosInstance.post("/user", {
+        username,
+        displaname,
         password,
-        about,
-        displayName
       });
-       
+
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -91,7 +50,76 @@ class API {
     }
   }
 
-  async login({ username, password }) {
+  async deleteuser ({ username }) {
+    try {
+      const result = await this.axiosInstance.delete("/user/" + username);
+
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async deleteMessage ({ message }) {
+    try {
+      const result = await this.axiosInstance.delete("/message/" + message);
+
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async addMessage ({ text }) {
+    try {
+      const result = await this.axiosInstance.post("/messages", {
+        text,
+      });
+
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+  async getMessageList ({ limit, offset }) {
+    try {
+      const result = await this.axiosInstance.get("/messages?limit="+limit+"&offset="+offset, {
+        limit,
+        offset
+      });
+      const result = await this.axiosInstance.get(
+        "/messages?limit=" + limit + "offset=" + offset,
+        {
+          limit,
+          offset,
+        }
+      );
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async updateuser ({ password, about, displayName }) {
+    try {
+      const result = await this.axiosInstance.patch("/users/{username}", {
+        password,
+        about,
+        displayName,
+      });
+
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async login ({ username, password }) {
     try {
       const result = await this.axiosInstance.post("/auth/login", {
         username,
@@ -104,7 +132,7 @@ class API {
     }
   }
 
-  async logout() {
+  async logout () {
     try {
       await this.axiosInstance.get("/auth/logout");
     } catch (err) {
@@ -144,7 +172,7 @@ class API {
 
 // WARNING.. do not touch below this line if you want to have a good day =]
 
-function helpMeInstructor(err) {
+function helpMeInstructor (err) {
   console.info(
     `
     Did you hit CORRECT the endpoint?
@@ -158,7 +186,7 @@ function helpMeInstructor(err) {
   );
 }
 
-function getToken() {
+function getToken () {
   try {
     const storedState = JSON.parse(localStorage.getItem("persist:root"));
     return JSON.parse(storedState.auth).isAuthenticated;
