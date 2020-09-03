@@ -35,21 +35,18 @@ class API {
     this.axiosInstance = axiosInstance;
   }
 
-<<<<<<< HEAD
   async adduser ({ username, displaname, password }) {
     try {
       const result = await this.axiosInstance.post("/user", {
         username,
         displaname,
         password,
-=======
   async adduser({ username,displayName,password}) {
     try {
     const result = await this.axiosInstance.post("/users", {
         username,                               
         displayName,
         password
->>>>>>> 17bb058b9e9ed6db7a822909c85072de14368dc1
       });
 
       return result;
@@ -69,8 +66,17 @@ class API {
       throw err;
     }
   }
-<<<<<<< HEAD
-=======
+
+  async deletemessage({ message }) {
+    try {
+      const result = await this.axiosInstance.delete("/message/" + message);
+
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
 
   async updateuser({password,about,displayName}) {
     try {
@@ -86,7 +92,6 @@ class API {
       throw err;
     }
   }
->>>>>>> 17bb058b9e9ed6db7a822909c85072de14368dc1
 
   async login ({ username, password }) {
     try {
