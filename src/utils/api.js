@@ -112,21 +112,35 @@ class API {
       throw err;
     }
   }
-  async addPicture({ username, picture }) {
-    
+  async addPicture( username, picture ) {
     try {
-      const result = await this.axiosInstance.put("/users/"+username+"/picture", {
-        username, 
+      const result = await this.axiosInstance.put("/users/"+username+"/picture",  
         picture
-      });
+      )
       console.log(result)
       return result;
     } catch (err) {
+      console.log({err})
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+  async getPictures( username, picture ) {
+    try {
+      const result = await this.axiosInstance.get("/users/"+username+"/picture",  
+        picture
+      )
+      console.log(result)
+      return result;
+    } catch (err) {
+      console.log({err})
       helpMeInstructor(err);
       throw err;
     }
   }
 }
+
+
 
 
 

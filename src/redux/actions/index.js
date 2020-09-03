@@ -1,4 +1,4 @@
 export * from "./auth"
-export * from "./userpicture"
+export * from "./photos"
 export * from "./messages"
 export * from "./user"

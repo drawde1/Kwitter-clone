@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { authReducer } from "./auth";
-import { picReducer } from "./users"
+import { picReducer } from "./pic"
 import { defaultUserReducer} from './user'
 import {addMessageReducer} from './messages'
 import {getMessageListReducer} from './messagesList'
