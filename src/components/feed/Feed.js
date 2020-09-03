@@ -35,6 +35,7 @@ export const Feed = (props) => {
 //     dispatch(getMessageList(msgListParams))
   const initialState = {
     text: "",
+    clicks: 0
   }
   
   const [state, setState] = useState(initialState);
@@ -51,6 +52,18 @@ export const Feed = (props) => {
      
   };
 
+  const addlikes = (event) => {
+    event.preventDefault();
+    dispatch(likes(state))
+  }
+
+  const incrementLikes = (event) => {
+    this.props({ clicks: this.state.clicks + 1})
+  }
+
+  const decrementLikes = (event) => {
+    this.props({ clicks: this.state.clicks - 1})
+  }
  
   return (
     <React.Fragment>
@@ -72,7 +85,7 @@ export const Feed = (props) => {
         <p>{text}</p>
       </form>
       
-      <button onClick={""} >
+      <button onClick={incrementLikes} >
           Like
       </button>{likes.length}{" "} like(s)
     </React.Fragment>
