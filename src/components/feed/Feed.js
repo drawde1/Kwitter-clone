@@ -39,7 +39,8 @@ export const Feed = (props) => {
   }
   
   const [state, setState] = useState(initialState);
- 
+//  let feedMessages = []
+//  feedMessages = messageList
   //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
   //scroll argumentrs include 
 //   scrollY = y off set
@@ -54,50 +55,53 @@ export const Feed = (props) => {
   const postMessage = (event) => {
     event.preventDefault();
      dispatch(addMessage(state));
-     dispatch(getMessageList(msgListParams));
+     dispatch(getMessageList(msgListParams))
      console.log(messageList[0].createdAt)
   };
-  
+ 
  
      
- 
-  return (
-    <React.Fragment>
-      <form id="login-form" onSubmit={postMessage}>
-        <label htmlFor="msg">say something</label>
-        <input
-          type="text"
-          name="msg"
-          value={state.msg}
-          autoFocus
-          required
-          onChange={handleChange}
-        />
-        
-        <button type="submit" >
-          send
-        </button>
-        <div>
-        //////test/////
-        <p> {id}</p>
-        <p>{text}</p>
-        //////test/////
-        </div>
-        
-      </form>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      {messageList.map((message) => (
-              <Message text={message.text} 
-              username={message.username}
-              msgId ={message.id}
-              key = {message.id} 
-              likes = {message.likes}
-              createdAt ={message.createdAt}
-              />
-            ))}
-    </React.Fragment>
-  );
+    
+    return (
+        <React.Fragment>
+        <form id="login-form" onSubmit={postMessage}>
+            <label htmlFor="msg">say something</label>
+            <input
+            type="text"
+            name="msg"
+            value={state.msg}
+            autoFocus
+            required
+            onChange={handleChange}
+            />
+            
+            <button type="submit" >
+            send
+            </button>
+            <div>
+            //////test/////
+            <p> {id}</p>
+            <p>{text}</p>
+            //////test/////
+            </div>
+            
+        </form>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        {messageList.map((message) => (
+                <Message text={message.text} 
+                username={message.username}
+                msgId ={message.id}
+                key = {message.id} 
+                likes = {message.likes}
+                createdAt ={message.createdAt}
+                />
+                ))}
+        </React.Fragment>
+    
+    );
+    
+    
 };
