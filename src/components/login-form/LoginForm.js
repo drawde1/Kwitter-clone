@@ -57,8 +57,10 @@ export const LoginForm = ({ login }) => {
     <React.Fragment>
     <div id="login">
       <div id="logform">
+        <div>
       <form id="login-form" onSubmit={handleLogin}>
-        <label htmlFor="username">Username</label>
+        <div>
+        <h2><label htmlFor="username">Username</label></h2>
         <input
           type="text"
           name="username"
@@ -67,7 +69,9 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleChange}
         />
-        <label htmlFor="password">Password</label>
+        </div>
+        <div>
+        <h2><label htmlFor="password">Password</label></h2>
         <input
           type="password"
           name="password"
@@ -75,14 +79,20 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleChange}
         />
+        </div>
+        <div id="logsub1">
         <button type="submit" disabled={loading}>
           Login
         </button>
+        </div>
       </form>
+      </div>
     </div>
+    <div id="divspace"></div>
     <div id="regform">
       <form id="register-form" onSubmit={handleRegister}>
-        <label htmlFor="username">Username</label>
+        <div>
+        <h2><label htmlFor="username">Username</label></h2>
         <input
           type="text"
           name="username"
@@ -91,7 +101,9 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleRegChange}
         />
-        <label htmlFor="displayName">Display Name</label>
+        </div>
+        <div>
+        <h2><label htmlFor="displayName">Display Name</label></h2>
         <input
           type="text"
           name="displayName"
@@ -100,7 +112,9 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleRegChange}
         />
-        <label htmlFor="password">Password</label>
+        </div>
+        <div>
+        <h2><label htmlFor="password">Password</label></h2>
         <input
           type="password"
           name="password"
@@ -108,11 +122,12 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleRegChange}
         />
-        
+        </div>
+        <div id="logsub2">
         <button type="submit" disabled={loading}>
           Login
         </button>
-           
+        </div>
       </form>
       </div>
       </div>

@@ -12,6 +12,7 @@ export const Menu = () => {
 
   return (
     <div id="menu">
+      
       <h1>Kwitter</h1>
       <div id='menu-links'>
         {isAuthenticated ? (

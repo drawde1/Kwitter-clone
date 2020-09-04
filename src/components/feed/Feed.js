@@ -60,23 +60,8 @@ export const Feed = (props) => {
     event.preventDefault();
      dispatch(addMessage(state));
      dispatch(getMessageList(msgListParams));
-     console.log(messageList[0].createdAt)
+     //console.log(messageList[0].createdAt)
   };
-
-  const addlikes = (event) => {
-    event.preventDefault();
-    dispatch(likes(state))
-  }
-
-  const incrementLikes = (event) => {
-    this.props({ clicks: this.state.clicks + 1})
-  }
-
-  const decrementLikes = (event) => {
-    this.props({ clicks: this.state.clicks - 1})
-  }
- 
-     
  
   return (
     <React.Fragment>
@@ -95,29 +80,15 @@ export const Feed = (props) => {
           send
         </button>
         <div>
-        //////test/////
         <p> {id}</p>
         <p>{text}</p>
-        //////test/////
-        </div>
-        
+        </div>  
       </form>
-      <button onClick={incrementLikes} >
-          Like
-      </button>{likes.length}{" "} like(s)
       <br/>
       <br/>
       <br/>
       <br/>
-      {messageList.map((message) => (
-              <Message text={message.text} 
-              username={message.username}
-              msgId ={message.id}
-              key = {message.id} 
-              likes = {message.likes}
-              createdAt ={message.createdAt}
-              />
-            ))}
+      
     </React.Fragment>
   );
 };
