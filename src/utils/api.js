@@ -49,6 +49,18 @@ class API {
       throw err;
     }
   }
+  async getUser( username) {
+    try {
+    const result = await this.axiosInstance.get("/users/"+username,{
+      username
+    });
+      
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
     
   async addMessage({text}) {
     try {
@@ -64,7 +76,7 @@ class API {
   }
   async getMessageList({limit,offset}) {
     try {
-      const result = await this.axiosInstance.get("/messages?limit="+limit+"offset="+offset, {
+      const result = await this.axiosInstance.get("/messages?limit="+limit+"&offset="+offset, {
         limit,
         offset
       });
