@@ -55,6 +55,17 @@ class API {
       const result = await this.axiosInstance.delete("/users" + username, {
         username,
       });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+  async getUser (username) {
+    try {
+      const result = await this.axiosInstance.get("/users/" + username, {
+        username,
+      });
 
       return result;
     } catch (err) {
