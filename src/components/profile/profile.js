@@ -80,7 +80,7 @@ export const Picture = () => {
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
       {/* {console.log("State.action")} */}
       {/* {console.log(state.formData)} */}
-      <img url={"https://kwitter-api.herokuapp.com"+userPicture} alt="photo" width="200" height="200"></img>
+      
         <label htmlFor="username">Username</label>
         <h2>your messages</h2>
         {yourMessages.map((message) => (
