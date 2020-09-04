@@ -10,10 +10,12 @@ import { user } from "../../redux/actions";
 
 
 export const Picture = () => {
+  
   //const dispatch = useDispatch();
   const picture = useRef(null);
   const username = useSelector(state => state.auth.username);
-  console.log(username)
+  const userPicture = useSelector(state => state.getUser.pictureLocation)
+  console.log(userPicture)
 
   //const [state, setState] = useState({
    // username: "user",
@@ -36,12 +38,16 @@ export const Picture = () => {
   };
 
 
-  // const setPic = async (event) => {
-  //   event.preventDefault();
-  //   //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-  //   dispatch(setPicture(state))
+   const setPic = async (event) => {
+     event.preventDefault();
+     //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
+     //dispatch(setPicture(state))
+     const picdata = new FormData (picture.current)
+      const results = await Api.getPictures( username, picdata )
+      console.log(picdata)
+      console.log(results)
    
-  // };
+   };
 
 
   return (
@@ -56,9 +62,9 @@ export const Picture = () => {
         <button type="submit">upload picture</button> 
       </form>
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
-      {console.log("State.action")}
+      {/* {console.log("State.action")} */}
       {/* {console.log(state.formData)} */}
-
+      <img url={"https://kwitter-api.herokuapp.com"+userPicture} alt="photo" width="200" height="200"></img>
         <label htmlFor="username">Username</label>
         
     </React.Fragment>
