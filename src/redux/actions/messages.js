@@ -3,10 +3,11 @@ import { FAILURE } from "./defaultuser";
 export const DELETE_MESSAGE = "DELETE_MESSAGE";
 export const ADD_MESSAGE = "ADD_MESSAGE";
 export const GET_MESSAGE_LIST = "GET_MESSAGE_LIST";
+export const ADD_LIKE = 'ADD_LIKE'
+
 export const addMessage = text => async (dispatch, getState) => {
   try {
     const payload = await api.addMessage(text);
-
     dispatch({ type: ADD_MESSAGE, payload });
   } catch (err) {
     dispatch({
@@ -19,7 +20,6 @@ export const addMessage = text => async (dispatch, getState) => {
 export const getMessageList = msgParams => async (dispatch, getState) => {
   try {
     const payload = await api.getMessageList(msgParams);
-    console.log(payload);
     dispatch({ type: GET_MESSAGE_LIST, payload });
   } catch (err) {
     dispatch({
@@ -28,6 +28,7 @@ export const getMessageList = msgParams => async (dispatch, getState) => {
     });
   }
 };
+
 export const deleteMessage = messageid => async (dispatch, getState) => {
   try {
     const payload = await api.deleteMessage(messageid);
@@ -40,3 +41,4 @@ export const deleteMessage = messageid => async (dispatch, getState) => {
     });
   }
 };
+

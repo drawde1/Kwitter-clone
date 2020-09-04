@@ -1,9 +1,11 @@
 import { UPDATE_USER, FAILURE, LOAD } from '../action'
 
-const INITIALSTATE = {
+const INITIAL_STATE = {
     password: "",
     about: "",
-    displayname: ""
+    displayname: "",
+    loading: false,
+    error: ""
 }
 
 export const updateUserReducer = (state = { ...INITIAL_STATE }, action) => {
@@ -29,7 +31,6 @@ export const updateUserReducer = (state = { ...INITIAL_STATE }, action) => {
           loading: false,
         };
       
-      default:
-        return state;
+      default: return state;
     }
   };

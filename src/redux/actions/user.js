@@ -22,7 +22,7 @@ export const user = credentials => async (dispatch, getState) => {
   }
 };
 
-export const updateuser = (credentials) => async (dispatch, getState) => {
+export const updateuser = credentials => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
     const payload = await api.updateuser(credentials);

@@ -9,14 +9,17 @@ export const Menu = () => {
   const dispatch = useDispatch();
   const logout = () => dispatch(actions.logout());
   // const kwit = () => dispatch(actions.kwit());
+  const loginuser = useSelector((state) => state.auth.isAuthenticated) 
   return (
     <div id='menu'>
       <h1>Kwitter</h1>
       <div id='menu-links'>
         {isAuthenticated ? (
           <>
-            <Link to='/feed'>Message Feed</Link>
-            <Link to='/' onClick={logout}>
+            <Link to="/profiles/:username">Profile</Link>
+            <Link to="/users">Users</Link>
+            <Link to="/feed">Message Feed</Link>
+            <Link to="/" onClick={logout}>
               Logout
             </Link>
             <Link to="/profile">

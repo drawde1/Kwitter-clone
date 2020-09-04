@@ -53,7 +53,6 @@ class API {
   async deleteuser ({ username }) {
     try {
       const result = await this.axiosInstance.delete("/user/" + username);
-
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -64,7 +63,6 @@ class API {
   async deleteMessage ({ message }) {
     try {
       const result = await this.axiosInstance.delete("/message/" + message);
-
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -84,6 +82,7 @@ class API {
       throw err;
     }
   }
+  
   async getMessageList ({ limit, offset }) {
     try {
       const result = await this.axiosInstance.get("/messages?limit=" + limit + "offset=" + offset,{
@@ -146,7 +145,40 @@ class API {
       throw err;
     }
   }
+
+  async addPicture( username, picture ) {
+    try {
+      const result = await this.axiosInstance.put("/users/"+username+"/picture",  
+        picture
+      )
+      console.log(result)
+      return result;
+    } catch (err) {
+      console.log({err})
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async getPictures( username, picture ) {
+    try {
+      const result = await this.axiosInstance.get("/users/"+username+"/picture",  
+        picture
+      )
+      console.log(result)
+      return result;
+    } catch (err) {
+      console.log({err})
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
 }
+
+
+
+
+
 
 // WARNING.. do not touch below this line if you want to have a good day =]
 
