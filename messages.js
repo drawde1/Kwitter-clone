@@ -24,6 +24,6 @@ export const addMessageReducer = (state = { ...INITIAL_STATE }, action) => {
         loading: false,
       };
     default:
-      return state;
+      return { ...INITIAL_STATE };
   }
 };

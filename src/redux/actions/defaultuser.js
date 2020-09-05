@@ -31,7 +31,6 @@ export const deleteuser = credentials => async (dispatch, getState) => {
     });
     const userName = getState().auth.login.result.username;
     const payload = await api.deleteuser(userName);
-    <button onClick={(deleteuser) => (user.id)> Delete User</button>
-
-}
-  }}
+    //  <button onClick={(deleteuser) => (user.id)> Delete User</button>
+  }
+};

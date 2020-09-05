@@ -43,6 +43,3 @@ export const deleteMessage = messageid => async (dispatch, getState) => {
     });
   }
 };
-// <button onClick={event => { handledeleteMessage(message.id) }> {' '} Delete Message </button>
-//  return  (messageid): deleteMessage.filter(message => message.id !== action.payload) }
-//  }
