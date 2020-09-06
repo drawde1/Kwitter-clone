@@ -2,8 +2,10 @@ import React from "react";
 import { createTimestamp } from "../../functions/createTimestamp";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMessage } from "../../redux/actions/messages";
 import { MessageList } from "semantic-ui-react";
+// import { DeleteMessage } from "../delete";
+import { deleteMessage, DeleteMessage } from "../delete/DeleteMessage";
+import { getMessageList } from "../../redux/actions/messages";
 export const Message = props => {
   //TODO: handle delete message
   //TODO: handle likes add & delete
@@ -20,24 +22,14 @@ export const Message = props => {
   let timestamp = createTimestamp(props.createdAt);
   // // useEffect(()=>{})
   // componentDidMount(()=>{timestamp = })
+  const msgListParams = {
+    limit: 10,
+    offset: 0,
+  };
 
-  const handleDelete = () => {
+  const handleDeleteMessage = () => {
     dispatch(deleteMessage(props.id));
-
-    // if (deleteMessage === false) {
-    //     const result = await this.axiosInstance.delete("/messageid" + Message, {
-
-    //     [],
-    //     });
-    //         .then(res => res.json())
-    //         .then(result => {
-    //             console.log(result)
-    //             setActive(true)
-    //             deleteMessage(result)
-    //         })
-    //         .catch(error => console.log(error))
-    // } else {
-    //     setActive(false)
+    dispatch(getMessageList(msgListParams));
   };
 
   return (
@@ -50,8 +42,8 @@ export const Message = props => {
         <span> date:{timestamp.date}</span>
       </p>
       <button>like</button>
-      <button>x</button>
-      <button onClick={handleDelete}> Delete Message </button>
+      <button onClick={handleDeleteMessage}>Delete</button>
+      <DeleteMessage></DeleteMessage>
     </>
   );
 };

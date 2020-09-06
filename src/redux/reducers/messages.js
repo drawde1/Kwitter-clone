@@ -1,5 +1,5 @@
 // TODO: implement
-import { ADD_MESSAGE, DELETE_MESSAGE, FAILURE } from "../actions";
+import { ADD_MESSAGE } from "../actions";
 const INITIAL_STATE = {
   id: 0,
   text: "",

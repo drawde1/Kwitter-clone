@@ -1,4 +1,4 @@
-import { ADD_USER, FAILURE, LOAD, DELETE_USER } from "../actions";
+import { ADD_USER, FAILURE, LOAD } from "../actions";
 
 const INITIAL_STATE = {
   username: "",
@@ -23,10 +23,6 @@ export const defaultUserReducer = (state = { ...INITIAL_STATE }, action) => {
         displayname,
         createdAt,
         loading: false,
-      };
-    case DELETE_USER:
-      return {
-        ...INITIAL_STATE,
       };
     case FAILURE:
       return {

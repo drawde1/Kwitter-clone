@@ -1,6 +1,5 @@
 import api from "../../utils/api";
 
-export const DELETE_USER = "DELETE_USER";
 export const ADD_USER = "ADD_USER";
 export const GET_USER = "GET_USER";
 export const FAILURE = "FAILURE";
@@ -22,19 +21,6 @@ export const user = credentials => async (dispatch, getState) => {
   }
 };
 
-export const deleteUser = username => async (dispatch, getState) => {
-  try {
-    const payload = await api.deleteuser(username);
-    console.log(payload);
-    dispatch({ type: DELETE_USER, payload });
-    dispatch({ type: GET_USER, payload });
-  } catch (err) {
-    dispatch({
-      type: FAILURE,
-      payload: err.message,
-    });
-  }
-};
 export const getUserInfo = username => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
