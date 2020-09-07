@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
@@ -9,6 +10,7 @@ export const Menu = () => {
   const dispatch = useDispatch();
   const logout = () => dispatch(actions.logout());
   const loginuser = useSelector((state) => state.auth.isAuthenticated) 
+ 
   return (
     <div id="menu">
       <h1>Kwitter</h1>
