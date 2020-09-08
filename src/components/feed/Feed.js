@@ -32,7 +32,7 @@ export const Feed = (props) => {
     // 2020-09-03T14:27:16.454Z
   const msgListParams =
   {
-    limit: 10,
+    limit: 100,
     offset: 0
   }
   const dispatch = useDispatch();
@@ -99,7 +99,7 @@ export const Feed = (props) => {
                 likes = {message.likes}
                 createdAt ={message.createdAt}
                 />
-                ))}
+        ))}
         </React.Fragment>
     
     );
