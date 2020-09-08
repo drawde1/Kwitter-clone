@@ -20,12 +20,10 @@ export const Feed = (props) => {
     // error: ''
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
-    const {id,text,likes,messageList,createdAt,loadingMessage,loadingList} = useSelector((state)=>({
-        id: state.addMsg.id,
-        text: state.addMsg.text,
-        likes: state.addMsg.likes,
+    const {messageList,loadingMessage,loadingList} = useSelector((state)=>({
+        
         messageList: state.getMessageList.messages,
-        createdAt: state.addMsg.createdAt,
+        
         loadingMessage: state.addMsg.loading,
         loadingList: state.getMessageList.laoding
     })) 
