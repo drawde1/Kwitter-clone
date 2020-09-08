@@ -27,7 +27,7 @@ const handleDelete = () =>
 {
     console.log(props.msgId)
     dispatch(deleteMessage(props.msgId))
-    // dispatch(getMessageList(msgListParams))
+    dispatch(getMessageList(msgListParams))
 }
  let timestamp = createTimestamp(props.createdAt)
 // // useEffect(()=>{})
