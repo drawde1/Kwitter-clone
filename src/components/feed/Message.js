@@ -38,7 +38,7 @@ const handleDelete = () =>
         <p>text:{props.text}</p>
         <p>likes:{props.likes.length}</p>
         <p>time: {timestamp.time}<span> date:{timestamp.date}</span></p>
-        <button >like</button><button onClick ={handleDelete}>x</button>
+        <button >like</button><button onClick ={()=>handleDelete()}>x</button>
         
 
     </>)
