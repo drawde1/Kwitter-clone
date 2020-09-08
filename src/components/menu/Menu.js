@@ -12,7 +12,7 @@ export const Menu = () => {
   return (
     <div id="menu">
       
-      <h1>Kwitter</h1>
+      <div id="kwitter"><center>Kwitter</center></div>
       <div id="menu-links">
         {isAuthenticated ? (
           <>
