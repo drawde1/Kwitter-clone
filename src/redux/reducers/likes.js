@@ -24,7 +24,7 @@ export const likesReducer = (state = {...DEFAULT_STATE}, action) => {
         messageId
       };
     case LIKE_SUCCESS: 
-      //const { memberId } = action.payload;
+      const { memberId } = action.payload;
       return {
         ...DEFAULT_STATE, 
         memberId
