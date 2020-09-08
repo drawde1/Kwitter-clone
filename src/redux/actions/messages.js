@@ -4,6 +4,7 @@ import { FAILURE } from "./defaultuser";
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const ADD_MESSAGE= 'ADD_MESSAGE'
 export const ADD_LIKE = 'ADD_LIKE'
+export const DELETE_LIKE = 'DELETE_LIKE'
 export const GET_MESSAGE_LIST = 'GET_MESSAGE_LIST'
 
 export const addMessage= (text) => async (dispatch, getState) => {
@@ -43,4 +44,18 @@ export const deleteMessage = messageid => async (dispatch, getState) => {
       payload: err.message,
     });
   }
+};
+
+export const addLike = (message, user) => {
+  return {
+    type: ADD_LIKE,
+    payload: { message, user }
+  };
+};
+
+export const deleteLike = message => {
+  return {
+    type: DELETE_LIKE,
+    payload: message
+  };
 };

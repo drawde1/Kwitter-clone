@@ -1,8 +1,12 @@
-import React  from 'react'
+import React, { useState, useRef }  from 'react'
 import { createTimestamp } from '../../functions/createTimestamp'
 import { useEffect,} from 'react'
 import {  useDispatch,useSelector} from "react-redux";
-import {addLike} from '../../redux/actions/messages'
+import {addLike, deleteLike} from '../../redux/actions/messages'
+import actions from 'redux-form/lib/actions';
+import {likes} from '../../redux/actions/likes'
+
+
 export const Message = (props) =>
 {
 //TODO: handle delete message
@@ -21,12 +25,40 @@ const dispatch =useDispatch()
 // // useEffect(()=>{})
 // componentDidMount(()=>{timestamp = })
 
+ 
+  const [disClick, setDisClick] = useState(0)
+  const [deselect, setDeselect] = useState(false)
+
+  const handleLike = (userId, messageId) => () => {
+      this.props.dispatch(addLike(userId, messageId))
+  }
+
+  const handleUnlike = messageId => () => {
+      console.log(messageId);
+      this.props.dispatch(deleteLike(messageId))
+  }
+  //const [likeMessage] = likes(this.props.messageId)
+
  return (  <>
         <p>user:{props.username}</p>
         <p>text:{props.text}</p>
-        <p>likes:{props.likes.length}</p>
+         <div class="ui labeled button" tabIndex="0">
+            <button class="ui blue button" onClick={handleLike}>
+                <i class="heart icon"></i> Like(s)
+            </button>
+            <a class="ui basic blue left pointing label">
+               {likes.length} 
+            </a>
+        </div>
+        <div class="ui labeled button" tabIndex="0">
+            <button class="ui red button" onClick={() => setDisClick(disClick + 1 )}>
+                <i class="frown icon"></i> Dislikes
+            </button>
+            <a class="ui basic left pointing red label">
+                {disClick}
+            </a>
+        </div>
         <p>time: {timestamp.time}<span> date:{timestamp.date}</span></p>
-        <button >like</button><button>x</button>
         
 
     </>)

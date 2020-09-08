@@ -35,11 +35,11 @@ class API {
     this.axiosInstance = axiosInstance;
   }
 
-  async adduser ({ username, displaname, password }) {
+  async adduser ({ username, displayname, password }) {
     try {
       const result = await this.axiosInstance.post("/user", {
         username,
-        displaname,
+        displayname,
         password,
       });
 

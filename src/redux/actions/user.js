@@ -1,17 +1,17 @@
-import api from "../../utils/api";
+import api from '../../utils/api'
 
-export const DELETE_USER = 'DELETE_USER'
 export const ADD_USER = 'ADD_USER'
-export const GET_USER = 'GET_USER'
 export const FAILURE = 'FAILURE'
 export const LOAD = 'LOAD'
+export const DELETE_USER = 'DELETE_USER'
+export const GET_USER = 'GET_USER'
 
 
- const user = (credentials) => async (dispatch, getState) => {
+export const user = (credentials) => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
     const payload = await api.adduser(credentials);
-    console.log(payload);
+    console.log(payload)
     // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
     // console.log({ result })
     dispatch({ type: ADD_USER, payload });
@@ -21,8 +21,9 @@ export const LOAD = 'LOAD'
       payload: err.message,
     });
   }
+};
 
- const getUserInfo = (username) => async (dispatch, getState) => {
+export const getUserInfo = (username) => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
     const payload = await api.getUser(username);
@@ -37,3 +38,4 @@ export const LOAD = 'LOAD'
     });
   }
 }
+

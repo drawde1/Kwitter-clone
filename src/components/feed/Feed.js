@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
-import { handleLikesIncrement, handleLikesDecrement } from '../likes/Likes'
+//import { IncrementClick, RemoveClick, ToggleSelection } from '../likes'
 
 
 import {Message} from './Message'
@@ -61,11 +61,8 @@ export const Feed = (props) => {
      dispatch(addMessage(state));
      dispatch(getMessageList(msgListParams))
      console.log(messageList[0].createdAt)
-  };
- 
- 
-     
-    
+  };     
+  
     return (
         <React.Fragment>
         <form id="login-form" onSubmit={postMessage}>
