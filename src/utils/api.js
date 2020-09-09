@@ -124,7 +124,8 @@ class API {
     }
   }
 
-  async likes({ messageId }) {
+  async likes(messageId) {
+    console.log(messageId)
     try {
       const result = await this.axiosInstance.post("/likes", {
         messageId

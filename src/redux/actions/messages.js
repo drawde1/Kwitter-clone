@@ -6,6 +6,7 @@ export const ADD_MESSAGE= 'ADD_MESSAGE'
 export const ADD_LIKE = 'ADD_LIKE'
 export const DELETE_LIKE = 'DELETE_LIKE'
 export const GET_MESSAGE_LIST = 'GET_MESSAGE_LIST'
+export const LIKE_FAILURE = 'LIKE_FAILURE'
 
 export const addMessage= (text) => async (dispatch, getState) => {
     try {
@@ -46,16 +47,53 @@ export const deleteMessage = messageid => async (dispatch, getState) => {
   }
 };
 
-export const addLike = (message, user) => {
-  return {
-    type: ADD_LIKE,
-    payload: { message, user }
-  };
+export const likes = (messageId) => async (dispatch, getState) => {
+  //console.log(messageId)
+  try {
+    dispatch({ type: ADD_LIKE });
+    const payload = await api.likes(messageId);
+    dispatch(getMessageList())
+    // console.log(payload)
+    // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
+    // console.log({ result })
+  } catch (err) {
+    console.log(err)
+    dispatch({
+      type: LIKE_FAILURE,
+      payload: err.message,
+    });
+  }
 };
 
-export const deleteLike = message => {
-  return {
-    type: DELETE_LIKE,
-    payload: message
-  };
+export const deleteLikes = (messageId) => async (dispatch, getState) => {
+  //console.log(messageId)
+  try {
+    dispatch({ type: DELETE_LIKE });
+    const payload = await api.likes(messageId);
+    // console.log(payload)
+    // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
+    // console.log({ result })
+  } catch (err) {
+    console.log(err)
+    dispatch({
+      type: LIKE_FAILURE,
+      payload: err.message,
+    });
+  }
 };
+
+
+// export const addLike = (messageId) => async (dispatch, getState) {
+//   try {
+//   return {
+//     type: ADD_LIKE,
+//     payload: { message, user }
+//   };
+// };
+
+// export const deleteLike = message => {
+//   return {
+//     type: DELETE_LIKE,
+//     payload: message
+//   };
+// };
