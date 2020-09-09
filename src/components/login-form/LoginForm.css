@@ -1,22 +1,59 @@
 #login {
   display:flex;
   flex-direction: row;
-
+  
+  
 }
 #logform {
-  width: 320px;
+  display:flex;
+  width: 620px;
+  height: 460px;
+  border: 2px solid black;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 30px;
+  background-color: lightblue;
 }
+#regform {
+  display:flex;
+  width: 620px;
+  height: 460px;
+  border: 2px solid black;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 30px;
+  background-color: lightblue;
+} 
+  #logintitle {
+    color:blue;
+    font-size: 40px;
+  }
+
+  #registertitle {
+    color: blue;
+    font-size: 40px;
+  }
+
+#divspace {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  width: 100px;
+  height: 100px;
+}
+
 #login-form {
-  display: flex;
+  display:flex;
   flex-direction: column;
-  width: 150px;
-  justify-items: center;
+  width: 200px;
+  height:300px;
+  justify-content: space-around;
 }
+
 #register-form {
   display: flex;
   flex-direction: column;
-  max-width: 20em;
-  justify-items: center;
-
-  
+  width: 200px;
+  height:300px;
+  justify-content: space-around;
 }
+

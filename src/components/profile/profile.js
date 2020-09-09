@@ -10,20 +10,23 @@ import Api from "../../utils/api"
 import { getUserInfo } from '../../redux/actions/user'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
-import {messageList} from '../feed/Feed'
-import { user } from "../../redux/actions";
+import {getMessageList} from '../../redux/actions'
+import "./scrollbox.css"
+
+
 
 export const Profile = () => {
     const {username, name, about, userInfo} = useSelector((state)=>({
         username: state.auth.username,
         name: state.getUser.displayName,
         bio: state.getUser.about,
-        userInfo: state.getUser
+        userInfo: state.getUser,
     }));
     console.log(userInfo)
 
-    useEffect(()=>{
-      dispatch(getUserInfo(user))
+    useEffect(() => { 
+      dispatch(getUserInfo(username))
+
     },[])
 
     const dispatch = useDispatch();
@@ -37,8 +40,8 @@ export const Profile = () => {
     const [state, setState] = useState({INITIALSTATE});
 
     const handleUpdate = (event) => {
-        event.preventDefault();
-        dispatch(updateuser({...state, username}));
+      event.preventDefault();
+      dispatch(updateuser({...state, username}));
     }
 
     const handleChange = (event) => {
@@ -84,89 +87,112 @@ export const Profile = () => {
                 />
                 <br/>
                 <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
-                    Update Profile
+                  Update Profile
                 </button>
             </form>
         </React.Fragment>
     )
 }
 //import "./LoginForm.css";
+  
 
+  
+  
+  // const handleGetUser = (username) =>
+  
 
-
-// export const Picture = () => {
-
-//   const { username,userPicture,userInfo,messageList } = useSelector((state)=>
-//   ({
-//     username: state.auth.username,
-//     userPicture: state.getUser.pictureLocation,
-//     userInfo:  state.getUser,
-//     messageList: state.getMessageList.messages,
-//   }))
-
-//   const dispatch = useDispatch();
-//   const picture = useRef(null);
-
-
-//   const handleGetUser = (username) =>
-//   {
-//     dispatch(getUserInfo(username))
-//     console.log(userInfo)
-//   }
-// //    handleGetUser()
-// //   useEffect(handleGetUser(username))
 
 
   
-//   const addPic = async (event) => {
-//     event.preventDefault();
-//     //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-//     //dispatch(getPicture(state))
-//     const picdata = new FormData (picture.current)
-//     const results = await Api.addPicture( username, picdata )
-//     dispatch(getUserInfo(username))
-//   };
+export const Picture = () => {
 
-  
-//   // const setPic = async (event) => {
-//   //   event.preventDefault();
-//   //   //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-//   //   dispatch(setPicture(state))
-   
-//   // };
-  
-//   const yourMessages = messageList.filter((message)=>message.username === username)
+  const { username,userPicture,userInfo,messageList } = useSelector((state)=>
+  ({
+    username: state.auth.username,
+    userPicture: state.getUser.pictureLocation,
+    userInfo:  state.getUser,
+    messageList: state.getMessageList.messages,
+  }))
 
-//   // return (
-//   //   <React.Fragment>
+  const dispatch = useDispatch();
+  const picture = useRef(null);
+
+  useEffect(() => { 
+    dispatch(getUserInfo(username))
+
+  },[])
+
+  const msgListParams =
+  {
+    limit: 10,
+    offset: 0
+  }
+
+  const handleGetUser = (username) =>
+  {
+    dispatch(getUserInfo(username))
+    console.log(userInfo)
+  }
+//    handleGetUser()
+//   useEffect(handleGetUser(username))
+
+  const addPic = async (event) => {
+    event.preventDefault();
+    const picdata = new FormData (picture.current)
+    const results = await Api.addPicture( username, picdata )
+    dispatch(getUserInfo(username))
+  };
+
+  useEffect(()=>{
+    dispatch(getMessageList(msgListParams))
+  
+  },[])
+
+
+  const setPic = async (event) => {
+    event.preventDefault();
+    //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
+    //dispatch(setPicture(state))
+    const picdata = new FormData (picture.current)
+    const results = await Api.getPictures( username, picdata )
+    console.log(picdata)
+    console.log(results)
+  };
+
+  const yourMessages = messageList.filter((message)=>message.username === username)
+  
+  return (
+    <React.Fragment>
+
+        
+        <h1>Profile Page</h1>
+
+        <img 
+        src = {"https://kwitter-api.herokuapp.com"+userPicture}
+        width="200" 
+        height="200"/>
+      <form ref={picture} onSubmit = {addPic}>
+       <input type="file" name="picture">
+        </input>
+        <button type="submit">upload picture</button> 
+      </form>
+      {/* <button  onClick={addPicChange}>Change Picture</button> */}
+      {/* {console.log("State.action")} */}
+      {/* {console.log(state.formData)} */}
       
-//   //       <h1>Profile Page</h1>
-
-//   //       <img 
-//   //       src = {"https://kwitter-api.herokuapp.com"+userPicture}
-//   //       width="200" 
-//   //       height="200"
-//   //       />
-//   //       <form ref={picture} onSubmit = {addPic}>
-//   //         <input type="file" name="picture"></input>
-//   //         <button type="submit">upload picture</button> 
-//   //      </form>
-//   //     {/* <button  onClick={addPicChange}>Change Picture</button> */}
-      
-//   //     {/* {console.log(state.formData)} */}
-
-//   //       <label htmlFor="username">Username</label>
-//   //       <h2>your messages</h2>
-//   //       {yourMessages.map((message) => (
-//   //               <Message text={message.text} 
-//   //               username={message.username}
-//   //               msgId ={message.id}
-//   //               key = {message.id} 
-//   //               likes = {message.likes}
-//   //               createdAt ={message.createdAt}
-//   //               />
-//   //               ))}
-//   //   </React.Fragment>
-//   // );
-//   // }
-//
+        <label htmlFor="username">Username</label>
+        <h2>your messages</h2>
+        <div className= 'scrollBox'>
+          {yourMessages.map((message) => (
+            <Message text={message.text} 
+            username={message.username}
+            msgId ={message.id}
+            key = {message.id} 
+            likes = {message.likes}
+            createdAt ={message.createdAt}
+            />
+          ))}
+        </div>
+    </React.Fragment>
+  );
+}

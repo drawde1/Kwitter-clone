@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  reutrn {
+  return {
     onIncrementClick: (count) => {
       dispatch(incrementCount(count))
     },

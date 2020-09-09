@@ -29,16 +29,29 @@ export const getMessageList = msgParams => async (dispatch, getState) => {
   }
 };
 
-export const deleteMessage = messageid => async (dispatch, getState) => {
-  try {
-    const payload = await api.deleteMessage(messageid);
-    console.log(payload);
-    dispatch({ type: DELETE_MESSAGE, payload });
-  } catch (err) {
-    dispatch({
-      type: FAILURE,
-      payload: err.message,
-    });
-  }
-};
+// export const deleteMessage = messageid => async (dispatch, getState) => {
+//   try {
+//     const payload = await api.deleteMessage(messageid);
+//     console.log(payload);
+//     dispatch({ type: DELETE_MESSAGE, payload });
+//   } catch (err) {
+//     dispatch({
+//       type: FAILURE,
+//       payload: err.message,
+//     });
+//   }
+// };
 
+  export const deleteMessage = (messageId) => async (dispatch, getState) => {
+    try {
+      
+      const payload = await api.deleteMsg(messageId);
+        console.log(payload)
+      dispatch({ type: DELETE_MESSAGE, payload });
+    } catch (err) {
+      dispatch({
+        type: FAILURE,
+        payload: err.message,
+      });
+    }
+  };
