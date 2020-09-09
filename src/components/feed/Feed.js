@@ -3,6 +3,7 @@ import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
+import {createTimestamp} from '../functions/createTimestamp'
 
 export const Feed = (props) => {
  
@@ -43,6 +44,12 @@ export const Feed = (props) => {
   
   const [state, setState] = useState(initialState);
 
+  useEffect(()=>{
+      dispatch(getMessageList(msgListParams))
+
+  },[])
+//  let feedMessages = []
+//  feedMessages = messageList
   //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
   //scroll argumentrs include 
 //   scrollY = y off set

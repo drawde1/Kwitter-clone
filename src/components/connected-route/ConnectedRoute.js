@@ -31,7 +31,7 @@ export function ConnectedRoute({
         render={({ location }) => (
           <Redirect
             to={{
-              pathname: `/profiles/${username}`,
+              pathname: `/profile/${username}`,
               state: { from: location },
             }}
           />
