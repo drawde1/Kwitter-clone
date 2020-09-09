@@ -5,7 +5,7 @@ import { addMessage, getMessageList } from "../../redux/actions/messages";
 
 
 import {Message} from './Message'
-import {createTimestamp} from '../../functions/createTimestamp'
+// import {createTimestamp} from '../../functions/createTimestamp'
 
 
 export const Feed = (props) => {
@@ -18,7 +18,7 @@ export const Feed = (props) => {
   })) 
 const msgListParams =
 {
-  limit: 10,
+  limit: 50,
   offset: 0
 }
 const initialState = {

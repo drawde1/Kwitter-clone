@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
@@ -15,16 +16,16 @@ export const Menu = () => {
       
       <h1>Kwitter</h1>
       <div id='menu-links'>
-      <div id="kwitter"><center>Kwitter</center></div>
-      <div id="menu-links">
         {isAuthenticated ? (
           <>
             <Link to="/profiles/:username">Profile</Link>
-           
             <Link to="/users">Users</Link>
             <Link to="/feed">Message Feed</Link>
             <Link to="/" onClick={logout}>
               Logout
+            </Link>
+            <Link to="/profile">
+              View Profile
             </Link>
           </>
         ) : null}

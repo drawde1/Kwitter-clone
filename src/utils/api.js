@@ -62,7 +62,27 @@ class API {
     }
   }
     
-  async addMessage({text}) {
+  async addMessage({text, username}) {
+    try {
+      const result = await this.axiosInstance.delete("/user/" + username,);
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async deleteMessage ({ message }) {
+    try {
+      const result = await this.axiosInstance.delete("/message/" + message);
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async addMessage ({ text }) {
     try {
       const result = await this.axiosInstance.post("/messages", {
         text,
@@ -74,12 +94,14 @@ class API {
       throw err;
     }
   }
+
   async getMessageList ({ limit, offset }) {
     try {
-      const result = await this.axiosInstance.get("/messages?limit="+limit+"&offset="+offset, {
-        limit,
-        offset
-      });
+      const result = await this.axiosInstance.get("/messages?limit=" + limit + "&offset=" + offset,{
+          limit,
+          offset,
+        }
+      );
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -87,9 +109,10 @@ class API {
     }
   }
 
-  async updateuser ({ password, about, displayName }) {
+  async updateuser ({ password, about, displayName, username }) {
+    console.log("from api", password, about, displayName, username)
     try {
-      const result = await this.axiosInstance.patch("/users/{username}", {
+      const result = await this.axiosInstance.patch(`/users/${username}`, {
         password,
         about,
         displayName,
@@ -102,7 +125,31 @@ class API {
     }
   }
 
-  async login ({ username, password }) {
+  // // async getMessageList({limit,offset}) {
+  // //   try {
+  // //     const result = await this.axiosInstance.get("/messages?limit="+limit+"&offset="+offset, {
+  // //       limit,
+  // //       offset
+  // //     });
+  // //     return result;
+  // //   } catch (err) {
+  // //     helpMeInstructor(err);
+  // //     throw err;
+  // //   }
+  // }
+  async deleteMsg (messageId) {
+    try {
+      const result = await this.axiosInstance.delete('/messages/'+messageId, {
+        messageId
+      });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async login({ username, password }) {
     try {
       const result = await this.axiosInstance.post("/auth/login", {
         username,
@@ -135,7 +182,6 @@ class API {
       throw err;
     }
   }
-    
   async addPicture( username, picture ) {
     try {
       const result = await this.axiosInstance.put("/users/"+username+"/picture",  
@@ -149,12 +195,13 @@ class API {
       throw err;
     }
   }
+
   async getPictures( username, picture ) {
     try {
       const result = await this.axiosInstance.get("/users/"+username+"/picture",  
         picture
       )
-      console.log(result)
+      
       return result;
     } catch (err) {
       console.log({err})

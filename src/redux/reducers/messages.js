@@ -1,5 +1,6 @@
 // TODO: implement
-import { ADD_MESSAGE, FAILURE, DELETE_MESSAGE } from "../actions";
+
+import { ADD_MESSAGE, FAILURE, DELETE_MESSAGE,LOAD } from "../actions";
 const INITIAL_STATE = {
   id: 0,
   text: "",
@@ -19,18 +20,25 @@ const INITIAL_STATE = {
 };
 
 export const addMessageReducer = (state = { ...INITIAL_STATE }, action) => {
-  switch (action.type) {
-    case ADD_MESSAGE:
-      const { id, text, username, createdAT, likes } = action.payload.message;
-      return {
-        ...INITIAL_STATE,
-        id,
-        text,
-        username,
-        createdAT,
-        likes,
-        loading: false,
-      };
+    switch (action.type) {
+      case LOAD:
+        return{
+          ...INITIAL_STATE,
+          loading: true,
+        };
+      case ADD_MESSAGE:
+        const {id, text, username, createdAT, likes } = action.payload.message;
+        return {
+          ...INITIAL_STATE,
+          id,
+          text,
+          username,
+          createdAT,
+          likes,
+          loading: false
+
+        };
+        
 
     case FAILURE:
       return {

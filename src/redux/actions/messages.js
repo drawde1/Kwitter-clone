@@ -86,19 +86,3 @@ export const deleteLikes = (messageId) => async (dispatch, getState) => {
     });
   }
 };
-
-
-// export const addLike = (messageId) => async (dispatch, getState) {
-//   try {
-//   return {
-//     type: ADD_LIKE,
-//     payload: { message, user }
-//   };
-// };
-
-// export const deleteLike = message => {
-//   return {
-//     type: DELETE_LIKE,
-//     payload: message
-//   };
-// };
