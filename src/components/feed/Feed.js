@@ -3,7 +3,7 @@ import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
-
+import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
 import './scrollBox.css'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 export const Feed = (props) => {
@@ -22,6 +22,7 @@ export const Feed = (props) => {
     // error: ''
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
+    useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
     const {messageList,loadingList,msgListParams} = useSelector((state)=>({
         msgListParams: state.infiniteScroll,
         messageList: state.getMessageList.messages,
@@ -47,6 +48,7 @@ export const Feed = (props) => {
       dispatch(getMessageList(msgListParams))
 
   },[])
+
 //  let feedMessages = []
 //  feedMessages = messageList
   //TODO infinite scroll use scroll event useinmg window.(scroll arguments)

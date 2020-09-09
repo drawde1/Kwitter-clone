@@ -11,6 +11,7 @@ import { getUserInfo} from '../../redux/actions'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
+import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
 import {getMessageListByUser} from '../../redux/actions'
 import "./scrollbox.css"
 
@@ -37,8 +38,9 @@ export const Profile = () => {
 
   useEffect(()=>{dispatch(getMessageListByUser(msgListParams,username))},[])
   useEffect(()=>{dispatch(getUserInfo(username))},[])
+  useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
   // const handleGetUser = (username) =>
-  
+  // restInfiniteScroll 
 
 
 

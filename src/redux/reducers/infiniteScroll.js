@@ -1,4 +1,4 @@
-import {ADD_TO_LIST} from '../actions/infiniteScroll'
+import {ADD_TO_LIST,RESET_LIST} from '../actions/infiniteScroll'
 
 const INITIAL_STATE = {
   
@@ -15,6 +15,11 @@ export const infiniteScrollReducer = (state = {...INITIAL_STATE},action) =>
             ...INITIAL_STATE,
             limit: state.limit + action.payload
           };
+          case RESET_LIST:
+              return{
+                ...INITIAL_STATE,
+                limit: action.payload
+              }
         default:
         return state
     }
