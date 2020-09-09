@@ -8,7 +8,9 @@ import {addMessageReducer} from './messages'
 import {getMessageListReducer} from './messagesList'
 import {getUserReducer} from './getUser'
 import {infiniteScrollReducer} from './infiniteScroll'
+import {getMessageListByUserReducer} from './getMessageListByUser'
 export default combineReducers({ 
+  getMessageListByUser:getMessageListByUserReducer,
   auth: authReducer,
   infiniteScroll: infiniteScrollReducer,
   likes: likesReducer, 

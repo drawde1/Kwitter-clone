@@ -4,7 +4,7 @@ export const DELETE_MESSAGE = "DELETE_MESSAGE";
 export const ADD_MESSAGE = "ADD_MESSAGE";
 export const GET_MESSAGE_LIST = "GET_MESSAGE_LIST";
 export const ADD_LIKE = 'ADD_LIKE'
-
+export const GET_MESSAGE_LIST_USER = 'GET_MESSAGE_LIST_USER'
 export const addMessage = text => async (dispatch, getState) => {
   try {
     const payload = await api.addMessage(text);
@@ -29,18 +29,17 @@ export const getMessageList = msgParams => async (dispatch, getState) => {
   }
 };
 
-// export const deleteMessage = messageid => async (dispatch, getState) => {
-//   try {
-//     const payload = await api.deleteMessage(messageid);
-//     console.log(payload);
-//     dispatch({ type: DELETE_MESSAGE, payload });
-//   } catch (err) {
-//     dispatch({
-//       type: FAILURE,
-//       payload: err.message,
-//     });
-//   }
-// };
+export const getMessageListByUser = (msgParams,username) => async (dispatch, getState) => {
+  try {
+    const payload = await api.getMessageListByUser(msgParams,username);
+    dispatch({ type: GET_MESSAGE_LIST_USER, payload });
+  } catch (err) {
+    dispatch({
+      type: FAILURE,
+      payload: err.message,
+    });
+  }
+};
 
   export const deleteMessage = (messageId) => async (dispatch, getState) => {
     try {

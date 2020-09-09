@@ -10,6 +10,7 @@ import Api from "../../utils/api"
 import { getUserInfo} from '../../redux/actions'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
+import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 import {getMessageList} from '../../redux/actions'
 import "./scrollbox.css"
 
@@ -106,7 +107,21 @@ export const Profile = () => {
       console.log(results)
    
    };
-
+   const handleScroll = (event) =>
+   {
+     
+     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
+     // console.log('scrollHeight',scrollHeight)
+     // console.log('clientHeight',clientHeight)
+     // console.log('scrollTop',scrollTop)
+     if(clientHeight + scrollTop >= scrollHeight)
+     {
+       console.log('end')
+       dispatch(infiniteScroll(5))
+       
+       dispatch(getMessageList(msgListParams))
+     }
+   }
 
   return (
 
@@ -130,7 +145,7 @@ export const Profile = () => {
       
         <label htmlFor="username">Username</label>
         <h2>your messages</h2>
-        <div className= 'scrollBox'>
+        <div className= 'scrollBox' onScroll ={handleScroll}>
           {yourMessages.map((message) => (
                   <Message text={message.text} 
                   username={message.username}

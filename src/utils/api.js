@@ -109,7 +109,21 @@ class API {
       throw err;
     }
   }
-
+  async getMessageListByUser ({ limit, offset},username) {
+    try {
+      const result = await this.axiosInstance.get("/messages?limit=" + limit + "&offset=" + offset+'&username='+username,{
+          limit,
+          offset,
+          username
+        }
+      );
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+  // &username=user
   async updateuser ({ password, about, displayName, username }) {
     console.log("from api", password, about, displayName, username)
     try {
