@@ -78,6 +78,7 @@ export const LoginForm = ({ login }) => {
         </button>
       </form>
     </div>
+    </div>
     <div id="regform">
       <form id="register-form" onSubmit={handleRegister}>
         <label htmlFor="username">Username</label>
@@ -109,8 +110,10 @@ export const LoginForm = ({ login }) => {
         
         <button type="submit" disabled={loading}>
           Login
-        </div> */}
-          <form id="login-form" onSubmit={handleLogin}>
+        </button>
+        </form>
+        </div> 
+          {/* <form id="login-form" onSubmit={handleLogin}>
           <div>
             <h2><label htmlFor="username">Username</label></h2>
             <input
@@ -144,9 +147,9 @@ export const LoginForm = ({ login }) => {
           </div>
 
       <div id="regform">
-        {/* <div id="registertitle">
+        <div id="registertitle">
           Register
-        </div> */}
+        </div>
           <form id="register-form" onSubmit={handleRegister}>
           <div>
             <h2><label htmlFor="username">Username</label></h2>
@@ -186,7 +189,7 @@ export const LoginForm = ({ login }) => {
             </button>
           </div>
           </form>
-      </div>
+      </div> */}
       {loading && <Loader />}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </React.Fragment>

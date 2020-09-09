@@ -98,7 +98,7 @@ class API {
 
   async getMessageList ({ limit, offset }) {
     try {
-      const result = await this.axiosInstance.get("/messages?limit=" + limit + "offset=" + offset,{
+      const result = await this.axiosInstance.get("/messages?limit=" + limit + "&offset=" + offset,{
           limit,
           offset,
         }
@@ -126,7 +126,31 @@ class API {
     }
   }
 
-  async login ({ username, password }) {
+  // // async getMessageList({limit,offset}) {
+  // //   try {
+  // //     const result = await this.axiosInstance.get("/messages?limit="+limit+"&offset="+offset, {
+  // //       limit,
+  // //       offset
+  // //     });
+  // //     return result;
+  // //   } catch (err) {
+  // //     helpMeInstructor(err);
+  // //     throw err;
+  // //   }
+  // }
+  async deleteMsg (messageId) {
+    try {
+      const result = await this.axiosInstance.delete('/messages/'+messageId, {
+        messageId
+      });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async login({ username, password }) {
     try {
       const result = await this.axiosInstance.post("/auth/login", {
         username,
@@ -179,7 +203,7 @@ class API {
       const result = await this.axiosInstance.get("/users/"+username+"/picture",  
         picture
       )
-      console.log(result)
+      
       return result;
     } catch (err) {
       console.log({err})

@@ -2,6 +2,7 @@ import React, { useState, useEffect} from "react";
 import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
 import {Message} from './Message'
+import {Loader} from '../loader/Loader'
 import {createTimestamp} from '../functions/createTimestamp'
 
 export const Feed = (props) => {
@@ -18,21 +19,24 @@ export const Feed = (props) => {
     // likes:[],
     // loading: false,
     // error: ''
-    const {id,text,likes,messageList,createdAt} = useSelector((state)=>({
-        id: state.addMsg.id,
-        text: state.addMsg.text,
-        likes: state.addMsg.likes,
-        messageList: state.getMessageList.messages,
-        createdAt: state.addMsg.createdAt
+    const dispatch = useDispatch();
+    useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
+    const {messageList,loadingMessage,loadingList} = useSelector((state)=>({
         
+        messageList: state.getMessageList.messages,
+        
+        loadingMessage: state.addMsg.loading,
+        loadingList: state.getMessageList.laoding
     })) 
-    // 2020-09-03T14:27:16.454Z
+    
+    
+    
   const msgListParams =
   {
     limit: 10,
     offset: 0
   }
-  const dispatch = useDispatch();
+  
     
   const initialState = {
     text: "",
@@ -53,15 +57,17 @@ export const Feed = (props) => {
   //scrollHeight = the length of the entire page
 
   const handleChange = (event) => {
-   
+   console.log(state)
     let inputValue = event.target.value;
     setState((prevState) => ({ ...prevState, text: inputValue }));
   };
   const postMessage = (event) => {
     event.preventDefault();
+    console.log(state)
      dispatch(addMessage(state));
-     dispatch(getMessageList(msgListParams))
-     console.log(messageList[0].createdAt)
+     dispatch(getMessageList(msgListParams));
+     
+     
   };
  
  
@@ -83,19 +89,17 @@ export const Feed = (props) => {
             <button type="submit" >
             send
             </button>
-            <div>
-            //////test/////
-            <p> {id}</p>
-            <p>{text}</p>
-            //////test/////
-            </div>
+            
             
         </form>
+        {/* {loadingMessage && <Loader />} */}
         <br/>
         <br/>
+        
+        {/* {loadingList && <Loader />} */}
         <br/>
         <br/>
-        {messageList.map((message) => (
+        {loadingList?<Loader/>:  messageList.map((message) => (
                 <Message text={message.text} 
                 username={message.username}
                 msgId ={message.id}

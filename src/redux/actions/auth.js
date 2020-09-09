@@ -26,6 +26,7 @@ const login = (credentials) => async (dispatch, getState) => {
   }
 };
 
+
 const logout = () => async (dispatch, getState) => {
   try {
     // We do not care about the result of logging out

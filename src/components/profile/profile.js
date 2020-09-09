@@ -10,17 +10,12 @@ import Api from "../../utils/api"
 import { getUserInfo} from '../../redux/actions'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
-import { addMessage, getMessageList } from "../../redux/actions/messages";
+import {getMessageList} from '../../redux/actions'
+import "./scrollbox.css"
 
 
-export const Picture = () => {
-  
-  //const dispatch = useDispatch();
-  // const picture = useRef(null);
-  // const username = useSelector(state => state.auth.username);
-  // const userPicture = useSelector(state => state.getUser.pictureLocation)
-  // console.log(userPicture)
 
+export const Profile = () => {
   
   const{username,userPicture,userInfo,messageList } = useSelector((state)=>
   ({
@@ -32,12 +27,31 @@ export const Picture = () => {
 
   const dispatch = useDispatch();
   const picture = useRef(null);
-
   const msgListParams =
   {
     limit: 10,
     offset: 0
   }
+
+  useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
+  useEffect(()=>{dispatch(getUserInfo(username))},[])
+  // const handleGetUser = (username) =>
+  
+
+
+
+  
+  const addPic = async (event) => {
+    event.preventDefault();
+  
+    const picdata = new FormData (picture.current)
+    const results = await Api.addPicture( username, picdata )
+    dispatch(getUserInfo(username))
+  };
+
+  
+
+  const yourMessages = messageList.filter((message)=>message.username === username)
   
   useEffect(()=>{
     dispatch(getMessageList(msgListParams))
@@ -115,15 +129,17 @@ export const Picture = () => {
       
         <label htmlFor="username">Username</label>
         <h2>your messages</h2>
-        {/* {yourMessages.map((message) => (
-                <Message text={message.text} 
-                username={message.username}
-                msgId ={message.id}
-                key = {message.id} 
-                likes = {message.likes}
-                createdAt ={message.createdAt}
-                />
-                ))} */}
+        <div className= 'scrollBox'>
+          {yourMessages.map((message) => (
+                  <Message text={message.text} 
+                  username={message.username}
+                  msgId ={message.id}
+                  key = {message.id} 
+                  likes = {message.likes}
+                  createdAt ={message.createdAt}
+                  />
+                  ))}
+        </div>
     </React.Fragment>
   );
   }
