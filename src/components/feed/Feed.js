@@ -21,21 +21,21 @@ export const Feed = (props) => {
     // error: ''
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
-    const {messageList,loadingMessage,loadingList} = useSelector((state)=>({
-        
+    const {messageList,loadingList,msgListParams} = useSelector((state)=>({
+        msgListParams: state.infiniteScroll,
         messageList: state.getMessageList.messages,
         
-        loadingMessage: state.addMsg.loading,
+        
         loadingList: state.getMessageList.laoding
     })) 
     
     
     
-  const msgListParams =
-  {
-    limit: 10,
-    offset: 0
-  }
+  // const msgListParams =
+  // {
+  //   limit: 10,
+  //   offset: 0
+  // }
   
     
   const initialState = {
