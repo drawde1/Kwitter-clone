@@ -23,7 +23,7 @@ const dispatch =useDispatch()
 
     const msgListParams =
     {
-        limit: 10,
+        limit: 50,
         offset: 0
     }
 
@@ -59,11 +59,11 @@ const dispatch =useDispatch()
         <p>text:{props.text}</p>
         <p>time: {timestamp.time}<span> date:{timestamp.date}</span></p>
         <div class="ui labeled button" tabIndex="0">
-            <button class="ui blue button" onClick={handleLike(props.msgId)}>
+            <button class="ui blue button" onClick={() => handleLike(props.msgId)}>
                 <i class="heart icon"></i> Like(s)
             </button>
             <a class="ui basic blue left pointing label">
-               {likes.length} 
+               {props.likes.length} 
             </a>
         </div>
         <div class="ui labeled button" tabIndex="0">
