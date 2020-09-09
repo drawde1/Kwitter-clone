@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
 import {Message} from './Message'
-import {createTimestamp} from '../../functions/createTimestamp'
+import {createTimestamp} from '../functions/createTimestamp'
 
 export const Feed = (props) => {
  

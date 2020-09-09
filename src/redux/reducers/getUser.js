@@ -9,7 +9,6 @@ const INITIAL_STATE = {
     updatedAt: "",
     loading: false,
     error: "",
-
   };
 
 

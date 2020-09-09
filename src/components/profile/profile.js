@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPicture } from "../../redux/actions/photos";
+import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
+import "./Profile.css";
+import {updateuser} from "../../redux/actions/user";
+import { getPicture } from "../../redux/actions/photos";
 import { useRef } from "react";
 import Api from "../../utils/api"
-import { user } from "../../redux/actions";
 import { getUserInfo} from '../../redux/actions'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
@@ -43,24 +45,40 @@ export const Picture = () => {
   },[])
   
 
-  const handleGetUser = (username) =>
-  {
-    dispatch(getUserInfo(username))
-    console.log(userInfo)
-  }
-//    handleGetUser()
-//   useEffect(handleGetUser(username))
+
+
+// export const Picture = () => {
+
+//   const { username,userPicture,userInfo,messageList } = useSelector((state)=>
+//   ({
+//     username: state.auth.username,
+//     userPicture: state.getUser.pictureLocation,
+//     userInfo:  state.getUser,
+//     messageList: state.getMessageList.messages,
+//   }))
+
+//   const dispatch = useDispatch();
+//   const picture = useRef(null);
+
+
+//   const handleGetUser = (username) =>
+//   {
+//     dispatch(getUserInfo(username))
+//     console.log(userInfo)
+//   }
+// //    handleGetUser()
+// //   useEffect(handleGetUser(username))
 
 
   
-  const addPic = async (event) => {
-    event.preventDefault();
-    //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-    //dispatch(getPicture(state))
-    const picdata = new FormData (picture.current)
-    const results = await Api.addPicture( username, picdata )
-    dispatch(getUserInfo(username))
-  };
+//   const addPic = async (event) => {
+//     event.preventDefault();
+//     //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
+//     //dispatch(getPicture(state))
+//     const picdata = new FormData (picture.current)
+//     const results = await Api.addPicture( username, picdata )
+//     dispatch(getUserInfo(username))
+//   };
 
 
    const setPic = async (event) => {

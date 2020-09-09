@@ -1,13 +1,13 @@
 import React  from 'react'
-import { createTimestamp } from '../../functions/createTimestamp'
+import { createTimestamp } from '../functions/createTimestamp'
 import { useEffect,} from 'react'
 import {  useDispatch,useSelector} from "react-redux";
 import {addLike} from '../../redux/actions/messages'
-export const Message = (props) =>
-{
+
+export const Message = (props) => {
 //TODO: handle delete message
 //TODO: handle likes add & delete
-const dispatch =useDispatch()
+const dispatch = useDispatch()
 
     // id: 0,
     // text:'',
@@ -21,12 +21,13 @@ const dispatch =useDispatch()
 // // useEffect(()=>{})
 // componentDidMount(()=>{timestamp = })
 
- return (  <>
+ return (  
+    <>
         <p>user:{props.username}</p>
         <p>text:{props.text}</p>
         <p>likes:{props.likes.length}</p>
         <p>time: {timestamp.time}<span> date:{timestamp.date}</span></p>
-        <button >like</button><button>x</button>
+        <button>like</button><button>x</button>
         
 
     </>)
