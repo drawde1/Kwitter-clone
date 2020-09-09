@@ -4,7 +4,7 @@ import { addMessage, getMessageList } from "../../redux/actions/messages";
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
 import {createTimestamp} from '../functions/createTimestamp'
-
+import './scrollBox.css'
 export const Feed = (props) => {
  
     // const { loading, error } = useSelector((state) => ({
@@ -99,6 +99,7 @@ export const Feed = (props) => {
         {/* {loadingList && <Loader />} */}
         <br/>
         <br/>
+        <div className = 'scrollBox' >
         {loadingList?<Loader/>:  messageList.map((message) => (
                 <Message text={message.text} 
                 username={message.username}
@@ -108,6 +109,7 @@ export const Feed = (props) => {
                 createdAt ={message.createdAt}
                 />
                 ))}
+                </div>
         </React.Fragment>
     
     );
