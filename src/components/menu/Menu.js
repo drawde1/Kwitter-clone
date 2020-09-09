@@ -11,9 +11,10 @@ export const Menu = () => {
   // const kwit = () => dispatch(actions.kwit());
   const loginuser = useSelector((state) => state.auth.isAuthenticated) 
   return (
-    <div id='menu'>
-      <h1>Kwitter</h1>
-      <div id='menu-links'>
+    <div id="menu">
+      
+      <div id="kwitter"><center>Kwitter</center></div>
+      <div id="menu-links">
         {isAuthenticated ? (
           <>
             <Link to="/profiles/:username">Profile</Link>

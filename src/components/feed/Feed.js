@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
 import {Message} from './Message'
@@ -39,6 +39,11 @@ export const Feed = (props) => {
   }
   
   const [state, setState] = useState(initialState);
+
+  useEffect(()=>{
+      dispatch(getMessageList(msgListParams))
+
+  },[])
 //  let feedMessages = []
 //  feedMessages = messageList
   //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
