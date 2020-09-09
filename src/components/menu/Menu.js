@@ -11,7 +11,8 @@ export const Menu = () => {
   const loginuser = useSelector((state) => state.auth.isAuthenticated) 
   return (
     <div id="menu">
-      <h1>Kwitter</h1>
+      
+      <div id="kwitter"><center>Kwitter</center></div>
       <div id="menu-links">
         {isAuthenticated ? (
           <>

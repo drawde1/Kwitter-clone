@@ -56,71 +56,96 @@ export const LoginForm = ({ login }) => {
   return (
     <React.Fragment>
     <div id="login">
+
       <div id="logform">
-      <form id="login-form" onSubmit={handleLogin}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          value={state.username}
-          autoFocus
-          required
-          onChange={handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={state.password}
-          required
-          onChange={handleChange}
-        />
-        <button type="submit" disabled={loading}>
+        {/* <div id="logintitle">
           Login
-        </button>
-      </form>
+        </div> */}
+          <form id="login-form" onSubmit={handleLogin}>
+          <div>
+            <h2><label htmlFor="username">Username</label></h2>
+            <input
+              type="text"
+              name="username"
+              value={state.username}
+              autoFocus
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <h2><label htmlFor="password">Password</label></h2>
+            <input
+              type="password"
+              name="password"
+              value={state.password}
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div id="logsub1">
+            <button type="submit" disabled={loading}>
+              Login
+            </button>
+          </div>
+          </form>
+      </div>
+    
+          <div id="divspace">
+          </div>
+
+      <div id="regform">
+        {/* <div id="registertitle">
+          Register
+        </div> */}
+          <form id="register-form" onSubmit={handleRegister}>
+          <div>
+            <h2><label htmlFor="username">Username</label></h2>
+            <input
+              type="text"
+              name="username"
+              value={registerState.username}
+              autoFocus
+              required
+              onChange={handleRegChange}
+            />
+          </div>
+          <div>
+            <h2><label htmlFor="displayName">Display Name</label></h2>
+            <input
+              type="text"
+              name="displayName"
+              value={registerState.displayName}
+              autoFocus
+              required
+              onChange={handleRegChange}
+            />
+          </div>
+          <div>
+            <h2><label htmlFor="password">Password</label></h2>
+            <input
+              type="password"
+              name="password"
+              value={registerState.password}
+              required
+              onChange={handleRegChange}
+            />
+          </div>
+          <div id="logsub2">
+            <button type="submit" disabled={loading}>
+              Register
+            </button>
+          </div>
+          </form>
+      </div>
     </div>
-    <div id="regform">
-      <form id="register-form" onSubmit={handleRegister}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          value={registerState.username}
-          autoFocus
-          required
-          onChange={handleRegChange}
-        />
-        <label htmlFor="displayName">Display Name</label>
-        <input
-          type="text"
-          name="displayName"
-          value={registerState.displayName}
-          autoFocus
-          required
-          onChange={handleRegChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={registerState.password}
-          required
-          onChange={handleRegChange}
-        />
-        
-        <button type="submit" disabled={loading}>
-          Login
-        </button>
-           
-      </form>
-      </div>
-      </div>
-      <button onClick = {addDefault}>
+      {/* <button onClick = {addDefault}>
           default user
-        </button>
+        </button> */}
       {loading && <Loader />}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </React.Fragment>
   );
 };
+// writing-mode: vertical-lr;
+// text-orientation: upright;
