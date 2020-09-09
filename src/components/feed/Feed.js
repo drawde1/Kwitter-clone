@@ -72,9 +72,13 @@ export const Feed = (props) => {
   const handleScroll = (event) =>
   {
     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
-    console.log('scrollHeight',scrollHeight)
-    console.log('clientHeight',clientHeight)
-    console.log('scrollTop',scrollTop)
+    // console.log('scrollHeight',scrollHeight)
+    // console.log('clientHeight',clientHeight)
+    // console.log('scrollTop',scrollTop)
+    if(clientHeight + scrollTop >= scrollHeight)
+    {
+      console.log('end')
+    }
   }
  
      
