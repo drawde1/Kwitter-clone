@@ -28,12 +28,7 @@ const [state, setState] = useState(initialState);
 //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
 //scroll argumentrs include 
     
-  const initialState = {
-    text: "",
-  }
   
-  const [state, setState] = useState(initialState);
-
   useEffect(()=>{
       dispatch(getMessageList(msgListParams))
 
