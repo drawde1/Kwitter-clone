@@ -6,6 +6,7 @@ import { defaultUserReducer} from './user'
 import { likesReducer } from './likes'
 import {addMessageReducer} from './messages'
 import {getMessageListReducer} from './messagesList'
+import {getUserReducer} from './getUser'
 
 export default combineReducers({ 
   auth: authReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
   addMsg: addMessageReducer,
   getMessageList: getMessageListReducer,
   user: defaultUserReducer,
-  pic: picReducer
+  pic: picReducer,
+  getUser:getUserReducer
 });

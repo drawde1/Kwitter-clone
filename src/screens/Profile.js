@@ -12,7 +12,7 @@ export const ProfileScreen = () => (
     <MenuContainer />
     <h2>Profile</h2>
     <h3>Here is my picture  </h3>
-    <Picture />
+    {/* <Picture /> */}
     <ProfileContainer />
   </>
 );

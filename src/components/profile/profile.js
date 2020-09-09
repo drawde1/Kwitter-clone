@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./Profile.css";
-import {user} from "../../redux/actions/user";
+import {updateuser} from "../../redux/actions/user";
+
 import { getPicture } from "../../redux/actions/photos";
 import { useRef } from "react";
 import Api from "../../utils/api"
+import { getUserInfo} from '../../redux/actions'
+//import "./LoginForm.css";
+import {Message} from '../feed/Message'
+import {messageList} from '../feed/Feed'
 // import { user } from "../../redux/actions";
 
 export const Profile = () => {
-    const {username, name} = useSelector((state) => ({
-        username: state.user.username,
-        name: state.user.displayname
+    const {username, name, about} = useSelector((state) => ({
+        username: state.getUser.username,
+        name: state.getUser.displayname,
+        about: state.getUser.about
     }));
 
     const dispatch = useDispatch();
 
     const INITIALSTATE = {
-        password: "",
+        password: "", 
         about: "",
         displayname: "",
     }
@@ -27,7 +33,7 @@ export const Profile = () => {
 
     const handleUpdate = (event) => {
         event.preventDefault();
-        dispatch(user(state));
+        dispatch(updateuser({...state, username}));
     }
 
     const handleChange = (event) => {
@@ -39,17 +45,19 @@ export const Profile = () => {
     return (
         <React.Fragment>
             <form id="update-form" onSubmit={handleUpdate}>
-                <label htmlFor="displayname">Current Name: {name} </label>
+                <div>Current Name: {name}</div>
+                <label htmlFor="displayname">New Name:</label>
                 <input
                     type="text"
                     name="displayname"
-                    value={state.displayname}
+                    value={name}
                     autoFocus
                     required
                     onChange={handleChange}
                 />
                 <br/>
-                <label htmlFor="username">Current Password: {username}</label>
+                <div>Current Password: {username}</div>
+                <label htmlFor="username">New Password:</label>
                 <input
                     type="text"
                     name="username"
@@ -59,11 +67,12 @@ export const Profile = () => {
                     onChange={handleChange}
                 />
                 <br/>
-                <label htmlFor="displayname">bio</label>
+                <div>Current Bio: {about}</div>
+                <label htmlFor="displayname">New Bio:</label>
                 <input
                     type="text"
                     name="about"
-                    value={state.about}
+                    value={about}
                     autoFocus
                     required
                     onChange={handleChange}
@@ -78,56 +87,81 @@ export const Profile = () => {
 }
 //import "./LoginForm.css";
 
-export const Picture = () => {
-  //const dispatch = useDispatch();
-  const picture = useRef(null);
-  const username = useSelector(state => state.auth.username);
-
-  //const [state, setState] = useState({
-   // username: "user",
-   // formData: picture,
-  //});
 
 
-  //const handleLogin = (event) => {
-  //  event.preventDefault();
-  //  dispatch(actions.login(state));
-  //};
+// export const Picture = () => {
 
-  const addPic = async (event) => {
-    event.preventDefault();
-    //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-    //dispatch(getPicture(state))
-    const picdata = new FormData (picture.current)
-    const results = await Api.addPicture( username, picdata )
-    
-  };
+//   const { username,userPicture,userInfo,messageList } = useSelector((state)=>
+//   ({
+//     username: state.auth.username,
+//     userPicture: state.getUser.pictureLocation,
+//     userInfo:  state.getUser,
+//     messageList: state.getMessageList.messages,
+//   }))
+
+//   const dispatch = useDispatch();
+//   const picture = useRef(null);
 
 
-  // const setPic = async (event) => {
-  //   event.preventDefault();
-  //   //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-  //   dispatch(setPicture(state))
+//   const handleGetUser = (username) =>
+//   {
+//     dispatch(getUserInfo(username))
+//     console.log(userInfo)
+//   }
+// //    handleGetUser()
+// //   useEffect(handleGetUser(username))
+
+
+  
+//   const addPic = async (event) => {
+//     event.preventDefault();
+//     //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
+//     //dispatch(getPicture(state))
+//     const picdata = new FormData (picture.current)
+//     const results = await Api.addPicture( username, picdata )
+//     dispatch(getUserInfo(username))
+//   };
+
+  
+//   // const setPic = async (event) => {
+//   //   event.preventDefault();
+//   //   //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
+//   //   dispatch(setPicture(state))
    
-  // };
+//   // };
+  
+//   const yourMessages = messageList.filter((message)=>message.username === username)
 
+//   // return (
+//   //   <React.Fragment>
+      
+//   //       <h1>Profile Page</h1>
 
-  return (
+//   //       <img 
+//   //       src = {"https://kwitter-api.herokuapp.com"+userPicture}
+//   //       width="200" 
+//   //       height="200"
+//   //       />
+//   //       <form ref={picture} onSubmit = {addPic}>
+//   //         <input type="file" name="picture"></input>
+//   //         <button type="submit">upload picture</button> 
+//   //      </form>
+//   //     {/* <button  onClick={addPicChange}>Change Picture</button> */}
+      
+//   //     {/* {console.log(state.formData)} */}
 
-    <React.Fragment>
-        <h1>Profile Page</h1>
-
-      <form ref={picture} onSubmit = {addPic}>
-       <input type="file" name="picture">
-        </input>
-        <button type="submit">upload picture</button> 
-       </form>
-      {/* <button  onClick={addPicChange}>Change Picture</button> */}
-      {console.log("State.action")}
-      {/* {console.log(state.formData)} */}
-
-        <label htmlFor="username">Username</label>
-        
-    </React.Fragment>
-  );
-  }
+//   //       <label htmlFor="username">Username</label>
+//   //       <h2>your messages</h2>
+//   //       {yourMessages.map((message) => (
+//   //               <Message text={message.text} 
+//   //               username={message.username}
+//   //               msgId ={message.id}
+//   //               key = {message.id} 
+//   //               likes = {message.likes}
+//   //               createdAt ={message.createdAt}
+//   //               />
+//   //               ))}
+//   //   </React.Fragment>
+//   // );
+//   // }
+//

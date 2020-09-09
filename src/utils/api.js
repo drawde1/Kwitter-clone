@@ -50,9 +50,22 @@ class API {
     }
   }
 
-  async deleteuser ({ username }) {
+  async getUser( username) {
     try {
-      const result = await this.axiosInstance.delete("/user/" + username);
+    const result = await this.axiosInstance.get("/users/"+username,{
+      username
+    });
+      
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+    
+  async addMessage({text, username}) {
+    try {
+      const result = await this.axiosInstance.delete("/user/" + username,);
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -82,7 +95,7 @@ class API {
       throw err;
     }
   }
-  
+
   async getMessageList ({ limit, offset }) {
     try {
       const result = await this.axiosInstance.get("/messages?limit=" + limit + "offset=" + offset,{
@@ -97,9 +110,9 @@ class API {
     }
   }
 
-  async updateuser ({ password, about, displayName }) {
+  async updateuser ({ password, about, displayName, username }) {
     try {
-      const result = await this.axiosInstance.patch("/users/{username}", {
+      const result = await this.axiosInstance.patch(`/users/${username}`, {
         password,
         about,
         displayName,
