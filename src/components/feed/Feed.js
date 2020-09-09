@@ -69,7 +69,13 @@ export const Feed = (props) => {
      
      
   };
- 
+  const handleScroll = (event) =>
+  {
+    const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
+    console.log('scrollHeight',scrollHeight)
+    console.log('clientHeight',clientHeight)
+    console.log('scrollTop',scrollTop)
+  }
  
      
     
@@ -99,7 +105,7 @@ export const Feed = (props) => {
         {/* {loadingList && <Loader />} */}
         <br/>
         <br/>
-        <div className = 'scrollBox' >
+        <div className = 'scrollBox' onScroll = {handleScroll} >
         {loadingList?<Loader/>:  messageList.map((message) => (
                 <Message text={message.text} 
                 username={message.username}
