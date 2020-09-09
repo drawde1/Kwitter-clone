@@ -15,17 +15,16 @@ import { user } from "../../redux/actions";
 
 export const Profile = () => {
     const {username, name, about} = useSelector((state) => ({
-        username: state.getUser.username,
-        name: state.getUser.displayname,
-        about: state.getUser.about
+        username: state.auth.username,
+        name: state.getUser.displayName,
+        bio: state.getUser.about
     }));
-  console.log(name)
     const dispatch = useDispatch();
 
     const INITIALSTATE = {
         password: "", 
         about: "",
-        displayname: "",
+        displayName: "",
     }
 
     const [state, setState] = useState({INITIALSTATE});
@@ -45,21 +44,21 @@ export const Profile = () => {
         <React.Fragment>
             <form id="update-form" onSubmit={handleUpdate}>
                 <div>Current Name: {name}</div>
-                <label htmlFor="displayname">New Name:</label>
+                <label htmlFor="displayName">New Name:</label>
                 <input
                     type="text"
-                    name="displayname"
-                    value={state.displayname}
+                    name="displayName"
+                    value={state.displayName}
                     autoFocus
                     required
                     onChange={handleChange}
                 />
                 <br/>
                 <div>Current Password: {}</div>
-                <label htmlFor="username">New Password:</label>
+                <label htmlFor="password">New Password:</label>
                 <input
                     type="text"
-                    name="username"
+                    name="password"
                     value={state.password}
                     autoFocus
                     required
@@ -67,7 +66,7 @@ export const Profile = () => {
                 />
                 <br/>
                 <div>Current Bio: {about}</div>
-                <label htmlFor="displayname">New Bio:</label>
+                <label htmlFor="about">New Bio:</label>
                 <input
                     type="text"
                     name="about"
@@ -77,7 +76,7 @@ export const Profile = () => {
                     onChange={handleChange}
                 />
                 <br/>
-                <button type="submit">
+                <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
                     Update Profile
                 </button>
             </form>

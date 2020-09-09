@@ -1,4 +1,4 @@
-import { UPDATE_USER, FAILURE, LOAD } from '../action'
+import { UPDATE_USER, FAILURE, LOAD } from '../actions'
 
 const INITIAL_STATE = {
     password: "",

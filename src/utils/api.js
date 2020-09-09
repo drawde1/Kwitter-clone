@@ -111,6 +111,7 @@ class API {
   }
 
   async updateuser ({ password, about, displayName, username }) {
+    console.log("from api", password, about, displayName, username)
     try {
       const result = await this.axiosInstance.patch(`/users/${username}`, {
         password,

@@ -24,6 +24,7 @@ export const user = credentials => async (dispatch, getState) => {
 };
 
 export const updateuser = credentials => async (dispatch, getState) => {
+  console.log(credentials)
   try {
     dispatch({ type: LOAD });
     const payload = await api.updateuser(credentials);
