@@ -31,13 +31,13 @@ const [state, setState] = useState(initialState);
 //innerHeight = visable window
 //scrollHeight = the length of the entire page
 const handleChange = (event) => {
- console.log(state)
+ //console.log(state)
   let inputValue = event.target.value;
   setState((prevState) => ({ ...prevState, text: inputValue }));
 };
 const postMessage = (event) => {
   event.preventDefault();
-  console.log(state)
+  //console.log(state)
    dispatch(addMessage(state));
    dispatch(getMessageList(msgListParams));
 };
