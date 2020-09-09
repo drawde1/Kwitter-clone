@@ -6,7 +6,14 @@ const INITIAL_STATE = {
   text: "",
   username: "",
   createdAT: "",
-  likes: [],
+  likes: [
+    {
+      "id": 0,
+      "username": "",
+      "messageId": 0,
+      "createdAt": "2020-09-03T17:10:37.7422"
+    }
+  ],
   loading: false,
   error: "",
   delete_message: "",

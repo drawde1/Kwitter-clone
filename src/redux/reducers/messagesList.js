@@ -5,7 +5,6 @@ const INITIAL_STATE = {
     loading: false,
     error: "",
     messages: []
-
   };
 
 
