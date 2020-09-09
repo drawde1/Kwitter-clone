@@ -1,7 +1,5 @@
 // TODO: implement
 import { LIKES, LIKE_SUCCESS, LIKE_FAILURE } from '../actions/likes'
-import { useReducer } from 'react';
-import { combineReducers } from 'redux'
 
 // Default State
 const DEFAULT_STATE = {
