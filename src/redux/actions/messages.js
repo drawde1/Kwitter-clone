@@ -47,7 +47,7 @@ export const deleteMessage = messageid => async (dispatch, getState) => {
   }
 };
 
-export const likes = (messageId) => async (dispatch, getState) => {
+export const _likes = (messageId) => async (dispatch, getState) => {
   //console.log(messageId)
   try {
     dispatch({ type: ADD_LIKE });
@@ -63,6 +63,11 @@ export const likes = (messageId) => async (dispatch, getState) => {
       payload: err.message,
     });
   }
+};
+
+export const likes = (messageId) => async (dispatch, getState) => {
+  dispatch(_likes(messageId))
+  .then(() => dispatch(getMessageList()))
 };
 
 export const deleteLikes = (messageId) => async (dispatch, getState) => {
