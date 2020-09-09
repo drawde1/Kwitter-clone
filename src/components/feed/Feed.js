@@ -27,6 +27,21 @@ const initialState = {
 const [state, setState] = useState(initialState);
 //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
 //scroll argumentrs include 
+    
+  const initialState = {
+    text: "",
+  }
+  
+  const [state, setState] = useState(initialState);
+
+  useEffect(()=>{
+      dispatch(getMessageList(msgListParams))
+
+  },[])
+//  let feedMessages = []
+//  feedMessages = messageList
+  //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
+  //scroll argumentrs include 
 //   scrollY = y off set
 //innerHeight = visable window
 //scrollHeight = the length of the entire page
