@@ -8,9 +8,18 @@ import { user } from "../../redux/actions";
 import { getUserInfo} from '../../redux/actions'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
+import { addMessage, getMessageList } from "../../redux/actions/messages";
+
 
 export const Picture = () => {
+  
+  //const dispatch = useDispatch();
+  // const picture = useRef(null);
+  // const username = useSelector(state => state.auth.username);
+  // const userPicture = useSelector(state => state.getUser.pictureLocation)
+  // console.log(userPicture)
 
+  
   const{username,userPicture,userInfo,messageList } = useSelector((state)=>
   ({
     username: state.auth.username,
@@ -21,6 +30,17 @@ export const Picture = () => {
 
   const dispatch = useDispatch();
   const picture = useRef(null);
+
+  const msgListParams =
+  {
+    limit: 10,
+    offset: 0
+  }
+  
+  useEffect(()=>{
+    dispatch(getMessageList(msgListParams))
+  
+  },[])
   
 
   const handleGetUser = (username) =>
@@ -42,14 +62,18 @@ export const Picture = () => {
     dispatch(getUserInfo(username))
   };
 
-  
-  // const setPic = async (event) => {
-  //   event.preventDefault();
-  //   //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-  //   dispatch(setPicture(state))
+
+   const setPic = async (event) => {
+     event.preventDefault();
+     //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
+     //dispatch(setPicture(state))
+     const picdata = new FormData (picture.current)
+      const results = await Api.getPictures( username, picdata )
+      console.log(picdata)
+      console.log(results)
    
-  // };
-  //const yourMessages = messageList.filter((message)=>message.username === username)
+   };
+
 
   return (
 
@@ -68,12 +92,12 @@ export const Picture = () => {
         <button type="submit">upload picture</button> 
       </form>
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
-      
+      {/* {console.log("State.action")} */}
       {/* {console.log(state.formData)} */}
-      <img url={"https://kwitter-api.herokuapp.com"+userPicture} alt="photo" width="200" height="200"></img>
+      
         <label htmlFor="username">Username</label>
         <h2>your messages</h2>
-        {/*yourMessages.map((message) => (
+        {/* {yourMessages.map((message) => (
                 <Message text={message.text} 
                 username={message.username}
                 msgId ={message.id}
@@ -81,7 +105,7 @@ export const Picture = () => {
                 likes = {message.likes}
                 createdAt ={message.createdAt}
                 />
-        ))*/}
+                ))} */}
     </React.Fragment>
   );
   }

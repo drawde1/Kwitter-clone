@@ -13,8 +13,8 @@ export const Menu = () => {
   return (
     <div id="menu">
       
-      <h1>Kwitter</h1>
-      <div id='menu-links'>
+      <div id="kwitter"><center>Kwitter</center></div>
+      <div id="menu-links">
         {isAuthenticated ? (
           <>
             <Link to="/profiles/:username">Profile</Link>

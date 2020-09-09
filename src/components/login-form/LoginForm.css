@@ -7,34 +7,46 @@
 #logform {
   display:flex;
   width: 620px;
-  height: 400px;
+  height: 460px;
   border: 2px solid black;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   border-radius: 30px;
   background-color: lightblue;
-  
-}
-#divspace {
-  width: 75px;
 }
 #regform {
   display:flex;
   width: 620px;
-  height: 400px;
+  height: 460px;
   border: 2px solid black;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   border-radius: 30px;
   background-color: lightblue;
 } 
+  #logintitle {
+    color:blue;
+    font-size: 40px;
+  }
+
+  #registertitle {
+    color: blue;
+    font-size: 40px;
+  }
+
+#divspace {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  width: 100px;
+  height: 100px;
+}
 
 #login-form {
   display:flex;
   flex-direction: column;
   width: 200px;
-  height:400px;
-  justify-content: space-evenly;
+  height:300px;
+  justify-content: space-around;
 }
 
 #register-form {
@@ -44,3 +56,4 @@
   height:300px;
   justify-content: space-around;
 }
+

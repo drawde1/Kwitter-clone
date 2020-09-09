@@ -10,23 +10,21 @@ import {createTimestamp} from '../../functions/createTimestamp'
 
 export const Feed = (props) => {
   const dispatch = useDispatch();
-  useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
-  const {messageList,loadingMessage,loadingList} = useSelector((state)=>({
-      messageList: state.getMessageList.messages,
-      loadingMessage: state.addMsg.loading,
-      loadingList: state.getMessageList.laoding
-  })) 
-const msgListParams =
-{
-  limit: 10,
-  offset: 0
-}
-const initialState = {
-  text: "",
-}
-const [state, setState] = useState(initialState);
-//TODO infinite scroll use scroll event useinmg window.(scroll arguments)
-//scroll argumentrs include 
+    
+  const initialState = {
+    text: "",
+  }
+  
+  const [state, setState] = useState(initialState);
+
+  useEffect(()=>{
+      dispatch(getMessageList(msgListParams))
+
+  },[])
+//  let feedMessages = []
+//  feedMessages = messageList
+  //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
+  //scroll argumentrs include 
 //   scrollY = y off set
 //innerHeight = visable window
 //scrollHeight = the length of the entire page
