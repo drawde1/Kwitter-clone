@@ -27,24 +27,23 @@ export const addMessageReducer = (state = { ...INITIAL_STATE }, action) => {
 
         };
         
-        export /**
-         * @param {{ type: any; payload: any; }} action
-         */
- const deleteMessageReducer = (state = { ...INITIAL_STATE }, action) => {
+       
+        const deleteMessageReducer = (state = [], action) => {
           switch (action.type) {
-
             case DELETE_MESSAGE:
-              return {
-                ...INITIAL_STATE,
-                deleteMessageReducer
-              };
+              return [
+                ...state,
+                {
+                  text: action.text,
+                  completed: false
+                }
+              ]
+
             case FAILURE:
               return {
                 ...INITIAL_STATE,
                 error: action.payload,
                 loading: false,
               };
-      
-            default:
-              return state;
-          };
+          }
+          export default deleteMessageReducer;

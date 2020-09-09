@@ -6,8 +6,6 @@ import { ADD_LIKE, deleteMessage } from "../../redux/actions/messages";
 import { MessageItem } from "semantic-ui-react";
 
 export const Message = props => {
-  //TODO: handle delete message
-  //TODO: handle likes add & delete
   const dispatch = useDispatch();
 
   // id: 0,
@@ -23,7 +21,7 @@ export const Message = props => {
   // componentDidMount(()=>{timestamp = })
 
   const delete_Messages = props.Message.filter(
-    delete_message => MessageItem.message === username
+    delete_message => delete_message
   );
   return (
     <>
