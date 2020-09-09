@@ -9,7 +9,7 @@ export const Message = (props) =>
 //TODO: handle delete message
 //TODO: handle likes add & delete
 
-const dispatch = useDispatch()
+
     // id: 0,
     // text:'',
     // username: '',

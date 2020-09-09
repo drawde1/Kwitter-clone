@@ -15,7 +15,7 @@ import "./scrollbox.css"
 
 
 
-export const Picture = () => {
+export const Profile = () => {
   
   const{username,userPicture,userInfo,messageList } = useSelector((state)=>
   ({

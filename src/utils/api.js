@@ -98,7 +98,7 @@ class API {
 
   async getMessageList ({ limit, offset }) {
     try {
-      const result = await this.axiosInstance.get("/messages?limit=" + limit + "offset=" + offset,{
+      const result = await this.axiosInstance.get("/messages?limit=" + limit + "&offset=" + offset,{
           limit,
           offset,
         }
