@@ -17,21 +17,22 @@ import "./scrollbox.css"
 
 export const Profile = () => {
   
-  const{username,userPicture,userInfo,messageList } = useSelector((state)=>
+  const{username,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>
   ({
     username: state.auth.username,
     userPicture: state.getUser.pictureLocation,
     userInfo:  state.getUser,
     messageList: state.getMessageList.messages,
+    msgListParams: state.infiniteScroll,
   }))
 
   const dispatch = useDispatch();
   const picture = useRef(null);
-  const msgListParams =
-  {
-    limit: 10,
-    offset: 0
-  }
+  // const msgListParams =
+  // {
+  //   limit: 10,
+  //   offset: 0
+  // }
 
   useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
   useEffect(()=>{dispatch(getUserInfo(username))},[])
