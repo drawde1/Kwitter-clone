@@ -38,11 +38,11 @@ class API {
     this.axiosInstance = axiosInstance;
   }
 
-  async adduser ({ username, displayName, password }) {
+  async adduser ({ username, displayname, password }) {
     try {
-      const result = await this.axiosInstance.post("/users", {
+      const result = await this.axiosInstance.post("/user", {
         username,
-        displayName,
+        displayname,
         password,
       });
 
@@ -65,18 +65,28 @@ class API {
     }
   }
 
-  async addMessage ({ text }) {
+  async addMessage ({ text, username }) {
     try {
-      const result = await this.axiosInstance.post("/messages", {
-        text,
-      });
-
+      const result = await this.axiosInstance.delete("/user/" + username);
       return result;
     } catch (err) {
       helpMeInstructor(err);
       throw err;
     }
   }
+
+  async deleteMsg (messageId) {
+    try {
+      const result = await this.axiosInstance.delete("/messages/" + messageId, {
+        messageId,
+      });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
   async getMessageList ({ limit, offset }) {
     try {
       const result = await this.axiosInstance.get(
@@ -93,9 +103,10 @@ class API {
     }
   }
 
-  async updateuser ({ password, about, displayName }) {
+  async updateuser ({ password, about, displayName, username }) {
+    console.log("from api", password, about, displayName, username);
     try {
-      const result = await this.axiosInstance.patch("/users/{username}", {
+      const result = await this.axiosInstance.patch(`/users/${username}`, {
         password,
         about,
         displayName,
@@ -129,6 +140,18 @@ class API {
       throw err;
     }
   }
+
+  async likes (messageId) {
+    // console.log(messageId)
+    try {
+      const result = await this.axiosInstance.post("/likes", {
+        messageId,
+      });
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
   async addPicture (username, picture) {
     try {
       const result = await this.axiosInstance.put(
@@ -143,13 +166,14 @@ class API {
       throw err;
     }
   }
+
   async getPictures (username, picture) {
     try {
       const result = await this.axiosInstance.get(
         "/users/" + username + "/picture",
         picture
       );
-      console.log(result);
+
       return result;
     } catch (err) {
       console.log({ err });
