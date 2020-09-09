@@ -23,6 +23,7 @@ export const Message = props => {
   const delete_Messages = props.Message.filter(
     delete_message => delete_message
   );
+
   return (
     <>
       <p>user:{props.username}</p>
