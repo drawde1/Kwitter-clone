@@ -4,7 +4,6 @@ import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./Profile.css";
 import {updateuser} from "../../redux/actions/user";
-
 import { getPicture } from "../../redux/actions/photos";
 import { useRef } from "react";
 import Api from "../../utils/api"
@@ -12,7 +11,7 @@ import { getUserInfo} from '../../redux/actions'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
 import {messageList} from '../feed/Feed'
-// import { user } from "../../redux/actions";
+import { user } from "../../redux/actions";
 
 export const Profile = () => {
     const {username, name, about} = useSelector((state) => ({
@@ -20,7 +19,7 @@ export const Profile = () => {
         name: state.getUser.displayname,
         about: state.getUser.about
     }));
-
+  console.log(name)
     const dispatch = useDispatch();
 
     const INITIALSTATE = {
@@ -50,13 +49,13 @@ export const Profile = () => {
                 <input
                     type="text"
                     name="displayname"
-                    value={name}
+                    value={state.displayname}
                     autoFocus
                     required
                     onChange={handleChange}
                 />
                 <br/>
-                <div>Current Password: {username}</div>
+                <div>Current Password: {}</div>
                 <label htmlFor="username">New Password:</label>
                 <input
                     type="text"
@@ -72,7 +71,7 @@ export const Profile = () => {
                 <input
                     type="text"
                     name="about"
-                    value={about}
+                    value={state.about}
                     autoFocus
                     required
                     onChange={handleChange}
