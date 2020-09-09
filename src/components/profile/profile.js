@@ -73,7 +73,7 @@ export const Picture = () => {
       <img url={"https://kwitter-api.herokuapp.com"+userPicture} alt="photo" width="200" height="200"></img>
         <label htmlFor="username">Username</label>
         <h2>your messages</h2>
-        {/*yourMessages.map((message) => (
+        {/* {yourMessages.map((message) => (
                 <Message text={message.text} 
                 username={message.username}
                 msgId ={message.id}
@@ -81,7 +81,7 @@ export const Picture = () => {
                 likes = {message.likes}
                 createdAt ={message.createdAt}
                 />
-        ))*/}
+        ))} */}
     </React.Fragment>
   );
   }
