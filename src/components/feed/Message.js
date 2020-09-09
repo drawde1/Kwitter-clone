@@ -73,7 +73,7 @@ export const Message = props => {
         </button>
         <a className='ui basic left pointing red label'>{disClick}</a>
       </div> */}
-      <button onClick={handleDelete}>x</button>
+      <button onClick={handleDelete}>deleteMessage</button>
     </>
   );
 };
