@@ -1,9 +1,14 @@
-import { ADD_USER, FAILURE, LOAD } from "../actions";
+import {
+  ADD_USER,
+  FAILURE,
+  LOAD,
+  DELETE_USER,
+  DELETE_MESSAGE,
+} from "../actions";
 
 const INITIAL_STATE = {
   username: "",
   displayname: "",
-  createdAt: "",
   loading: false,
   error: "",
 };
@@ -16,12 +21,11 @@ export const defaultUserReducer = (state = { ...INITIAL_STATE }, action) => {
         loading: true,
       };
     case ADD_USER:
-      const { username, displayname, createdAt } = action.payload.user;
+      const { username, displayname } = action.payload.user;
       return {
         ...INITIAL_STATE,
         username,
         displayname,
-        createdAt,
         loading: false,
       };
     case FAILURE:
@@ -29,6 +33,15 @@ export const defaultUserReducer = (state = { ...INITIAL_STATE }, action) => {
         ...INITIAL_STATE,
         error: action.payload,
         loading: false,
+      };
+    case DELETE_USER:
+      return {
+        ...INITIAL_STATE,
+      };
+    case DELETE_MESSAGE:
+      const { delete_message } = action.payload.delete_message;
+      return {
+        ...INITIAL_STATE,
       };
 
     default:

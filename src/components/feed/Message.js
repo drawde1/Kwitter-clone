@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { createTimestamp } from "../../functions/createTimestamp";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { MessageList } from "semantic-ui-react";
-// import { DeleteMessage } from "../delete";
-import { deleteMessage, DeleteMessage } from "../delete/DeleteMessage";
-import { getMessageList } from "../../redux/actions/messages";
+import {
+  addLike,
+  deleteLike,
+  deleteMessage,
+} from "../../redux/actions/messages";
+import actions from "redux-form/lib/actions";
+import { likes } from "../../redux/actions/likes";
+
 export const Message = props => {
   //TODO: handle delete message
   //TODO: handle likes add & delete
@@ -19,31 +23,57 @@ export const Message = props => {
 
   // 2020-09-03T14:27:16.454Z
 
-  let timestamp = createTimestamp(props.createdAt);
-  // // useEffect(()=>{})
-  // componentDidMount(()=>{timestamp = })
   const msgListParams = {
-    limit: 10,
+    limit: 100,
     offset: 0,
   };
 
-  const handleDeleteMessage = () => {
-    dispatch(deleteMessage(props.id));
-    dispatch(getMessageList(msgListParams));
+  const handleDelete = () => {
+    console.log(props.messageId);
+    dispatch(deleteMessage(props.msgId));
   };
+
+  let timestamp = createTimestamp(props.createdAt);
+  // // useEffect(()=>{})
+  // componentDidMount(()=>{timestamp = })
+
+  const [disClick, setDisClick] = useState(0);
+  const [deselect, setDeselect] = useState(false);
+
+  const handleLike = (userId, messageId) => () => {
+    this.props.dispatch(addLike(userId, messageId));
+  };
+
+  const handleUnlike = messageId => () => {
+    console.log(messageId);
+    this.props.dispatch(deleteLike(messageId));
+  };
+  //const [likeMessage] = likes(this.props.messageId)
 
   return (
     <>
       <p>user:{props.username}</p>
       <p>text:{props.text}</p>
-      <p>likes:{props.likes.length}</p>
       <p>
         time: {timestamp.time}
         <span> date:{timestamp.date}</span>
       </p>
-      <button>like</button>
-      <button onClick={handleDeleteMessage}>Delete</button>
-      <DeleteMessage></DeleteMessage>
+      {/* <div className='ui labeled button' tabIndex='0'>
+        <button className='ui blue button' onClick={handleLike}>
+          <i className='heart icon'></i> Like(s)
+        </button>
+        <a className='ui basic blue left pointing label'>{likes.length}</a>
+      </div>
+      <div className='ui labeled button' tabIndex='0'>
+        <button
+          className='ui red button'
+          onClick={() => setDisClick(disClick + 1)}
+        >
+          <i className='frown icon'></i> Dislikes
+        </button>
+        <a className='ui basic left pointing red label'>{disClick}</a>
+      </div> */}
+      <button onClick={handleDelete}>x</button>
     </>
   );
 };

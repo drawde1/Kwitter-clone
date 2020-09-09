@@ -1,0 +1,164 @@
+ const [count, setCount] = React.useState(0)
+    //const [likes, setLikes] = useState(0)//
+    const [disClick, setDisClick] = useState(30450)
+    const [deselect, setDeselect] = useState(false)
+
+    /*const prevLikeCount = useRef()
+    useEffect(() => {
+        prevLikeCount.current = likes
+    });
+    const prevLike = prevLikeCount.current;*/
+
+    handleClick = () {
+        setCount(count + 1)
+    }
+
+
+class Likes extends Component {
+  state = {
+    likes: 0
+  }
+}
+
+
+/*export default function Likes() {
+  const [clicks, setClicks] = useState(0)
+  const [disClick, setDisClick] = useState(0)
+  const [deselect, setDeselect] = useState(false)
+  
+
+  const IncrementClick = () => {
+    this.setState((state, props) => {
+      return {
+        ...state,
+        clicks: state.clicks + 1,
+      }
+    })
+  }
+
+  const RemoveClick = () => {
+    this.setState((state, props) => {
+      return {
+        ...state,
+        clicks: state.clicks - 1,
+      }
+    })
+  }
+
+  const ToggleSelection = () => {
+    this.setState({ show: !this.state.show })
+  }
+
+    //const { clicks } = this.state//
+  return (
+   <>
+    <div class="ui labeled button" tabIndex="0">
+      <button class="ui blue button" onClick={this.IncrementClick}>
+          <i class="heart icon"></i> Like(s)
+      </button>
+      <a class="ui basic blue left pointing label">
+          175
+      </a>   
+    </div>
+    <div class="ui labeled button" tabIndex="0">
+      <button class="ui red button" onClick={this.IncrementClick}>
+          <i class="frown icon"></i> Dislikes
+      </button>
+      <a class="ui basic left pointing red label">
+          3,045
+      </a>
+    </div>
+  </>
+  );
+}
+*/
+
+
+import { connect } from 'react-redux'
+import * as Actions from './index'
+import CounterComponent from '../../components/likes/Counter'
+
+const mapStateToProps = (state) => ({
+  count: state.counterReducer.count
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  increment: () => dispatch(counterIncrement),
+  decrement: () => dispatch(counterDecrement)
+});
+
+export const counterIncrement = () => ({
+  type: actions.COUNTER_INCREMENT
+});
+
+export const counterDecrement = () => ({
+  type: actions.COUNTER_DECREMENT
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CounterComponent)
+
+
+export const likes = (messageId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: LIKES });
+    const payload = await api.likes(messageId);
+    console.log(payload)
+    // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
+    // console.log({ result })
+    dispatch({ type: LIKE_SUCCESS, payload });
+  } catch (err) {
+    dispatch({
+      type: LIKE_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+
+
+/*import React, { Component } from 'react'
+import Button from './Button'
+import { connect } from 'react-redux'
+import { incrementCount, decrementCount } from '.../redux/actions/likes'
+
+class Likes extends Component {
+
+handleLikesIncrement = () => {
+  this.props.onIncrementClick(this.props.count)
+}
+
+handleLikesDecrement = () => {
+  this.props.onDecrementClick(this.props.count)
+}
+
+render () {
+  const {count} = this.props
+  return (
+    <div>
+      <Button action={this.handleLikesIncrement} buttonIcon="" />
+      <Button action={this.handleLikesDecrement} buttonIcon=""/>
+    </div>
+  )
+}
+}
+
+const mapStateToProps = (state) => {
+  return {
+    count: state.counter.count
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  reutrn {
+    onIncrementClick: (count) => {
+      dispatch(incrementCount(count))
+    },
+    onDecrementClick: (count) => {
+      if(count !== 0)
+      dispatch(decrementCount(count))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Likes)
+*/

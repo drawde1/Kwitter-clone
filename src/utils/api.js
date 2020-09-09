@@ -1,6 +1,9 @@
 import axios from "axios";
 
 class API {
+  deleteMessage (messageid) {
+    throw new Error("Method not implemented.");
+  }
   axiosInstance = null;
 
   constructor () {
@@ -35,26 +38,14 @@ class API {
     this.axiosInstance = axiosInstance;
   }
 
-  async adduser ({ username, displayName, password }) {
+  async adduser ({ username, displayname, password }) {
     try {
-      const result = await this.axiosInstance.post("/users", {
+      const result = await this.axiosInstance.post("/user", {
         username,
-        displayName,
+        displayname,
         password,
       });
 
-      return result;
-    } catch (err) {
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
-
-  async deleteuser ({ username, displayName, password }) {
-    try {
-      const result = await this.axiosInstance.delete("/users" + username, {
-        username,
-      });
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -66,6 +57,17 @@ class API {
       const result = await this.axiosInstance.get("/users/" + username, {
         username,
       });
+
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async deleteUser (username) {
+    try {
+      const result = await this.axiosInstance.get(`/users/${username}`);
 
       return result;
     } catch (err) {
@@ -86,24 +88,10 @@ class API {
       throw err;
     }
   }
-
-  async deleteMessage ({ messageid }) {
-    try {
-      const result = await this.axiosInstance.delete("/messages/" + messageid, {
-        messageid,
-      });
-
-      return result;
-    } catch (err) {
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
-
   async getMessageList ({ limit, offset }) {
     try {
       const result = await this.axiosInstance.get(
-        "/messages?limit=" + limit + "offset=" + offset,
+        "/messages?limit=" + limit + "&offset=" + offset,
         {
           limit,
           offset,
@@ -152,6 +140,18 @@ class API {
       throw err;
     }
   }
+
+  async likes ({ messageId }) {
+    try {
+      const result = await this.axiosInstance.post("/likes", {
+        messageId,
+      });
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
   async addPicture (username, picture) {
     try {
       const result = await this.axiosInstance.put(
