@@ -11,7 +11,7 @@ import { getUserInfo} from '../../redux/actions'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
-import {getMessageList} from '../../redux/actions'
+import {getMessageListByUser} from '../../redux/actions'
 import "./scrollbox.css"
 
 
@@ -23,7 +23,7 @@ export const Profile = () => {
     username: state.auth.username,
     userPicture: state.getUser.pictureLocation,
     userInfo:  state.getUser,
-    messageList: state.getMessageList.messages,
+    messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }))
 
@@ -35,7 +35,7 @@ export const Profile = () => {
   //   offset: 0
   // }
 
-  useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
+  useEffect(()=>{dispatch(getMessageListByUser(msgListParams,username))},[])
   useEffect(()=>{dispatch(getUserInfo(username))},[])
   // const handleGetUser = (username) =>
   
@@ -53,10 +53,10 @@ export const Profile = () => {
 
   
 
-  const yourMessages = messageList.filter((message)=>message.username === username)
+  
   
   useEffect(()=>{
-    dispatch(getMessageList(msgListParams))
+    dispatch(getMessageListByUser(msgListParams,username))
   
   },[])
   
@@ -119,7 +119,7 @@ export const Profile = () => {
        console.log('end')
        dispatch(infiniteScroll(5))
        
-       dispatch(getMessageList(msgListParams))
+       dispatch(getMessageListByUser(msgListParams,username))
      }
    }
 
@@ -146,7 +146,7 @@ export const Profile = () => {
         <label htmlFor="username">Username</label>
         <h2>your messages</h2>
         <div className= 'scrollBox' onScroll ={handleScroll}>
-          {yourMessages.map((message) => (
+          {messageList.map((message) => (
                   <Message text={message.text} 
                   username={message.username}
                   msgId ={message.id}
