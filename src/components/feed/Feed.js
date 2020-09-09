@@ -14,7 +14,7 @@ export const Feed = (props) => {
     // id: 0,
     // text:'',
     // username: '',
-    // createdAT:'',
+    // createdAT:'', 
     // likes:[],
     // loading: false,
     // error: ''
@@ -24,7 +24,6 @@ export const Feed = (props) => {
         likes: state.addMsg.likes,
         messageList: state.getMessageList.messages,
         createdAt: state.addMsg.createdAt
-        
     })) 
     // 2020-09-03T14:27:16.454Z
   const msgListParams =

@@ -3,7 +3,6 @@ import {FAILURE}  from '../actions/defaultuser'
 const INITIAL_STATE = {
     loading: false,
     error: "",
-
   };
 
 
@@ -18,7 +17,6 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
           loading: false,
           messages
         };
-        
 
       case FAILURE:
         return {

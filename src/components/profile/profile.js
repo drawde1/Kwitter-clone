@@ -7,18 +7,25 @@ import {updateuser} from "../../redux/actions/user";
 import { getPicture } from "../../redux/actions/photos";
 import { useRef } from "react";
 import Api from "../../utils/api"
-import { getUserInfo} from '../../redux/actions'
+import { getUserInfo } from '../../redux/actions/user'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
 import {messageList} from '../feed/Feed'
 import { user } from "../../redux/actions";
 
 export const Profile = () => {
-    const {username, name, about} = useSelector((state) => ({
+    const {username, name, about, userInfo} = useSelector((state)=>({
         username: state.auth.username,
         name: state.getUser.displayName,
-        bio: state.getUser.about
+        bio: state.getUser.about,
+        userInfo: state.getUser
     }));
+    console.log(userInfo)
+
+    useEffect(()=>{
+      dispatch(getUserInfo(user))
+    },[])
+
     const dispatch = useDispatch();
 
     const INITIALSTATE = {
