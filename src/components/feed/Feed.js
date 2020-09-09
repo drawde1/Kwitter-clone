@@ -3,8 +3,9 @@ import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
-import {createTimestamp} from '../functions/createTimestamp'
+
 import './scrollBox.css'
+import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 export const Feed = (props) => {
  
     // const { loading, error } = useSelector((state) => ({
@@ -24,8 +25,6 @@ export const Feed = (props) => {
     const {messageList,loadingList,msgListParams} = useSelector((state)=>({
         msgListParams: state.infiniteScroll,
         messageList: state.getMessageList.messages,
-        
-        
         loadingList: state.getMessageList.laoding
     })) 
     
@@ -71,6 +70,7 @@ export const Feed = (props) => {
   };
   const handleScroll = (event) =>
   {
+    
     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
     // console.log('scrollHeight',scrollHeight)
     // console.log('clientHeight',clientHeight)
@@ -78,6 +78,9 @@ export const Feed = (props) => {
     if(clientHeight + scrollTop >= scrollHeight)
     {
       console.log('end')
+      dispatch(infiniteScroll(5))
+      
+      dispatch(getMessageList(msgListParams))
     }
   }
  
