@@ -3,7 +3,7 @@ import {FAILURE}  from '../actions/defaultuser'
 const INITIAL_STATE = {
     loading: false,
     error: "",
-
+    messages: []
   };
 
 

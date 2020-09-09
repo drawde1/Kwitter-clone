@@ -4,6 +4,7 @@ import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./LoginForm.css";
 import {user} from '../../redux/actions/user'
+
 export const LoginForm = ({ login }) => {
   const { loading, error } = useSelector((state) => ({
     loading: state.auth.loading,

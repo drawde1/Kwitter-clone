@@ -5,10 +5,11 @@ import { actions } from "../../redux/actions/auth";
 import "./Menu.css";
 
 export const Menu = () => {
-  const isAuthenticated = useSelector((state) => !!state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(state => !!state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const logout = () => dispatch(actions.logout());
   const loginuser = useSelector((state) => state.auth.isAuthenticated) 
+
   return (
     <div id="menu">
       
