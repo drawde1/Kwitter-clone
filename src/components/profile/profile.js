@@ -34,8 +34,10 @@ export const Profile = () => {
     bio,
     name,
     msgListParams,
+    testPicture,
   } = useSelector(state => ({
-    username: state.auth.username,
+    testPicture: state.pic.photo,
+    username: state.getUser.username,
     userPicture: state.getUser.pictureLocation,
     userInfo: state.getUser,
     name: state.getUser.displayName,
@@ -43,7 +45,7 @@ export const Profile = () => {
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }));
-  console.log(state);
+//   console.log(state);
   const dispatch = useDispatch();
   const picture = useRef(null);
   // const msgListParams =
@@ -55,6 +57,9 @@ export const Profile = () => {
   useEffect(() => {
     dispatch(getMessageListByUser(msgListParams, username));
   }, []);
+//   useEffect(() => {
+//     dispatch(getPicture(username));
+//   }, []);
   useEffect(() => {
     dispatch(getUserInfo(username));
   }, []);
@@ -97,8 +102,8 @@ export const Profile = () => {
     //dispatch(setPicture(state))
     const picdata = new FormData(picture.current);
     const results = await Api.getPictures(username, picdata);
-    console.log(picdata);
-    console.log(results);
+    // console.log(picdata);
+    // console.log(results);
   };
   const handleScroll = event => {
     const { scrollHeight, clientHeight, scrollTop } = event.currentTarget;
@@ -106,13 +111,18 @@ export const Profile = () => {
     // console.log('clientHeight',clientHeight)
     // console.log('scrollTop',scrollTop)
     if (clientHeight + scrollTop >= scrollHeight) {
-      console.log("end");
+      
       dispatch(infiniteScroll(5));
 
       dispatch(getMessageListByUser(msgListParams, username));
     }
   };
-
+  const test = () =>
+  {
+    dispatch(getPicture(username))
+    console.log(testPicture)
+  }
+  
   return (
     <React.Fragment>
       <h1>Profile Page</h1>
@@ -121,6 +131,8 @@ export const Profile = () => {
         width='200'
         height='200'
       />
+      
+     
       <form ref={picture} onSubmit={addPic}>
         <input type='file' name='picture'></input>
         <button type='submit'>Upload My Picture</button>

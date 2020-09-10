@@ -216,12 +216,12 @@ class API {
       throw err;
     }
   }
-
+  
   async getPictures (username) {
     try {
       const result = await this.axiosInstance.get(
          "/users/"+ username +"/picture",
-        username
+       
       );
 
       return result;

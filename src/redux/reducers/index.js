@@ -11,6 +11,7 @@ import {infiniteScrollReducer} from './infiniteScroll'
 import {getMessageListByUserReducer} from './getMessageListByUser'
 import { addLikeReducer } from './addLike'
 export default combineReducers({ 
+  pic:picReducer,
   getMessageListByUser:getMessageListByUserReducer,
   auth: authReducer,
   infiniteScroll: infiniteScrollReducer,
