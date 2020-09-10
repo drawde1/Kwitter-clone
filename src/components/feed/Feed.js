@@ -23,6 +23,7 @@ const msgListParams =
 }
 const initialState = {
   text: "",
+  isActive: false
 }
 const [state, setState] = useState(initialState);
 //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
@@ -51,6 +52,7 @@ const postMessage = (event) => {
    dispatch(addMessage(state));
    dispatch(getMessageList(msgListParams));
 };
+
 
 return (
   <React.Fragment>

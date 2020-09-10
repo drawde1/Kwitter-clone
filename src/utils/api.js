@@ -183,6 +183,20 @@ class API {
       throw err;
     }
   }
+
+  async deleteLikes(id) {
+    //console.log(likeId)
+    try {
+      const result = await this.axiosInstance.delete("/likes/"+id, {
+        id
+      });
+      return result
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
   async addPicture( username, picture ) {
     try {
       const result = await this.axiosInstance.put("/users/"+username+"/picture",  
