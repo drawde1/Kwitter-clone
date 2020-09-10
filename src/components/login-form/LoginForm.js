@@ -73,9 +73,11 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleChange}
         />
+        <div>
         <button type="submit" disabled={loading}>
           Login
         </button>
+        </div>
       </form>
     </div>
     <div id="divspace"></div>
@@ -90,7 +92,7 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleRegChange}
         />
-        <label htmlFor="displayName">Name</label>
+        <label htmlFor="displayName">Display Name</label>
         <input
           type="text"
           name="displayName"
@@ -107,10 +109,11 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleRegChange}
         />
-        
+        <div>
         <button type="submit" disabled={loading}>
           Register
         </button>
+        </div>
         </form>
         </div>
         </div> 
