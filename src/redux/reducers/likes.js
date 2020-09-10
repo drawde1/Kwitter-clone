@@ -1,6 +1,6 @@
 // TODO: implement
-import { LIKES, LIKE_SUCCESS, LIKE_FAILURE } from '../actions/likes'
-
+import { LIKE_SUCCESS, LIKE_FAILURE, DELETE_LIKE, DELETE_SUCCESS} from '../actions/messages'
+import { LIKES } from '../actions/likes'
 // Default State
 const DEFAULT_STATE = {
   likes: [
@@ -26,6 +26,17 @@ export const likesReducer = (state = {...DEFAULT_STATE}, action) => {
       return {
         ...DEFAULT_STATE, 
         memberId
+      };
+    case DELETE_LIKE:
+      const { likeId } = action.payload.like
+      return {
+        ...DEFAULT_STATE,
+        likeId
+      };
+    case DELETE_SUCCESS: 
+      return {
+        ...DEFAULT_STATE, 
+        likeId
       };
     case LIKE_FAILURE:
       return {

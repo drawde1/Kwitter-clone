@@ -22,6 +22,9 @@ export const Profile = () => {
     userPicture: state.getUser.pictureLocation,
     userInfo:  state.getUser,
     messageList: state.getMessageList.messages,
+    name: state.getUser.displayName,
+    bio: state.getUser.about,
+    count: state.getMessageList.count
   }))
 
   const dispatch = useDispatch();
@@ -112,21 +115,40 @@ export const Profile = () => {
 
         
         <h1>Profile Page</h1>
-
-        <img 
-        src = {"https://kwitter-api.herokuapp.com"+userPicture}
-        width="200" 
-        height="200"/>
-      <form ref={picture} onSubmit = {addPic}>
+        <div class="ui card">
+          <div class="image">
+            <img 
+          src = {"https://kwitter-api.herokuapp.com"+userPicture}
+          width="200" 
+          height="200"/>
+        </div>
+        
+      {/* <form ref={picture} onSubmit = {addPic}>
        <input type="file" name="picture">
         </input>
         <button type="submit">upload picture</button> 
       </form>
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
       {/* {console.log("State.action")} */}
-      {/* {console.log(state.formData)} */}
-      
-        <label htmlFor="username">Username</label>
+  
+
+      <div class="content">
+        <a class="header">{"name"}</a>
+        <div class="meta">
+          <span class="date">Joined April 2020</span>
+        </div>
+        <div class="description">
+          {"bio"}
+        </div>
+      </div>
+      <div class="extra content">
+        <a>
+          <i class="user icon"></i>
+          {"count"}
+        </a>
+      </div>
+      </div>
+        
         <h2>your messages</h2>
         <div className= 'scrollBox'>
           {yourMessages.map((message) => (

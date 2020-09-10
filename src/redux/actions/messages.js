@@ -73,11 +73,11 @@ export const likes = (messageId) => async (dispatch, getState) => {
   .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
 };
 
-export const _deleteLikes = (id) => async (dispatch, getState) => {
-  //console.log(likeId)
+export const _deleteLikes = (likeId) => async (dispatch, getState) => {
+  console.log(likeId)
   try {
     dispatch({ type: DELETE_LIKE });
-    const payload = await api.deleteLikes(id);
+    const payload = await api.deleteLikes(likeId);
     dispatch({ type: DELETE_SUCCESS, payload})
     console.log(payload)
     // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
@@ -91,8 +91,8 @@ export const _deleteLikes = (id) => async (dispatch, getState) => {
   }
 };
 
-export const deleteLikes = (id) => async (dispatch, getState) => {
-  return dispatch(_deleteLikes(id))
+export const deleteLikes = (likeId) => async (dispatch, getState) => {
+  return dispatch(_deleteLikes(likeId))
   .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
 };
 

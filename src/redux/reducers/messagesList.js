@@ -4,7 +4,8 @@ import {GET_MESSAGE_LIST,DELETE_MESSAGE,LOAD,FAILURE} from '../actions'
 const INITIAL_STATE = {
     loading: false,
     error: "",
-    messages: []
+    messages: [],
+    count: 0
   };
 
 
@@ -16,12 +17,13 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
           loading: true,
         }
       case GET_MESSAGE_LIST:
-          const {messages} = action.payload
+          const {messages, count} = action.payload
         
         return {
           ...INITIAL_STATE,
           loading: false,
           messages: messages,
+          count: count,
         };
         case DELETE_MESSAGE:
           const {id} = action.payload

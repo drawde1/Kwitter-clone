@@ -66,10 +66,11 @@ const dispatch =useDispatch()
             <a class="ui basic blue left pointing label">
                {props.likes.length} 
             </a>
-            <button class="ui blue button" onClick={() => handleUnlike(props.id)}>
+        </div>
+        <div class="ui labeled button" tabIndex="0"> 
+        <button class="ui blue button" onClick={() => handleUnlike(props.id)}>
                  <i class="heart broken icon"></i> Delete Like(s)
             </button>
-            
         </div>
         <div class="ui labeled button" tabIndex="0">
             <button class="ui red button" onClick={() => setDisClick(disClick + 1 )}>
