@@ -24,16 +24,11 @@ export const Message = props => {
   // createdAT:'',
   // likes:[],
 
-  // 2020-09-03T14:27:16.454Z
+  const messagListParams = useSelector(state => state.infiniteScroll);
 
-  const msgListParams = {
-    limit: 50,
-    offset: 0,
-  };
-
-  const handleDelete = messageId => {
-    console.log(messageId);
-    dispatch(deleteMessage(messageId));
+  const handleDelete = () => {
+    console.log(props.messageId);
+    dispatch(deleteMessage(props.msgId, messagListParams));
   };
 
   let timestamp = createTimestamp(props.createdAt);
@@ -44,13 +39,13 @@ export const Message = props => {
   const [deselect, setDeselect] = useState(false);
 
   const handleLike = messageId => {
-    dispatch(likes(messageId));
+    dispatch(likes(messageId, messagListParams));
 
     //dispatch(getMessageList(msgListParams));
   };
 
   const handleUnlike = id => {
-    dispatch(deleteLikes(id));
+    dispatch(deleteLikes(id, messagListParams));
   };
 
   return (

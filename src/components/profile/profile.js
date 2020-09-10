@@ -71,8 +71,8 @@ export const Profile = () => {
   };
 
   const deleteTheUser = () => {
-    dispatch(deleteUser(username));
     console.log("??");
+    dispatch(deleteUser(username));
     // dispatch(dispatch(actions.logout()))
   };
 
@@ -175,7 +175,7 @@ export const Profile = () => {
       <div>{state.password}</div>
       <div>{state.bio}</div>
       <div>{userPicture}</div>
-      <h2>My Kwit</h2>
+
       {/* {console.log("State.action")} */}
       {/* {console.log(state.formData)} */}
       <button onClick={() => deleteTheUser()}>Delete My Account</button>

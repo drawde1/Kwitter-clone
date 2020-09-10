@@ -35,11 +35,11 @@ class API {
     this.axiosInstance = axiosInstance;
   }
 
-  async adduser ({ username, displayname, password }) {
+  async adduser ({ username, displayName, password }) {
     try {
-      const result = await this.axiosInstance.post("/user", {
+      const result = await this.axiosInstance.post("/users", {
         username,
-        displayname,
+        displayName,
         password,
       });
 
@@ -55,26 +55,6 @@ class API {
         username,
       });
 
-      return result;
-    } catch (err) {
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
-
-  async addMessage ({ text, username }) {
-    try {
-      const result = await this.axiosInstance.delete("/user/" + username);
-      return result;
-    } catch (err) {
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
-
-  async deleteMsg ({ message }) {
-    try {
-      const result = await this.axiosInstance.delete("/message/" + message);
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -150,9 +130,7 @@ class API {
 
   async deleteUser (username) {
     try {
-      const result = await this.axiosInstance.get(`/users/${username}`, {
-        username,
-      });
+      const result = await this.axiosInstance.delete(`/users/${username}`);
 
       return result;
     } catch (err) {
