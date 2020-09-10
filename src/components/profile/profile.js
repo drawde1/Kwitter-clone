@@ -14,7 +14,7 @@ import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
 import {getMessageListByUser} from '../../redux/actions'
 import "./scrollbox.css"
-
+import {deleteUser} from '../../redux/actions/user'
 
 
 export const Profile = () => {
@@ -54,7 +54,12 @@ export const Profile = () => {
   };
 
   
-
+  const deleteTheUser = () => {
+    dispatch(deleteUser(username));
+    console.log('??')
+    // dispatch(dispatch(actions.logout()))
+  };
+ 
   
   
   useEffect(()=>{
@@ -144,7 +149,7 @@ export const Profile = () => {
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
       {/* {console.log("State.action")} */}
       {/* {console.log(state.formData)} */}
-      
+      <button onClick ={() => deleteTheUser()}>delete Account</button>
         <label htmlFor="username">Username</label>
         <h2>your messages</h2>
         <div className= 'scrollBox' onScroll ={handleScroll}>

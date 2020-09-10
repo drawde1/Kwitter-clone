@@ -140,18 +140,20 @@ class API {
     }
   }
 
-  // // async getMessageList({limit,offset}) {
-  // //   try {
-  // //     const result = await this.axiosInstance.get("/messages?limit="+limit+"&offset="+offset, {
-  // //       limit,
-  // //       offset
-  // //     });
-  // //     return result;
-  // //   } catch (err) {
-  // //     helpMeInstructor(err);
-  // //     throw err;
-  // //   }
-  // }
+  async deleteUser (username) {
+    try {
+      const result = await this.axiosInstance.get(`/users/${username}`,
+      {
+        username
+      });
+
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
   async deleteMsg (messageId) {
     try {
       const result = await this.axiosInstance.delete('/messages/'+messageId, {
