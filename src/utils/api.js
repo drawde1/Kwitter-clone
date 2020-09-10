@@ -130,7 +130,10 @@ class API {
 
   async deleteUser (username) {
     try {
-      const result = await this.axiosInstance.delete(`/users/${username}`);
+      const result = await this.axiosInstance.delete(`/users/${username}`,
+      {
+        username
+      });
 
       return result;
     } catch (err) {
@@ -214,11 +217,11 @@ class API {
     }
   }
 
-  async getPictures (username, picture) {
+  async getPictures (username) {
     try {
       const result = await this.axiosInstance.get(
-        "/users/" + username + "/picture",
-        picture
+         "/users/"+ username +"/picture",
+        username
       );
 
       return result;
