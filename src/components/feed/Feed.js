@@ -18,15 +18,26 @@ export const Feed = (props) => {
   })) 
 const msgListParams =
 {
-  limit: 10,
+  limit: 50,
   offset: 0
 }
 const initialState = {
   text: "",
+  isActive: false
 }
 const [state, setState] = useState(initialState);
 //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
 //scroll argumentrs include 
+    
+  
+  useEffect(()=>{
+      dispatch(getMessageList(msgListParams))
+
+  },[])
+//  let feedMessages = []
+//  feedMessages = messageList
+  //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
+  //scroll argumentrs include 
 //   scrollY = y off set
 //innerHeight = visable window
 //scrollHeight = the length of the entire page
@@ -41,6 +52,7 @@ const postMessage = (event) => {
    dispatch(addMessage(state));
    dispatch(getMessageList(msgListParams));
 };
+
 
 return (
   <React.Fragment>

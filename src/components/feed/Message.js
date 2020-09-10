@@ -2,7 +2,7 @@ import React, { useState, useRef }  from 'react'
 import { createTimestamp } from '../../components/functions/createTimestamp'
 import { useEffect,} from 'react'
 import {  useDispatch,useSelector} from "react-redux";
-import {addLike, deleteLike, deleteMessage} from '../../redux/actions/messages'
+import {addLike, deleteLikes, deleteMessage} from '../../redux/actions/messages'
 import actions from 'redux-form/lib/actions';
 import {likes} from '../../redux/actions/messages'
 
@@ -23,7 +23,7 @@ const dispatch =useDispatch()
 
     const msgListParams =
     {
-        limit: 10,
+        limit: 50,
         offset: 0
     }
 
@@ -41,6 +41,7 @@ const dispatch =useDispatch()
  
   const [disClick, setDisClick] = useState(0)
   const [deselect, setDeselect] = useState(false)
+  
 
   const handleLike = (messageId) => {
       dispatch(likes(messageId))
@@ -48,23 +49,27 @@ const dispatch =useDispatch()
       //dispatch(getMessageList(msgListParams));
   }
 
-//   const handleUnlike = messageId => () => {
-//       console.log(messageId);
-//       this.props.dispatch(deleteLike(messageId))
-//   }
-  //const [likeMessage] = likes(this.props.messageId)
+  
+  const handleUnlike = (id) => {
+    dispatch(deleteLikes(id))
+  }
+ 
 
  return (  <>
         <p>user:{props.username}</p>
         <p>text:{props.text}</p>
         <p>time: {timestamp.time}<span> date:{timestamp.date}</span></p>
-        <div class="ui labeled button" tabIndex="0">
-            <button class="ui blue button" onClick={handleLike(props.msgId)}>
+        <div class="ui labeled button" tabIndex="0"> 
+            <button class="ui blue button" onClick={() => handleLike(props.msgId)}> {}
                 <i class="heart icon"></i> Like(s)
             </button>
             <a class="ui basic blue left pointing label">
-               {likes.length} 
+               {props.likes.length} 
             </a>
+            <button class="ui blue button" onClick={() => handleUnlike(props.id)}>
+                 <i class="heart broken icon"></i> Delete Like(s)
+            </button>
+            
         </div>
         <div class="ui labeled button" tabIndex="0">
             <button class="ui red button" onClick={() => setDisClick(disClick + 1 )}>

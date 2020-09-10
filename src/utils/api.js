@@ -172,16 +172,31 @@ class API {
   }
 
   async likes(messageId) {
-    // console.log(messageId)
+    console.log(messageId)
     try {
       const result = await this.axiosInstance.post("/likes", {
         messageId
       });
+      return result
     } catch (err) {
       helpMeInstructor(err);
       throw err;
     }
   }
+
+  async deleteLikes(id) {
+    //console.log(likeId)
+    try {
+      const result = await this.axiosInstance.delete("/likes/"+id, {
+        id
+      });
+      return result
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
   async addPicture( username, picture ) {
     try {
       const result = await this.axiosInstance.put("/users/"+username+"/picture",  
