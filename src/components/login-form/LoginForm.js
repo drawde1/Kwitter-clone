@@ -30,6 +30,10 @@ export const LoginForm = ({ login }) => {
   const handleLogin = (event) => {
     event.preventDefault();
     dispatch(actions.login(state));
+    if(error)
+    {
+      alert("user not found please register")
+    }
   };
 
   const handleRegister = (event) => { 

@@ -67,8 +67,8 @@ const handleChange = (event) => {
 const postMessage = (event) => {
   event.preventDefault();
   //console.log(state)
-   dispatch(addMessage(state));
-   dispatch(getMessageList(msgListParams));
+   dispatch(addMessage(state,msgListParams));
+   
 };
 
 const handleScroll = (event) =>
@@ -78,7 +78,7 @@ const handleScroll = (event) =>
      // console.log('scrollHeight',scrollHeight)
      // console.log('clientHeight',clientHeight)
      // console.log('scrollTop',scrollTop)
-     if(clientHeight + scrollTop >= scrollHeight)
+     if(clientHeight + scrollTop >= scrollHeight-30)
      {
        console.log('end')
        dispatch(infiniteScroll(5))

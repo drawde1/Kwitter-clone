@@ -13,25 +13,13 @@ export const Message = (props) =>
 //TODO: handle likes add & delete
 const dispatch =useDispatch()
 
-    // id: 0,
-    // text:'',
-    // username: '',
-    // createdAT:'',
-    // likes:[],
-    
-    // 2020-09-03T14:27:16.454Z
-
-    // const msgListParams =
-    // {
-    //     limit: 50,
-    //     offset: 0
-    // }
+const messagListParams = useSelector((state) => state.infiniteScroll,)
 
     
     const handleDelete = () =>
     {
         console.log(props.messageId)
-        dispatch(deleteMessage(props.msgId))
+        dispatch(deleteMessage(props.msgId,messagListParams))
     }
 
  let timestamp = createTimestamp(props.createdAt)
@@ -44,14 +32,14 @@ const dispatch =useDispatch()
   
 
   const handleLike = (messageId) => {
-      dispatch(likes(messageId))
+      dispatch(likes(messageId,messagListParams))
 
       //dispatch(getMessageList(msgListParams));
   }
 
   
   const handleUnlike = (id) => {
-    dispatch(deleteLikes(id))
+    dispatch(deleteLikes(id,messagListParams))
   }
  
 
