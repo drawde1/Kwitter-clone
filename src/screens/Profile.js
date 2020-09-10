@@ -10,10 +10,10 @@ const users = "user/username"
 export const ProfileScreen = () => (
   <>
     <MenuContainer />
+    <div id="profile">
     <h2>Profile</h2>
-    <h3>Here is my picture  </h3>
     <Picture />
-    
+    </div>
   </>
 );
 
