@@ -1,10 +1,10 @@
-import api from '../../utils/api'
+import api from "../../utils/api";
 
-export const ADD_USER = 'ADD_USER'
-export const UPDATE_USER = 'UPDATE_USER'
-export const GET_USER = 'GET_USER'
-export const FAILURE = 'FAILURE'
-export const LOAD = 'LOAD'
+export const ADD_USER = "ADD_USER";
+export const UPDATE_USER = "UPDATE_USER";
+export const GET_USER = "GET_USER";
+export const FAILURE = "FAILURE";
+export const LOAD = "LOAD";
 export const DELETE_USER = "DELETE_USER";
 export const ADD_PICTURE = "USER_PICTURE";
 export const UPDATE_PICTURE = "UPDATE_PICTURE";
@@ -37,7 +37,7 @@ export const user = credentials => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
     const payload = await api.adduser(credentials);
-    
+
     // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
     // console.log({ result })
     dispatch({ type: ADD_USER, payload });
@@ -51,8 +51,8 @@ export const user = credentials => async (dispatch, getState) => {
 
 export const deleteUser = credentials => async (dispatch, getState) => {
   try {
-
     dispatch({ type: LOAD });
+    console.log("Delete User Action", credentials);
     const payload = await api.deleteUser(credentials);
 
     console.log(payload);
@@ -66,13 +66,12 @@ export const deleteUser = credentials => async (dispatch, getState) => {
   }
 };
 
-
 export const updateuser = credentials => async (dispatch, getState) => {
-  console.log(credentials)
+  console.log(credentials);
   try {
     dispatch({ type: LOAD });
     const payload = await api.updateuser(credentials);
-    dispatch({ type: UPDATE_USER, payload })
+    dispatch({ type: UPDATE_USER, payload });
   } catch (err) {
     dispatch({
       type: FAILURE,
@@ -87,11 +86,11 @@ export const updateuser = credentials => async (dispatch, getState) => {
 //   .then(() => {return dispatch(getUserInfo())})
 // };
 
-export const getUserInfo = (username) => async (dispatch, getState) => {
+export const getUserInfo = username => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
     const payload = await api.getUser(username);
-    
+
     // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
     // console.log({ result })
     dispatch({ type: GET_USER, payload });
@@ -102,5 +101,3 @@ export const getUserInfo = (username) => async (dispatch, getState) => {
     });
   }
 };
-
-
