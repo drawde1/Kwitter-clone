@@ -217,11 +217,11 @@ class API {
     }
   }
 
-  async getPictures (username, picture) {
+  async getPictures (username) {
     try {
       const result = await this.axiosInstance.get(
-        "/users/" + username + "/picture",
-        picture
+         "/users/"+ username +"/picture",
+        username
       );
 
       return result;

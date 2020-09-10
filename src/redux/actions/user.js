@@ -50,7 +50,7 @@ export const user = credentials => async (dispatch, getState) => {
 };
 
 
-export const deleteUser = credentials => async (dispatch, getState) => {
+export const _deleteUser = credentials => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
     console.log("Delete User Action", credentials);
@@ -65,6 +65,10 @@ export const deleteUser = credentials => async (dispatch, getState) => {
       payload: err.message,
     });
   }
+};
+export const deleteUser = (credentials) => async (dispatch, getState) => {
+  return dispatch(_deleteUser(credentials))
+  .then(() => {return dispatch(actions.logout())})
 };
 
 export const updateuser = credentials => async (dispatch, getState) => {
