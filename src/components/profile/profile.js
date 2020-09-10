@@ -10,32 +10,36 @@ import Api from "../../utils/api"
 import { getUserInfo} from '../../redux/actions'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
-import {getMessageList} from '../../redux/actions'
+import {infiniteScroll} from '../../redux/actions/infiniteScroll'
+import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
+import {getMessageListByUser} from '../../redux/actions'
 import "./scrollbox.css"
-
+import {deleteUser} from '../../redux/actions/user'
 
 export const Profile = () => {
   
-  const{username,userPicture,userInfo,messageList } = useSelector((state)=>
+  const{username,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>
   ({
     username: state.auth.username,
     userPicture: state.getUser.pictureLocation,
     userInfo:  state.getUser,
-    messageList: state.getMessageList.messages,
+    messageList: state.getMessageListByUser.messages,
+    msgListParams: state.infiniteScroll,
   }))
 
   const dispatch = useDispatch();
   const picture = useRef(null);
-  const msgListParams =
-  {
-    limit: 10,
-    offset: 0
-  }
+  // const msgListParams =
+  // {
+  //   limit: 10,
+  //   offset: 0
+  // }
 
-  useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
+  useEffect(()=>{dispatch(getMessageListByUser(msgListParams,username))},[])
   useEffect(()=>{dispatch(getUserInfo(username))},[])
+  useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
   // const handleGetUser = (username) =>
-  
+  // restInfiniteScroll 
 
 
 
@@ -49,11 +53,16 @@ export const Profile = () => {
   };
 
   
-
-  const yourMessages = messageList.filter((message)=>message.username === username)
+  const deleteTheUser = () => {
+    dispatch(deleteUser(username));
+    console.log('??')
+    // dispatch(dispatch(actions.logout()))
+  };
+ 
+  
   
   useEffect(()=>{
-    dispatch(getMessageList(msgListParams))
+    dispatch(getMessageListByUser(msgListParams,username))
   
   },[])
   
@@ -104,7 +113,21 @@ export const Profile = () => {
       console.log(results)
    
    };
-
+   const handleScroll = (event) =>
+   {
+     
+     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
+     // console.log('scrollHeight',scrollHeight)
+     // console.log('clientHeight',clientHeight)
+     // console.log('scrollTop',scrollTop)
+     if(clientHeight + scrollTop >= scrollHeight)
+     {
+       console.log('end')
+       dispatch(infiniteScroll(5))
+       
+       dispatch(getMessageListByUser(msgListParams,username))
+     }
+   }
 
   return (
 
@@ -125,11 +148,11 @@ export const Profile = () => {
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
       {/* {console.log("State.action")} */}
       {/* {console.log(state.formData)} */}
-      
+      <button onClick ={() => deleteTheUser()}>delete Account</button>
         <label htmlFor="username">Username</label>
         <h2>your messages</h2>
-        <div className= 'scrollBox'>
-          {yourMessages.map((message) => (
+        <div className= 'scrollBox' onScroll ={handleScroll}>
+          {messageList.map((message) => (
                   <Message text={message.text} 
                   username={message.username}
                   msgId ={message.id}
