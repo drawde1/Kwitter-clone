@@ -40,7 +40,9 @@
   width: 100px;
   height: 100px;
 }
-
+#leftspace {
+  width: 13px;
+}
 #login-form {
   display:flex;
   flex-direction: column;
