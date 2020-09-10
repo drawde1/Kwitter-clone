@@ -12,7 +12,7 @@ export const LIKE_SUCCESS = 'LIKE_SUCCESS'
 export const DELETE_SUCCESS = 'DELETE_SUCCESS'
 export const GET_MESSAGE_LIST_USER = 'GET_MESSAGE_LIST_USER'
 
-export const addMessage= (text) => async (dispatch, getState) => {
+export const _addMessage= (text) => async (dispatch, getState) => {
     try {
       
       const payload = await api.addMessage(text);
@@ -24,6 +24,10 @@ export const addMessage= (text) => async (dispatch, getState) => {
         payload: err.message,
       });
     }
+  };
+  export const addMessage = (text,msgParams) => async (dispatch, getState) => {
+    return dispatch(_addMessage(text))
+    .then(() => {return dispatch(getMessageList(msgParams))})
   };
 
   export const getMessageList = (msgParams) => async (dispatch, getState) => {
@@ -80,9 +84,9 @@ export const getMessageListByUser = (msgParams,username) => async (dispatch, get
     });
   }
 };
-export const likes = (messageId) => async (dispatch, getState) => {
+export const likes = (messageId,msgParams) => async (dispatch, getState) => {
   return dispatch(_likes(messageId))
-  .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
+  .then(() => {return dispatch(getMessageList(msgParams))})
 };
 
 export const _deleteLikes = (likeId) => async (dispatch, getState) => {
@@ -106,6 +110,26 @@ export const _deleteLikes = (likeId) => async (dispatch, getState) => {
 export const deleteLikes = (likeId) => async (dispatch, getState) => {
   return dispatch(_deleteLikes(likeId))
   .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
+  export const _deleteMessage = (messageId) => async (dispatch, getState) => {
+    try {
+      
+      const payload = await api.deleteMsg(messageId);
+        console.log(payload)
+      dispatch({ type: DELETE_MESSAGE, payload });
+    } catch (err) {
+      dispatch({
+        type: FAILURE,
+        payload: err.message,
+      });
+    }
+  };
+  export const deleteMessage = (messageId,msgParams) => async (dispatch, getState) => {
+    return dispatch(_deleteMessage(messageId))
+    .then(() => {return dispatch(getMessageList(msgParams))})
+  };
+export const deleteLikes = (id,msgParams) => async (dispatch, getState) => {
+  return dispatch(_deleteLikes(id))
+  .then(() => {return dispatch(getMessageList(msgParams))})
 };
 
 export const deleteMessage = (messageId) => async (dispatch, getState) => {

@@ -6,7 +6,7 @@ import { actions } from "../../redux/actions/auth";
 import "./Menu.css";
 
 export const Menu = () => {
-  const isAuthenticated = useSelector(state => !!state.auth.isAuthenticated);
+  const {isAuthenticated,username} = useSelector(state => ({isAuthenticated:!!state.auth.isAuthenticated, username:state.auth.username}));
   const dispatch = useDispatch();
   const logout = () => dispatch(actions.logout());
   const loginuser = useSelector((state) => state.auth.isAuthenticated) 
@@ -18,7 +18,7 @@ export const Menu = () => {
       <div id='menu-links'>
         {isAuthenticated ? (
           <>
-            <Link to="/profiles/:username">Profile</Link>
+            <Link to={"/profile/"+username}>Profile</Link>
             <Link to="/users">Users</Link>
             <Link to="/feed">Message Feed</Link>
             <Link to="/" onClick={logout}>

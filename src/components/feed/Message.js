@@ -1,28 +1,33 @@
-import React, { useState, useRef }  from 'react'
-import { createTimestamp } from '../../components/functions/createTimestamp'
-import { useEffect,} from 'react'
-import {  useDispatch,useSelector} from "react-redux";
-import {addLike, deleteLikes, deleteMessage} from '../../redux/actions/messages'
-import actions from 'redux-form/lib/actions';
-import {likes} from '../../redux/actions/messages'
+import React, { useState, useRef } from "react";
+import { createTimestamp } from "../../components/functions/createTimestamp";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addLike,
+  deleteLikes,
+  deleteMessage,
+} from "../../redux/actions/messages";
+import actions from "redux-form/lib/actions";
+import { likes } from "../../redux/actions/messages";
 import {userPicture} from '../../components/profile/profile'
 
+export const Message = props => {
+  //TODO: handle delete message
+  //TODO: handle likes add & delete
+  const dispatch = useDispatch();
+  const { username } = useSelector(state => ({
+    username: state.auth.username,
+  }));
 
-export const Message = (props) =>
-{
-//TODO: handle delete message
-//TODO: handle likes add & delete
-const dispatch =useDispatch()
+  // id: 0,
+  // text:'',
+  // username: '',
+  // createdAT:'',
+  // likes:[],
 
-    // id: 0,
-    // text:'',
-    // username: '',
-    // createdAT:'',
-    // likes:[],
-    
-    // 2020-09-03T14:27:16.454Z
+  const messagListParams = useSelector(state => state.infiniteScroll);
 
-    const{username,name,bio,userPicture,userInfo,messageList } = useSelector((state)=>
+    const{name,bio,userPicture,userInfo,messageList } = useSelector((state)=>
     ({
       username: state.auth.username,
       userPicture: state.getUser.pictureLocation,
@@ -40,33 +45,32 @@ const dispatch =useDispatch()
         limit: 50,
         offset: 0
     }
+  const handleDelete = () => {
+    console.log(props.messageId);
+    dispatch(deleteMessage(props.msgId, messagListParams));
+  };
 
-    
-    const handleDelete = () =>
-    {
-        console.log(props.messageId)
-        dispatch(deleteMessage(props.msgId))
-    }
+  let timestamp = createTimestamp(props.createdAt);
+  // // useEffect(()=>{})
+  // componentDidMount(()=>{timestamp = })
 
- let timestamp = createTimestamp(props.createdAt)
-// // useEffect(()=>{})
-// componentDidMount(()=>{timestamp = })
+  const [disClick, setDisClick] = useState(0);
+  const [deselect, setDeselect] = useState(false);
 
- 
-  const [disClick, setDisClick] = useState(0)
-  const [deselect, setDeselect] = useState(false)
+  const handleLike = messageId => {
+    dispatch(likes(messageId, messagListParams));
+
+    //dispatch(getMessageList(msgListParams));
+  };
+
+  const handleUnlike = id => {
+    dispatch(deleteLikes(id, messagListParams));
+  };
+
   
-
-  const handleLike = (messageId) => {
-      dispatch(likes(messageId))
-
-      //dispatch(getMessageList(msgListParams));
-  }
-
-  
-  const handleUnlike = (id) => {
-    dispatch(deleteLikes(id))
-  }
+//   const handleUnlike = (id) => {
+//     dispatch(deleteLikes(id))
+//   }
 
 //   const loggedInUser = () => {
 //     for (let like of message.like) {
@@ -124,6 +128,16 @@ const dispatch =useDispatch()
             <a class="ui basic left pointing red label">
                 {disClick}
             </a>
+            {username === props.username ? (
+        <div class='ui labeled button' tabIndex='0'>
+          <button
+            class='ui purple button'
+            onClick={() => handleDelete(props.msgId)}
+          >
+            <i class='cross mark icon'></i> Delete Message
+          </button>
+        </div>
+      ) : null}
         </div>
       </div>
     </div>
