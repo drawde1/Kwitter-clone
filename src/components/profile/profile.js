@@ -16,17 +16,29 @@ import {getMessageListByUser} from '../../redux/actions'
 import "./scrollbox.css"
 import {deleteUser} from '../../redux/actions/user'
 
+
 export const Profile = () => {
+
+  const INITIALSTATE = {
+    // username: "",
+    displayName: "",
+    about: "",
+    password: ""
+  }
   
-  const{username,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>
+  const [state, setState] = useState({INITIALSTATE});
+  
+  const{username,userPicture,userInfo,messageList,bio, name, msgListParams } = useSelector((state)=>
   ({
     username: state.auth.username,
     userPicture: state.getUser.pictureLocation,
     userInfo:  state.getUser,
+    name: state.getUser.displayName,
+    bio: state.getUser.about,
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }))
-
+  console.log(state)
   const dispatch = useDispatch();
   const picture = useRef(null);
   // const msgListParams =
@@ -39,14 +51,10 @@ export const Profile = () => {
   useEffect(()=>{dispatch(getUserInfo(username))},[])
   useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
   // const handleGetUser = (username) =>
-  // restInfiniteScroll 
-
-
-
+  
   
   const addPic = async (event) => {
     event.preventDefault();
-  
     const picdata = new FormData (picture.current)
     const results = await Api.addPicture( username, picdata )
     dispatch(getUserInfo(username))
@@ -60,48 +68,22 @@ export const Profile = () => {
   };
  
   
-  
   useEffect(()=>{
     dispatch(getMessageListByUser(msgListParams,username))
   
   },[])
-  
 
 
+const handleUpdate = (event) => {
+    event.preventDefault();
+    dispatch(updateuser({...state,username}));
+}
 
-// export const Picture = () => {
-
-//   const { username,userPicture,userInfo,messageList } = useSelector((state)=>
-//   ({
-//     username: state.auth.username,
-//     userPicture: state.getUser.pictureLocation,
-//     userInfo:  state.getUser,
-//     messageList: state.getMessageList.messages,
-//   }))
-
-//   const dispatch = useDispatch();
-//   const picture = useRef(null);
-
-
-//   const handleGetUser = (username) =>
-//   {
-//     dispatch(getUserInfo(username))
-//     console.log(userInfo)
-//   }
-// //    handleGetUser()
-// //   useEffect(handleGetUser(username))
-
-
-  
-//   const addPic = async (event) => {
-//     event.preventDefault();
-//     //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-//     //dispatch(getPicture(state))
-//     const picdata = new FormData (picture.current)
-//     const results = await Api.addPicture( username, picdata )
-//     dispatch(getUserInfo(username))
-//   };
-
+const handleChange = (event) => {
+    const inputName = event.target.name;
+    const inputValue = event.target.value;
+    setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
+};
 
    const setPic = async (event) => {
      event.preventDefault();
@@ -130,12 +112,9 @@ export const Profile = () => {
    }
 
   return (
-
     <React.Fragment>
-
         
         <h1>Profile Page</h1>
-
         <img 
         src = {"https://kwitter-api.herokuapp.com"+userPicture}
         width="200" 
@@ -146,10 +125,55 @@ export const Profile = () => {
         <button type="submit">upload picture</button> 
       </form>
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
-      {/* {console.log("State.action")} */}
+      
+        <form id="update-form" onSubmit={handleUpdate}>
+                <div>Current Name: {name}</div>
+                <label htmlFor="displayName">New Name:</label>
+                <input
+                    type="text"
+                    name="displayName"
+                    value={state.displayName}
+                    autoFocus
+                    required
+                    onChange={handleChange}
+                />
+                <br/>
+                <div>Current Password: {}</div>
+                <label htmlFor="password">New Password:</label>
+                <input
+                    type="text"
+                    name="password"
+                    value={state.password}
+                    autoFocus
+                    required
+                    onChange={handleChange}
+                />
+                <br/>
+                <div>Current Bio: {bio}</div>
+                <label htmlFor="about">New Bio:</label>
+                <input
+                  type="text"
+                  name="about"
+                  value={state.about}
+                  autoFocus
+                  required
+                  onChange={handleChange}
+                />
+                <br/>
+                <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
+                Update Profile
+                </button>
+                <button type="submit">Update Info</button> 
+            </form>
+        <div>{state.displayName}</div>
+        <div>{state.password}</div>
+        <div>{state.bio}</div>
+        <div>{userPicture}</div>
+        <h2>your messages</h2>
+       {/* {console.log("State.action")} */}
       {/* {console.log(state.formData)} */}
       <button onClick ={() => deleteTheUser()}>delete Account</button>
-        <label htmlFor="username">Username</label>
+        {/* <label htmlFor="username">Username</label> */}
         <h2>your messages</h2>
         <div className= 'scrollBox' onScroll ={handleScroll}>
           {messageList.map((message) => (
