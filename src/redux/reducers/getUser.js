@@ -1,16 +1,15 @@
 import {GET_USER, FAILURE, LOAD} from '../actions'
 
 const INITIAL_STATE = {
-    pictureLocation: "",
-    username: "",
-    displayname: "",
-    about: "",
-    createdAt: "",
-    updatedAt: "",
-    loading: false,
-    error: "",
-  };
-
+  pictureLocation: "",
+  username: "",
+  displayname: "",
+  about: "",
+  createdAt: "",
+  updatedAt: "",
+  loading: false,
+  error: "",
+};
 
 export const getUserReducer = (state = { ...INITIAL_STATE }, action) => {
     switch (action.type) {
