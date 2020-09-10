@@ -8,7 +8,7 @@ import {
 
 const INITIAL_STATE = {
   username: "",
-  displayname: "",
+  displayName: "",
   loading: false,
   error: "",
   deletedMsg: '',

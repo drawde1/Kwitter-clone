@@ -18,15 +18,15 @@ export const Menu = () => {
       <div id='menu-links'>
         {isAuthenticated ? (
           <>
-            <Link to="/profiles/:username">Profile</Link>
+            <Link to="/profile/:username">View Profile</Link>
             <Link to="/users">Users</Link>
             <Link to="/feed">Message Feed</Link>
             <Link to="/" onClick={logout}>
               Logout
             </Link>
-            <Link to="/profile">
+            {/* <Link to="/profile">
               View Profile
-            </Link>
+            </Link> */}
           </>
         ) : null}
       </div>
