@@ -6,6 +6,32 @@ export const GET_USER = 'GET_USER'
 export const FAILURE = 'FAILURE'
 export const LOAD = 'LOAD'
 export const DELETE_USER = "DELETE_USER";
+export const ADD_PICTURE = "USER_PICTURE";
+export const UPDATE_PICTURE = "UPDATE_PICTURE";
+
+// export const getPicture = (credentials) => async (dispatch, getState) => {
+//   try {
+//       const payload = await api.addPicture(credentials);
+//       console.log(payload)
+//           return {
+//               type: ADD_PICTURE, payload
+//           }
+//   } catch (err) {
+//       console.log("err")
+//   }
+// }
+
+// export const setPicture = (credentials) => async (dispatch, getState) => {
+//   try {
+//       const payload = await api.getPictures(credentials);
+//       console.log(payload)
+//           return {
+//               type: UPDATE_PICTURE
+//           }
+//   } catch (err) {
+//       console.log("err")
+//   }
+// }
 
 export const user = credentials => async (dispatch, getState) => {
   try {
@@ -36,6 +62,12 @@ export const updateuser = credentials => async (dispatch, getState) => {
     });
   }
 };
+
+// export const updateuser = credentials => async (dispatch, getState) => {
+//   return dispatch(_updateuser(credentials))
+
+//   .then(() => {return dispatch(getUserInfo())})
+// };
 
 export const getUserInfo = (username) => async (dispatch, getState) => {
   try {
