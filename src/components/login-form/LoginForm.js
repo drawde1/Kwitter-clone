@@ -4,6 +4,7 @@ import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./LoginForm.css";
 import {user} from '../../redux/actions/user'
+
 export const LoginForm = ({ login }) => {
   const { loading, error } = useSelector((state) => ({
     loading: state.auth.loading,
@@ -19,9 +20,6 @@ export const LoginForm = ({ login }) => {
     password: '',
   }
 
-  const addDefault = (defaultUser) => {
-    dispatch(user(defaultUser))
-}
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -34,8 +32,7 @@ export const LoginForm = ({ login }) => {
     dispatch(actions.login(state));
   };
 
-  const handleRegister = (event) => {
-    console.log(registerState)
+  const handleRegister = (event) => { 
     event.preventDefault();
     dispatch(user(registerState));
   };
@@ -58,10 +55,65 @@ export const LoginForm = ({ login }) => {
     <div id="login">
 
       <div id="logform">
-        {/* <div id="logintitle">
+      <form id="login-form" onSubmit={handleLogin}>
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          value={state.username}
+          autoFocus
+          required
+          onChange={handleChange}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          value={state.password}
+          required
+          onChange={handleChange}
+        />
+        <button type="submit" disabled={loading}>
           Login
-        </div> */}
-          <form id="login-form" onSubmit={handleLogin}>
+        </button>
+      </form>
+    </div>
+    </div>
+    <div id="regform">
+      <form id="register-form" onSubmit={handleRegister}>
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          value={registerState.username}
+          autoFocus
+          required
+          onChange={handleRegChange}
+        />
+        <label htmlFor="displayName">Name</label>
+        <input
+          type="text"
+          name="displayName"
+          value={registerState.displayName}
+          autoFocus
+          required
+          onChange={handleRegChange}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          value={registerState.password}
+          required
+          onChange={handleRegChange}
+        />
+        
+        <button type="submit" disabled={loading}>
+          Login
+        </button>
+        </form>
+        </div> 
+          {/* <form id="login-form" onSubmit={handleLogin}>
           <div>
             <h2><label htmlFor="username">Username</label></h2>
             <input
@@ -95,9 +147,9 @@ export const LoginForm = ({ login }) => {
           </div>
 
       <div id="regform">
-        {/* <div id="registertitle">
+        <div id="registertitle">
           Register
-        </div> */}
+        </div>
           <form id="register-form" onSubmit={handleRegister}>
           <div>
             <h2><label htmlFor="username">Username</label></h2>
@@ -137,15 +189,10 @@ export const LoginForm = ({ login }) => {
             </button>
           </div>
           </form>
-      </div>
-    </div>
-      {/* <button onClick = {addDefault}>
-          default user
-        </button> */}
+      </div> */}
       {loading && <Loader />}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </React.Fragment>
   );
 };
-// writing-mode: vertical-lr;
-// text-orientation: upright;
+ 

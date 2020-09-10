@@ -3,7 +3,7 @@ import axios from "axios";
 class API {
   axiosInstance = null;
 
-  constructor() {
+  constructor () {
     /* 
       🚨1 point EXTRA CREDIT 🚨 👉🏿 get the baseURL from the environment
       https://create-react-app.dev/docs/adding-custom-environment-variables/
@@ -16,33 +16,33 @@ class API {
 
     // Add a request interceptor to attach a
     axiosInstance.interceptors.request.use(
-      (config) => ({
+      config => ({
         ...config,
         headers: {
           ...config.headers,
           Authorization: `Bearer ${getToken()}`,
         },
       }),
-      (error) => Promise.reject(error)
+      error => Promise.reject(error)
     );
 
     // Add a response interceptor
     axiosInstance.interceptors.response.use(
       ({ data }) => data,
-      (error) => Promise.reject(error)
+      error => Promise.reject(error)
     );
 
     this.axiosInstance = axiosInstance;
   }
 
-  async adduser({ username,displayName,password}) {
+  async adduser ({ username, displayname, password }) {
     try {
-    const result = await this.axiosInstance.post("/users", {
-        username,                               
-        displayName,
-        password
+      const result = await this.axiosInstance.post("/user", {
+        username,
+        displayname,
+        password,
       });
-      
+
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -62,40 +62,86 @@ class API {
     }
   }
     
-  async addMessage({text}) {
+  async addMessage({text, username}) {
+    try {
+      const result = await this.axiosInstance.delete("/user/" + username,);
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async deleteMessage ({ message }) {
+    try {
+      const result = await this.axiosInstance.delete("/message/" + message);
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async addMessage ({ text }) {
     try {
       const result = await this.axiosInstance.post("/messages", {
-        text
+        text,
       });
-      
+
       return result;
     } catch (err) {
       helpMeInstructor(err);
       throw err;
     }
   }
-  async getMessageList({limit,offset}) {
+
+  async getMessageList ({ limit, offset }) {
     try {
-      const result = await this.axiosInstance.get("/messages?limit="+limit+"&offset="+offset, {
-        limit,
-        offset
-      });
+      const result = await this.axiosInstance.get("/messages?limit=" + limit + "&offset=" + offset,{
+          limit,
+          offset,
+        }
+      );
       return result;
     } catch (err) {
       helpMeInstructor(err);
       throw err;
     }
   }
-      
-  
-  async updateuser({password,about,displayName}) {
+
+  async updateuser ({ password, about, displayName, username }) {
+    console.log("from api", password, about, displayName, username)
     try {
-      const result = await this.axiosInstance.patch('/users/{username}', {
+      const result = await this.axiosInstance.patch(`/users/${username}`, {
         password,
         about,
-        displayName
+        displayName,
       });
-       
+
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  // // async getMessageList({limit,offset}) {
+  // //   try {
+  // //     const result = await this.axiosInstance.get("/messages?limit="+limit+"&offset="+offset, {
+  // //       limit,
+  // //       offset
+  // //     });
+  // //     return result;
+  // //   } catch (err) {
+  // //     helpMeInstructor(err);
+  // //     throw err;
+  // //   }
+  // }
+  async deleteMsg (messageId) {
+    try {
+      const result = await this.axiosInstance.delete('/messages/'+messageId, {
+        messageId
+      });
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -116,9 +162,21 @@ class API {
     }
   }
 
-  async logout() {
+  async logout () {
     try {
       await this.axiosInstance.get("/auth/logout");
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async likes(messageId) {
+    // console.log(messageId)
+    try {
+      const result = await this.axiosInstance.post("/likes", {
+        messageId
+      });
     } catch (err) {
       helpMeInstructor(err);
       throw err;
@@ -137,12 +195,13 @@ class API {
       throw err;
     }
   }
+
   async getPictures( username, picture ) {
     try {
       const result = await this.axiosInstance.get("/users/"+username+"/picture",  
         picture
       )
-      console.log(result)
+      
       return result;
     } catch (err) {
       console.log({err})
@@ -159,7 +218,7 @@ class API {
 
 // WARNING.. do not touch below this line if you want to have a good day =]
 
-function helpMeInstructor(err) {
+function helpMeInstructor (err) {
   console.info(
     `
     Did you hit CORRECT the endpoint?
@@ -173,7 +232,7 @@ function helpMeInstructor(err) {
   );
 }
 
-function getToken() {
+function getToken () {
   try {
     const storedState = JSON.parse(localStorage.getItem("persist:root"));
     return JSON.parse(storedState.auth).isAuthenticated;

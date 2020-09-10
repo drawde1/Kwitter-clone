@@ -1,0 +1,1 @@
+export { Likes as LikesContainer } from './Likes'

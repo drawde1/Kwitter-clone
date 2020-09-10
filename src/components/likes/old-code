@@ -1,0 +1,277 @@
+ const [count, setCount] = React.useState(0)
+    //const [likes, setLikes] = useState(0)//
+    const [disClick, setDisClick] = useState(30450)
+    const [deselect, setDeselect] = useState(false)
+
+    /*const prevLikeCount = useRef()
+    useEffect(() => {
+        prevLikeCount.current = likes
+    });
+    const prevLike = prevLikeCount.current;*/
+
+    handleClick = () {
+        setCount(count + 1)
+    }
+
+
+class Likes extends Component {
+  state = {
+    likes: 0
+  }
+}
+
+
+/*export default function Likes() {
+  const [clicks, setClicks] = useState(0)
+  const [disClick, setDisClick] = useState(0)
+  const [deselect, setDeselect] = useState(false)
+  
+
+  const IncrementClick = () => {
+    this.setState((state, props) => {
+      return {
+        ...state,
+        clicks: state.clicks + 1,
+      }
+    })
+  }
+
+  const RemoveClick = () => {
+    this.setState((state, props) => {
+      return {
+        ...state,
+        clicks: state.clicks - 1,
+      }
+    })
+  }
+
+  const ToggleSelection = () => {
+    this.setState({ show: !this.state.show })
+  }
+
+    //const { clicks } = this.state//
+  return (
+   <>
+    <div class="ui labeled button" tabIndex="0">
+      <button class="ui blue button" onClick={this.IncrementClick}>
+          <i class="heart icon"></i> Like(s)
+      </button>
+      <a class="ui basic blue left pointing label">
+          175
+      </a>   
+    </div>
+    <div class="ui labeled button" tabIndex="0">
+      <button class="ui red button" onClick={this.IncrementClick}>
+          <i class="frown icon"></i> Dislikes
+      </button>
+      <a class="ui basic left pointing red label">
+          3,045
+      </a>
+    </div>
+  </>
+  );
+}
+*/
+
+
+import { connect } from 'react-redux'
+import * as Actions from './index'
+import CounterComponent from '../../components/likes/Counter'
+
+const mapStateToProps = (state) => ({
+  count: state.counterReducer.count
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  increment: () => dispatch(counterIncrement),
+  decrement: () => dispatch(counterDecrement)
+});
+
+export const counterIncrement = () => ({
+  type: actions.COUNTER_INCREMENT
+});
+
+export const counterDecrement = () => ({
+  type: actions.COUNTER_DECREMENT
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CounterComponent)
+
+
+export const likes = (messageId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: LIKES });
+    const payload = await api.likes(messageId);
+    console.log(payload)
+    // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
+    // console.log({ result })
+    dispatch({ type: LIKE_SUCCESS, payload });
+  } catch (err) {
+    dispatch({
+      type: LIKE_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+
+
+/*import React, { Component } from 'react'
+import Button from './Button'
+import { connect } from 'react-redux'
+import { incrementCount, decrementCount } from '.../redux/actions/likes'
+
+class Likes extends Component {
+
+handleLikesIncrement = () => {
+  this.props.onIncrementClick(this.props.count)
+}
+
+handleLikesDecrement = () => {
+  this.props.onDecrementClick(this.props.count)
+}
+
+render () {
+  const {count} = this.props
+  return (
+    <div>
+      <Button action={this.handleLikesIncrement} buttonIcon="" />
+      <Button action={this.handleLikesDecrement} buttonIcon=""/>
+    </div>
+  )
+}
+}
+
+const mapStateToProps = (state) => {
+  return {
+    count: state.counter.count
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  reutrn {
+    onIncrementClick: (count) => {
+      dispatch(incrementCount(count))
+    },
+    onDecrementClick: (count) => {
+      if(count !== 0)
+      dispatch(decrementCount(count))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Likes)
+*/
+
+
+
+import React, { useState, useEffect} from "react";
+import {  useDispatch,useSelector} from "react-redux";
+import { addMessage, getMessageList } from "../../redux/actions/messages";
+//import { IncrementClick, RemoveClick, ToggleSelection } from '../likes'
+
+
+import {Message} from './Message'
+import {createTimestamp} from '../../functions/createTimestamp'
+
+export const Feed = (props) => {
+ 
+    // const { loading, error } = useSelector((state) => ({
+    //     loading: state.auth.loading,
+    //     error: state.auth.error,
+    //   }));
+
+    // id: 0,
+    // text:'',
+    // username: '',
+    // createdAT:'',
+    // likes:[],
+    // loading: false,
+    // error: ''
+    const {id,text,likes,messageList,createdAt} = useSelector((state)=>({
+        id: state.addMsg.id,
+        text: state.addMsg.text,
+        likes: state.addMsg.likes,
+        messageList: state.getMessageList.messages,
+        createdAt: state.addMsg.createdAt
+        
+    })) 
+    // 2020-09-03T14:27:16.454Z
+  const msgListParams =
+  {
+    limit: 100,
+    offset: 0
+  }
+  const dispatch = useDispatch();
+
+  useEffect(() => {dispatch(getMessageList(msgListParams)),[]})
+    
+  const initialState = {
+    text: "",
+    clicks: 0
+  }
+  
+  const [state, setState] = useState(initialState);
+//  let feedMessages = []
+//  feedMessages = messageList
+  //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
+  //scroll argumentrs include 
+//   scrollY = y off set
+  //innerHeight = visable window
+  //scrollHeight = the length of the entire page
+
+  const handleChange = (event) => {
+   
+    let inputValue = event.target.value;
+    setState((prevState) => ({ ...prevState, text: inputValue }));
+  };
+  const postMessage = (event) => {
+    event.preventDefault();
+     dispatch(addMessage(state));
+     dispatch(getMessageList(msgListParams))
+     console.log(messageList[0].createdAt)
+  };     
+  
+    return (
+        <React.Fragment>
+        <form id="login-form" onSubmit={postMessage}>
+            <label htmlFor="msg">say something</label>
+            <input
+            type="text"
+            name="msg"
+            value={state.msg}
+            autoFocus
+            required
+            onChange={handleChange}
+            />
+            
+            <button type="submit" >
+            send
+            </button>
+            <div>
+            //////test/////
+            <p> {id}</p>
+            <p>{text}</p>
+            //////test/////
+            </div>
+            
+        </form>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        {messageList.map((message) => (
+                <Message text={message.text} 
+                username={message.username}
+                msgId ={message.id}
+                key = {message.id} 
+                likes = {message.likes}
+                createdAt ={message.createdAt}
+                />
+        ))}
+        </React.Fragment>
+    
+    );
+    
+    
+};
