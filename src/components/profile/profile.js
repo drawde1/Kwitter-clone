@@ -18,7 +18,7 @@ import {deleteUser} from '../../redux/actions/user'
 
 export const Profile = () => {
   
-  const{username,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>
+  const{username,name,bio,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>
   ({
     username: state.auth.username,
     userPicture: state.getUser.pictureLocation,
@@ -157,12 +157,12 @@ export const Profile = () => {
   
 
       <div class="content">
-        <a class="header">{"name"}</a>
+        <a class="header">{name}</a>
         <div class="meta">
           <span class="date">Joined April 2020</span>
         </div>
         <div class="description">
-          {"bio"}
+          {bio}
         </div>
       </div>
       <div class="extra content">

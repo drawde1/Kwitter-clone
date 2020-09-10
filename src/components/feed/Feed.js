@@ -104,6 +104,7 @@ return (
           key = {message.id} 
           likes = {message.likes}
           createdAt ={message.createdAt}
+          userPhoto = {message.pictureLocation}
           />
   ))}
   </React.Fragment>
