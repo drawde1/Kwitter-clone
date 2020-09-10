@@ -16,7 +16,6 @@ import {getMessageListByUser} from '../../redux/actions'
 import "./scrollbox.css"
 import {deleteUser} from '../../redux/actions/user'
 
-
 export const Profile = () => {
   
   const{username,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>

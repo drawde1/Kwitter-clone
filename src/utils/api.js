@@ -35,11 +35,11 @@ class API {
     this.axiosInstance = axiosInstance;
   }
 
-  async adduser ({ username, displaname, password }) {
+  async adduser ({ username, displayname, password }) {
     try {
       const result = await this.axiosInstance.post("/user", {
         username,
-        displaname,
+        displayname,
         password,
       });
 
@@ -49,7 +49,6 @@ class API {
       throw err;
     }
   }
-
   async getUser( username) {
     try {
     const result = await this.axiosInstance.get("/users/"+username,{
@@ -188,12 +187,26 @@ class API {
     }
   }
 
-  async likes({ messageId }) {
+  async likes(messageId) {
+    console.log(messageId)
     try {
       const result = await this.axiosInstance.post("/likes", {
         messageId
       });
-      return result;
+      return result
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async deleteLikes(id) {
+    //console.log(likeId)
+    try {
+      const result = await this.axiosInstance.delete("/likes/"+id, {
+        id
+      });
+      return result
     } catch (err) {
       helpMeInstructor(err);
       throw err;

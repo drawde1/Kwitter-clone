@@ -8,6 +8,7 @@ export const like = (messageId) => async (dispatch, getState) => {
   try {
     dispatch({ type: LIKES });
     const payload = await api.likes(messageId);
+    console.log(payload)
     // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
     // console.log({ result })
     dispatch({ type: LIKE_SUCCESS, payload });
@@ -18,3 +19,4 @@ export const like = (messageId) => async (dispatch, getState) => {
     });
   }
 };
+

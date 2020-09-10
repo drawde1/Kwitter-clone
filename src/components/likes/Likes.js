@@ -1,46 +1,32 @@
-import React, { Component } from 'react'
-import Button from './Button'
+import React, { Component, useState } from 'react'
 import { connect } from 'react-redux'
-import { incrementCount, decrementCount } from '.../redux/actions/likes'
-import { connect } from "react-redux"
+import { Button, Icon, Label } from 'semantic-ui-react'
 
-class Likes extends Component {
+const mapStatetoProps = state => ({
+  counter: state
+})
 
-handleLikesIncrement = () => {
-  this.props.onIncrementClick(this.props.count)
+const mapDispatchToProps = {
+  incrementAction,
+  decrementAction
 }
 
-handleLikesDecrement = () => {
-  this.props.onDecrementClick(this.props.count)
-}
+ const Counter = props =>
+  <div class="ui labeled button" tabIndex="0">
+  <button class="ui blue button" onClick={props.onIncrement}>
+      <i class="heart icon"></i> Like(s)
+  </button>
+  <a class="ui basic blue left pointing label">
+      {props.likes.length} 
+  </a>
+  </div>
+  <div class="ui labeled button" tabIndex="0">
+  <button class="ui red button" onClick={props.onDecrement}>
+      <i class="frown icon"></i> Dislikes
+  </button>
+  <a class="ui basic left pointing red label">
+      {props.counter.value}
+  </a>
+  </div>
 
-render () {
-  const {count} = this.props
-  return (
-    <div>
-      <Button action={this.handleLikesIncrement} buttonIcon="" />
-      <Button action={this.handleLikesDecrement} buttonIcon=""/>
-    </div>
-  )
-}
-}
-
-const mapStateToProps = (state) => {
-  return {
-    count: state.counter.count
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  reutrn {
-    onIncrementClick: (count) => {
-      dispatch(incrementCount(count))
-    },
-    onDecrementClick: (count) => {
-      if(count !== 0)
-      dispatch(decrementCount(count))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Likes)
+export default connect(mapStatetoProps, mapDispatchToProps)(Counter)
