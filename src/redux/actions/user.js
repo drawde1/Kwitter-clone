@@ -1,5 +1,5 @@
 import api from '../../utils/api'
-
+import {actions} from'./auth'
 export const ADD_USER = 'ADD_USER'
 export const UPDATE_USER = 'UPDATE_USER'
 export const GET_USER = 'GET_USER'
@@ -48,6 +48,7 @@ export const user = credentials => async (dispatch, getState) => {
     });
   }
 };
+
 
 export const deleteUser = credentials => async (dispatch, getState) => {
   try {

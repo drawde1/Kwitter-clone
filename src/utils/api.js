@@ -141,7 +141,7 @@ class API {
 
   async deleteUser (username) {
     try {
-      const result = await this.axiosInstance.get(`/users/${username}`,
+      const result = await this.axiosInstance.delete(`/users/${username}`,
       {
         username
       });
