@@ -71,7 +71,21 @@ const postMessage = (event) => {
    dispatch(getMessageList(msgListParams));
 };
 
-
+const handleScroll = (event) =>
+   {
+     
+     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
+     // console.log('scrollHeight',scrollHeight)
+     // console.log('clientHeight',clientHeight)
+     // console.log('scrollTop',scrollTop)
+     if(clientHeight + scrollTop >= scrollHeight)
+     {
+       console.log('end')
+       dispatch(infiniteScroll(5))
+       
+       dispatch(getMessageList(msgListParams))
+     }
+   }
 return (
   <React.Fragment>
   <form id="login-form" onSubmit={postMessage}>
@@ -97,6 +111,7 @@ return (
   <br/>
   <br/>
   <br/>
+  <div className= 'scrollBox' onScroll ={handleScroll}>
   {messageList.map((message) => (
           <Message text={message.text} 
           username={message.username}
@@ -106,6 +121,7 @@ return (
           createdAt ={message.createdAt}
           />
   ))}
+  </div>
   </React.Fragment>
 
 );
