@@ -128,6 +128,7 @@ export const Message = props => {
             <a class="ui basic left pointing red label">
                 {disClick}
             </a>
+        </div>
             {username === props.username ? (
         <div class='ui labeled button' tabIndex='0'>
           <button
@@ -143,7 +144,7 @@ export const Message = props => {
     </div>
   </div>
   
-      </div>
+      
 
 
         {/* <p>user:{props.username}</p>
