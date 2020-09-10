@@ -10,6 +10,7 @@ export const GET_MESSAGE_LIST = 'GET_MESSAGE_LIST'
 export const LIKE_FAILURE = 'LIKE_FAILURE'
 export const LIKE_SUCCESS = 'LIKE_SUCCESS'
 export const DELETE_SUCCESS = 'DELETE_SUCCESS'
+export const GET_MESSAGE_LIST_USER = 'GET_MESSAGE_LIST_USER'
 
 export const addMessage= (text) => async (dispatch, getState) => {
     try {
@@ -37,18 +38,18 @@ export const addMessage= (text) => async (dispatch, getState) => {
     }
   };
 
-export const deleteMessage = messageid => async (dispatch, getState) => {
-  try {
-    const payload = await api.deleteMessage(messageid);
-    console.log(payload);
-    dispatch({ type: DELETE_MESSAGE, payload });
-  } catch (err) {
-    dispatch({
-      type: FAILURE,
-      payload: err.message,
-    });
-  }
-};
+// export const deleteMessage = messageid => async (dispatch, getState) => {
+//   try {
+//     const payload = await api.deleteMessage(messageid);
+//     console.log(payload);
+//     dispatch({ type: DELETE_MESSAGE, payload });
+//   } catch (err) {
+//     dispatch({
+//       type: FAILURE,
+//       payload: err.message,
+//     });
+//   }
+// };
 
 export const _likes = (messageId) => async (dispatch, getState) => {
   console.log(messageId)
@@ -68,6 +69,17 @@ export const _likes = (messageId) => async (dispatch, getState) => {
   }
 };
 
+export const getMessageListByUser = (msgParams,username) => async (dispatch, getState) => {
+  try {
+    const payload = await api.getMessageListByUser(msgParams,username);
+    dispatch({ type: GET_MESSAGE_LIST_USER, payload });
+  } catch (err) {
+    dispatch({
+      type: FAILURE,
+      payload: err.message,
+    });
+  }
+};
 export const likes = (messageId) => async (dispatch, getState) => {
   return dispatch(_likes(messageId))
   .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
@@ -94,5 +106,19 @@ export const _deleteLikes = (likeId) => async (dispatch, getState) => {
 export const deleteLikes = (likeId) => async (dispatch, getState) => {
   return dispatch(_deleteLikes(likeId))
   .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
+};
+
+export const deleteMessage = (messageId) => async (dispatch, getState) => {
+  try {
+    
+    const payload = await api.deleteMsg(messageId);
+      console.log(payload)
+    dispatch({ type: DELETE_MESSAGE, payload });
+  } catch (err) {
+    dispatch({
+      type: FAILURE,
+      payload: err.message,
+    });
+  }
 };
 

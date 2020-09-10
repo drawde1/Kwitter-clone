@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   displayname: "",
   loading: false,
   error: "",
+  deletedMsg: '',
 };
 
 export const defaultUserReducer = (state = { ...INITIAL_STATE }, action) => {
@@ -28,21 +29,19 @@ export const defaultUserReducer = (state = { ...INITIAL_STATE }, action) => {
         displayname,
         loading: false,
       };
+      case DELETE_USER:
+        return{
+          ...INITIAL_STATE,
+          deletedMsg: action.payload,
+        };
+        
     case FAILURE:
       return {
         ...INITIAL_STATE,
         error: action.payload,
         loading: false,
       };
-    case DELETE_USER:
-      return {
-        ...INITIAL_STATE,
-      };
-    case DELETE_MESSAGE:
-      const { delete_message } = action.payload.delete_message;
-      return {
-        ...INITIAL_STATE,
-      };
+    
 
     default:
       return state;
