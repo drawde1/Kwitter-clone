@@ -42,7 +42,9 @@ export const LoginForm = ({ login }) => {
     const inputName = event.target.name;
     const inputValue = event.target.value;
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
+
   };
+  
 
   const handleRegChange = (event) => {
     const inputName = event.target.name;

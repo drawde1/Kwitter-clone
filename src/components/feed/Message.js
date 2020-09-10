@@ -21,11 +21,11 @@ const dispatch =useDispatch()
     
     // 2020-09-03T14:27:16.454Z
 
-    const msgListParams =
-    {
-        limit: 50,
-        offset: 0
-    }
+    // const msgListParams =
+    // {
+    //     limit: 50,
+    //     offset: 0
+    // }
 
     
     const handleDelete = () =>
