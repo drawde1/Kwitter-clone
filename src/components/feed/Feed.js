@@ -39,6 +39,11 @@ export const Feed = (props) => {
   //   limit: 10,
   //   offset: 0
   // }
+  const initialState = {
+    text: "",
+    isActive: false
+  }
+  const [state, setState] = useState(initialState);
   
     
   
@@ -106,77 +111,77 @@ return (
 );
 
 
-  const handleChange = (event) => {
-   console.log(state)
-    let inputValue = event.target.value;
-    setState((prevState) => ({ ...prevState, text: inputValue }));
-  };
-  const postMessage = (event) => {
-    event.preventDefault();
-    console.log(state)
-     dispatch(addMessage(state));
-     dispatch(getMessageList(msgListParams));
+//   const handleChange = (event) => {
+//    console.log(state)
+//     let inputValue = event.target.value;
+//     setState((prevState) => ({ ...prevState, text: inputValue }));
+//   };
+//   const postMessage = (event) => {
+//     event.preventDefault();
+//     console.log(state)
+//      dispatch(addMessage(state));
+//      dispatch(getMessageList(msgListParams));
      
      
-  };
-  const handleScroll = (event) =>
-  {
+//   };
+//   const handleScroll = (event) =>
+//   {
     
-    const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
-    // console.log('scrollHeight',scrollHeight)
-    // console.log('clientHeight',clientHeight)
-    // console.log('scrollTop',scrollTop)
-    if(clientHeight + scrollTop >= scrollHeight)
-    {
-      console.log('end')
-      dispatch(infiniteScroll(5))
+//     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
+//     // console.log('scrollHeight',scrollHeight)
+//     // console.log('clientHeight',clientHeight)
+//     // console.log('scrollTop',scrollTop)
+//     if(clientHeight + scrollTop >= scrollHeight)
+//     {
+//       console.log('end')
+//       dispatch(infiniteScroll(5))
       
-      dispatch(getMessageList(msgListParams))
-    }
-  }
+//       dispatch(getMessageList(msgListParams))
+//     }
+//   }
  
      
     
-    return (
-        <React.Fragment>
-        <form id="login-form" onSubmit={postMessage}>
-            <label htmlFor="msg">say something</label>
-            <input
-            type="text"
-            name="msg"
-            value={state.msg}
-            autoFocus
-            required
-            onChange={handleChange}
-            />
+//     return (
+//         <React.Fragment>
+//         <form id="login-form" onSubmit={postMessage}>
+//             <label htmlFor="msg">say something</label>
+//             <input
+//             type="text"
+//             name="msg"
+//             value={state.msg}
+//             autoFocus
+//             required
+//             onChange={handleChange}
+//             />
             
-            <button type="submit" >
-            send
-            </button>
+//             <button type="submit" >
+//             send
+//             </button>
             
             
-        </form>
-        {/* {loadingMessage && <Loader />} */}
-        <br/>
-        <br/>
+//         </form>
+//         {/* {loadingMessage && <Loader />} */}
+//         <br/>
+//         <br/>
         
-        {/* {loadingList && <Loader />} */}
-        <br/>
-        <br/>
-        <div className = 'scrollBox' onScroll = {handleScroll} >
-        {loadingList?<Loader/>:  messageList.map((message) => (
-                <Message text={message.text} 
-                username={message.username}
-                msgId ={message.id}
-                key = {message.id} 
-                likes = {message.likes}
-                createdAt ={message.createdAt}
-                />
-                ))}
-                </div>
-        </React.Fragment>
+//         {/* {loadingList && <Loader />} */}
+//         <br/>
+//         <br/>
+//         <div className = 'scrollBox' onScroll = {handleScroll} >
+//         {loadingList?<Loader/>:  messageList.map((message) => (
+//                 <Message text={message.text} 
+//                 username={message.username}
+//                 msgId ={message.id}
+//                 key = {message.id} 
+//                 likes = {message.likes}
+//                 createdAt ={message.createdAt}
+//                 />
+//                 ))}
+//                 </div>
+//         </React.Fragment>
     
-    );
+//     );
     
     
-};
+ };

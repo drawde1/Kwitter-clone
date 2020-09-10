@@ -5,15 +5,12 @@ import { FAILURE } from "./defaultuser";
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const ADD_MESSAGE= 'ADD_MESSAGE'
 export const ADD_LIKE = 'ADD_LIKE'
-<<<<<<< HEAD
-export const GET_MESSAGE_LIST_USER = 'GET_MESSAGE_LIST_USER'
-export const addMessage = text => async (dispatch, getState) => {
-=======
 export const DELETE_LIKE = 'DELETE_LIKE'
 export const GET_MESSAGE_LIST = 'GET_MESSAGE_LIST'
 export const LIKE_FAILURE = 'LIKE_FAILURE'
 export const LIKE_SUCCESS = 'LIKE_SUCCESS'
 export const DELETE_SUCCESS = 'DELETE_SUCCESS'
+export const GET_MESSAGE_LIST_USER = 'GET_MESSAGE_LIST_USER'
 
 export const addMessage= (text) => async (dispatch, getState) => {
     try {
@@ -41,19 +38,18 @@ export const addMessage= (text) => async (dispatch, getState) => {
     }
   };
 
-export const deleteMessage = messageid => async (dispatch, getState) => {
->>>>>>> 67a89c09974e240a0fc4e5eacd84d6840d6ebe15
-  try {
-    const payload = await api.deleteMessage(messageid);
-    console.log(payload);
-    dispatch({ type: DELETE_MESSAGE, payload });
-  } catch (err) {
-    dispatch({
-      type: FAILURE,
-      payload: err.message,
-    });
-  }
-};
+// export const deleteMessage = messageid => async (dispatch, getState) => {
+//   try {
+//     const payload = await api.deleteMessage(messageid);
+//     console.log(payload);
+//     dispatch({ type: DELETE_MESSAGE, payload });
+//   } catch (err) {
+//     dispatch({
+//       type: FAILURE,
+//       payload: err.message,
+//     });
+//   }
+// };
 
 export const _likes = (messageId) => async (dispatch, getState) => {
   console.log(messageId)
@@ -73,7 +69,6 @@ export const _likes = (messageId) => async (dispatch, getState) => {
   }
 };
 
-<<<<<<< HEAD
 export const getMessageListByUser = (msgParams,username) => async (dispatch, getState) => {
   try {
     const payload = await api.getMessageListByUser(msgParams,username);
@@ -81,7 +76,10 @@ export const getMessageListByUser = (msgParams,username) => async (dispatch, get
   } catch (err) {
     dispatch({
       type: FAILURE,
-=======
+      payload: err.message,
+    });
+  }
+};
 export const likes = (messageId) => async (dispatch, getState) => {
   return dispatch(_likes(messageId))
   .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
@@ -100,13 +98,11 @@ export const _deleteLikes = (id) => async (dispatch, getState) => {
     //console.log(err)
     dispatch({
       type: LIKE_FAILURE,
->>>>>>> 67a89c09974e240a0fc4e5eacd84d6840d6ebe15
       payload: err.message,
     });
   }
 };
 
-<<<<<<< HEAD
   export const deleteMessage = (messageId) => async (dispatch, getState) => {
     try {
       
@@ -120,10 +116,8 @@ export const _deleteLikes = (id) => async (dispatch, getState) => {
       });
     }
   };
-=======
 export const deleteLikes = (id) => async (dispatch, getState) => {
   return dispatch(_deleteLikes(id))
   .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
 };
 
->>>>>>> 67a89c09974e240a0fc4e5eacd84d6840d6ebe15
