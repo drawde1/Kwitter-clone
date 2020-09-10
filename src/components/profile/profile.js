@@ -10,9 +10,11 @@ import Api from "../../utils/api"
 import { getUserInfo} from '../../redux/actions'
 //import "./LoginForm.css";
 import {Message} from '../feed/Message'
-import {getMessageList} from '../../redux/actions'
+import {infiniteScroll} from '../../redux/actions/infiniteScroll'
+import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
+import {getMessageListByUser} from '../../redux/actions'
 import "./scrollbox.css"
-
+import {deleteUser} from '../../redux/actions/user'
 
 
 export const Profile = () => {
@@ -26,18 +28,28 @@ export const Profile = () => {
   
   const [state, setState] = useState({INITIALSTATE});
   
+<<<<<<< HEAD
   const{username,userPicture,userInfo,messageList, name, bio } = useSelector((state)=>
+=======
+  const{username,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>
+>>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   ({
     username: state.auth.username,
     userPicture: state.getUser.pictureLocation,
     userInfo:  state.getUser,
+<<<<<<< HEAD
     messageList: state.getMessageList.messages,
     name: state.getUser.displayName,
     bio: state.getUser.about
+=======
+    messageList: state.getMessageListByUser.messages,
+    msgListParams: state.infiniteScroll,
+>>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   }))
   console.log(state)
   const dispatch = useDispatch();
   const picture = useRef(null);
+<<<<<<< HEAD
   // const updateinfo = useRef(null);
   const msgListParams =
   {
@@ -45,9 +57,26 @@ export const Profile = () => {
     offset: 0
   }
   useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
+=======
+  // const msgListParams =
+  // {
+  //   limit: 10,
+  //   offset: 0
+  // }
+
+  useEffect(()=>{dispatch(getMessageListByUser(msgListParams,username))},[])
+>>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   useEffect(()=>{dispatch(getUserInfo(username))},[])
+  useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
   // const handleGetUser = (username) =>
+<<<<<<< HEAD
   
+=======
+  // restInfiniteScroll 
+
+
+
+>>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   
   const addPic = async (event) => {
     event.preventDefault();
@@ -55,9 +84,25 @@ export const Profile = () => {
     const results = await Api.addPicture( username, picdata )
     dispatch(getUserInfo(username))
   };
+<<<<<<< HEAD
   const yourMessages = messageList.filter((message)=>message.username === username)
   useEffect(()=>{
     dispatch(getMessageList(msgListParams))
+=======
+
+  
+  const deleteTheUser = () => {
+    dispatch(deleteUser(username));
+    console.log('??')
+    // dispatch(dispatch(actions.logout()))
+  };
+ 
+  
+  
+  useEffect(()=>{
+    dispatch(getMessageListByUser(msgListParams,username))
+  
+>>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   },[])
 
 
@@ -82,6 +127,25 @@ const handleChange = (event) => {
       console.log(results)
    
    };
+<<<<<<< HEAD
+=======
+   const handleScroll = (event) =>
+   {
+     
+     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
+     // console.log('scrollHeight',scrollHeight)
+     // console.log('clientHeight',clientHeight)
+     // console.log('scrollTop',scrollTop)
+     if(clientHeight + scrollTop >= scrollHeight)
+     {
+       console.log('end')
+       dispatch(infiniteScroll(5))
+       
+       dispatch(getMessageListByUser(msgListParams,username))
+     }
+   }
+
+>>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   return (
     <React.Fragment>
         
@@ -96,6 +160,7 @@ const handleChange = (event) => {
         <button type="submit">upload picture</button> 
       </form>
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
+<<<<<<< HEAD
       
         <form id="update-form" onSubmit={handleUpdate}>
                 <div>Current Name: {name}</div>
@@ -144,6 +209,15 @@ const handleChange = (event) => {
         <div className= 'scrollBox'>
         
           {yourMessages.map((message) => (
+=======
+      {/* {console.log("State.action")} */}
+      {/* {console.log(state.formData)} */}
+      <button onClick ={() => deleteTheUser()}>delete Account</button>
+        <label htmlFor="username">Username</label>
+        <h2>your messages</h2>
+        <div className= 'scrollBox' onScroll ={handleScroll}>
+          {messageList.map((message) => (
+>>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
                   <Message text={message.text} 
                   username={message.username}
                   msgId ={message.id}

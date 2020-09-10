@@ -37,7 +37,7 @@ export const user = credentials => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
     const payload = await api.adduser(credentials);
-    console.log(payload)
+    
     // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
     // console.log({ result })
     dispatch({ type: ADD_USER, payload });
@@ -48,6 +48,24 @@ export const user = credentials => async (dispatch, getState) => {
     });
   }
 };
+
+export const deleteUser = credentials => async (dispatch, getState) => {
+  try {
+
+    dispatch({ type: LOAD });
+    const payload = await api.deleteUser(credentials);
+
+    console.log(payload);
+
+    dispatch({ type: DELETE_USER, payload });
+  } catch (err) {
+    dispatch({
+      type: FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
 
 export const updateuser = credentials => async (dispatch, getState) => {
   console.log(credentials)
@@ -73,7 +91,7 @@ export const getUserInfo = (username) => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
     const payload = await api.getUser(username);
-    console.log(payload)
+    
     // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
     // console.log({ result })
     dispatch({ type: GET_USER, payload });
@@ -85,18 +103,4 @@ export const getUserInfo = (username) => async (dispatch, getState) => {
   }
 };
 
-const message = credentials => async (dispatch, getState) => {
-  try {
-    dispatch({ type: DELETE_USER });
-    const payload = await api.deleteuser(credentials);
-    console.log(payload);
-
-    dispatch({ type: DELETE_USER, payload });
-  } catch (err) {
-    dispatch({
-      type: FAILURE,
-      payload: err.message,
-    });
-  }
-};
 

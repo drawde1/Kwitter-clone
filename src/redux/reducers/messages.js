@@ -11,9 +11,10 @@ const INITIAL_STATE = {
       "id": 0,
       "username": "",
       "messageId": 0,
-      "createdAt": "2020-09-03T17:10:37.7422"
-    }
+      "createdAt": "2020-09-03T17:10:37.7422",
+    },
   ],
+  // isActive: false,
   loading: false,
   error: "",
   delete_message: "",
