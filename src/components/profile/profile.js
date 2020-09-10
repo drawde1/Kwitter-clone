@@ -28,36 +28,19 @@ export const Profile = () => {
   
   const [state, setState] = useState({INITIALSTATE});
   
-<<<<<<< HEAD
-  const{username,userPicture,userInfo,messageList, name, bio } = useSelector((state)=>
-=======
-  const{username,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>
->>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
+  const{username,userPicture,userInfo,messageList,bio, name, msgListParams } = useSelector((state)=>
   ({
     username: state.auth.username,
     userPicture: state.getUser.pictureLocation,
     userInfo:  state.getUser,
-<<<<<<< HEAD
-    messageList: state.getMessageList.messages,
     name: state.getUser.displayName,
-    bio: state.getUser.about
-=======
+    bio: state.getUser.about,
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
->>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   }))
   console.log(state)
   const dispatch = useDispatch();
   const picture = useRef(null);
-<<<<<<< HEAD
-  // const updateinfo = useRef(null);
-  const msgListParams =
-  {
-    limit: 10,
-    offset: 0
-  }
-  useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
-=======
   // const msgListParams =
   // {
   //   limit: 10,
@@ -65,18 +48,10 @@ export const Profile = () => {
   // }
 
   useEffect(()=>{dispatch(getMessageListByUser(msgListParams,username))},[])
->>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   useEffect(()=>{dispatch(getUserInfo(username))},[])
   useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
   // const handleGetUser = (username) =>
-<<<<<<< HEAD
   
-=======
-  // restInfiniteScroll 
-
-
-
->>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   
   const addPic = async (event) => {
     event.preventDefault();
@@ -84,11 +59,6 @@ export const Profile = () => {
     const results = await Api.addPicture( username, picdata )
     dispatch(getUserInfo(username))
   };
-<<<<<<< HEAD
-  const yourMessages = messageList.filter((message)=>message.username === username)
-  useEffect(()=>{
-    dispatch(getMessageList(msgListParams))
-=======
 
   
   const deleteTheUser = () => {
@@ -98,11 +68,9 @@ export const Profile = () => {
   };
  
   
-  
   useEffect(()=>{
     dispatch(getMessageListByUser(msgListParams,username))
   
->>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   },[])
 
 
@@ -127,8 +95,6 @@ const handleChange = (event) => {
       console.log(results)
    
    };
-<<<<<<< HEAD
-=======
    const handleScroll = (event) =>
    {
      
@@ -145,7 +111,6 @@ const handleChange = (event) => {
      }
    }
 
->>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
   return (
     <React.Fragment>
         
@@ -160,7 +125,6 @@ const handleChange = (event) => {
         <button type="submit">upload picture</button> 
       </form>
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
-<<<<<<< HEAD
       
         <form id="update-form" onSubmit={handleUpdate}>
                 <div>Current Name: {name}</div>
@@ -206,18 +170,13 @@ const handleChange = (event) => {
         <div>{state.bio}</div>
         <div>{userPicture}</div>
         <h2>your messages</h2>
-        <div className= 'scrollBox'>
-        
-          {yourMessages.map((message) => (
-=======
-      {/* {console.log("State.action")} */}
+       {/* {console.log("State.action")} */}
       {/* {console.log(state.formData)} */}
       <button onClick ={() => deleteTheUser()}>delete Account</button>
-        <label htmlFor="username">Username</label>
+        {/* <label htmlFor="username">Username</label> */}
         <h2>your messages</h2>
         <div className= 'scrollBox' onScroll ={handleScroll}>
           {messageList.map((message) => (
->>>>>>> 78ce78b6862fc0860e178636c4c43c277fad3298
                   <Message text={message.text} 
                   username={message.username}
                   msgId ={message.id}
