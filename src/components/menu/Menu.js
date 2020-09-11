@@ -63,9 +63,7 @@ export const Menu = () => {
             <Link to="/" onClick={logout}>
               Logout
             </Link>
-            <Link to="/profile">
-              View Profile
-            </Link>
+            
           </>
         ) : null}
       </div>

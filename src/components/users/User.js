@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import {  useDispatch,useSelector} from "react-redux";
 import {createTimestamp} from '../functions/createTimestamp'
+import './user.css'
 
 export const User = (props) =>
 {
@@ -10,23 +11,25 @@ export const User = (props) =>
     
     return(
         <>
-        <div className = 'username'>
-            <p>{props.username}</p>
+        
+        <div class="ui cards">
+            <div class="card">
+                <div class="content">
+                    <div className = 'photo'>
+                        <img
+                        src={!props.pictureLocation?'/kwitter-user.png':"https://kwitter-api.herokuapp.com" + props.pictureLocation}
+                        width='50'
+                        height='50'
+                        />
+                    </div>
+                    <div class="header">{props.username}</div>
+                        <div class="meta">{props.displayName}</div>
+                            <div class="description">
+                                    {props.about}
+                            </div>
+                        </div>
+                    </div>
         </div>
-        <div className = 'displayname'>
-            <p>{props.displayName}</p>
-        </div>
-        <div  className = 'about'>
-            <p>{props.about}</p>
-        </div>
-        <div className = 'photo'>
-            <img
-            src={!props.pictureLocation?'/kwitter-user.png':"https://kwitter-api.herokuapp.com" + props.pictureLocation}
-            width='50'
-            height='50'
-            />
-       </div>
-      
-        </>
+            </>
     )
 }
