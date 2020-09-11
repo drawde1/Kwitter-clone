@@ -1,4 +1,4 @@
-import {GET_MESSAGE_LIST,DELETE_MESSAGE,LOAD,FAILURE} from '../actions'
+import {GET_MESSAGE_LIST_USER,FAILURE,LOAD,DELETE_MESSAGE} from '../actions'
 
 
 const INITIAL_STATE = {
@@ -9,15 +9,15 @@ const INITIAL_STATE = {
   };
 
 
-export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
+export const getMessageListByUserReducer = (state = { ...INITIAL_STATE }, action) => {
     switch (action.type) {
       case LOAD:
         return{
           ...INITIAL_STATE,
           loading: true,
         }
-      case GET_MESSAGE_LIST:
-          const {messages, count} = action.payload
+      case GET_MESSAGE_LIST_USER:
+          const {messages,count} = action.payload
         
         return {
           ...INITIAL_STATE,
@@ -25,7 +25,6 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
           messages: messages,
           count: count,
         };
-
         case DELETE_MESSAGE:
           const {id} = action.payload
         //   let newMessages = []
@@ -39,6 +38,8 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
         return {
           ...INITIAL_STATE,
           loading: false,
+          
+          
         };
 
       case FAILURE:
@@ -48,7 +49,7 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
           loading: false,
         };
       
-        default:
+      default:
         return state;
     }
   };

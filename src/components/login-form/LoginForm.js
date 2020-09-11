@@ -13,8 +13,7 @@ export const LoginForm = ({ login }) => {
 
   const dispatch = useDispatch();
 
-  const INITIALSTATE =
-  {
+  const INITIALSTATE = {
     username: '',
     displayName: '',
     password: '',
@@ -30,6 +29,10 @@ export const LoginForm = ({ login }) => {
   const handleLogin = (event) => {
     event.preventDefault();
     dispatch(actions.login(state));
+    if(error)
+    {
+      alert("user not found please register")
+    }
   };
 
   const handleRegister = (event) => { 
@@ -42,7 +45,9 @@ export const LoginForm = ({ login }) => {
     const inputName = event.target.name;
     const inputValue = event.target.value;
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
+
   };
+  
 
   const handleRegChange = (event) => {
     const inputName = event.target.name;
@@ -53,7 +58,6 @@ export const LoginForm = ({ login }) => {
   return (
     <React.Fragment>
     <div id="login">
-
       <div id="logform">
         <form id="login-form" onSubmit={handleLogin}>
           <label htmlFor="username">Username</label>
@@ -79,6 +83,7 @@ export const LoginForm = ({ login }) => {
         </form>
       </div>
     </div>
+    
     <div id="regform">
       <form id="register-form" onSubmit={handleRegister}>
         <label htmlFor="username">Username</label>
@@ -111,7 +116,7 @@ export const LoginForm = ({ login }) => {
         <button type="submit" disabled={loading}>
           Login
         </button>
-        </form>
+      </form>
     </div> 
           {/* <form id="login-form" onSubmit={handleLogin}>
           <div>
@@ -191,6 +196,13 @@ export const LoginForm = ({ login }) => {
           </form>
       </div> */}
       {loading && <Loader />}
+      {/* <div class="ui success manager">
+          <i class="close icon"></i>
+          <div class="header">
+            Your registration was successful.
+          </div>
+          <p>You may now log-in with the username you have chosen</p>
+        </div> */}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </React.Fragment>
   );
