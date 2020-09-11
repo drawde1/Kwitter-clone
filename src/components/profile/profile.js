@@ -75,8 +75,9 @@ export const Profile = () => {
   },[])
 
   const handleUpdate = (event) => {
-    event.preventDefault();
+    
     dispatch(updateuser({...state,username}));
+    // setState((prevState) => ({ ...prevState, INITIALSTATE }))
   }
 
   const handleChange = (event) => {
@@ -99,10 +100,6 @@ export const Profile = () => {
   {
       
     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
-     // console.log('scrollHeight',scrollHeight)
-     // console.log('clientHeight',clientHeight)
-     // console.log('scrollTop',scrollTop)
-     
     if(clientHeight + scrollTop >= scrollHeight && msgListParams.offset < count)
     {
       console.log('end')
