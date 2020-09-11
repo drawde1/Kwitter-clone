@@ -15,7 +15,6 @@ const INITIAL_STATE = {
     error: "",
     messages: [],
     count: 0,
-
   };
 
 
@@ -40,6 +39,7 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
           messages: messages,
           count: count,
         };
+
         case DELETE_MESSAGE:
           const {id} = action.payload
         //   let newMessages = []
@@ -53,8 +53,6 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
         return {
           ...INITIAL_STATE,
           loading: false,
-          
-          
         };
 
       case GET_MESSAGE_LIST_FAIL:
@@ -70,7 +68,7 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
           loading: false,
         };
       
-      default:
+        default:
         return state;
     }
   };

@@ -77,10 +77,11 @@ export const deleteUser = (credentials) => async (dispatch, getState) => {
 };
 
 export const updateuser = credentials => async (dispatch, getState) => {
-  console.log(credentials);
+  
   try {
     dispatch({ type:UPDATE_USER_LOAD});
     const payload = await api.updateuser(credentials);
+    console.log('update user action', payload);
     dispatch({ type: UPDATE_USER, payload });
   } catch (err) {
     dispatch({

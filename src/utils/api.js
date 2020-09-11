@@ -98,6 +98,7 @@ class API {
       throw err;
     }
   }
+
   async getMessageListByUser ({ limit, offset }, username) {
     try {
       const result = await this.axiosInstance.get(
@@ -121,7 +122,6 @@ class API {
   }
   // &username=user
   async updateuser ({ password, about, displayName, username }) {
-    console.log("from api", password, about, displayName, username);
     try {
       const result = await this.axiosInstance.patch(`/users/${username}`, {
         password,

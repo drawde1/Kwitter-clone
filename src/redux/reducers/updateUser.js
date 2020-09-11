@@ -17,12 +17,10 @@ export const updateUserReducer = (state = { ...INITIAL_STATE }, action) => {
           loading: true,
         };
       case UPDATE_USER:
-        const { password, about, displayname, } = action.payload.updateuser;
+        const data = action.payload.updateuser;
         return {
           ...INITIAL_STATE,
-          password,
-          about,
-          displayname,
+          data,
           loading: false,
         };
       case UPDATE_USER_FAIL:
