@@ -10,6 +10,7 @@ export const LOAD = 'LOAD'
 export const DELETE_USER = "DELETE_USER";
 export const ADD_PICTURE = "USER_PICTURE";
 export const UPDATE_PICTURE = "UPDATE_PICTURE";
+export const GET_USER_LIST = "GET_USER_LIST";
 
 // export const getPicture = (credentials) => async (dispatch, getState) => {
 //   try {
@@ -51,7 +52,23 @@ export const user = credentials => async (dispatch, getState) => {
   }
 };
 
+export const getUserList = userListParams => async (dispatch, getState) => {
+  try {
+    dispatch({ type: LOAD });
+    const payload = await api.getUserList(userListParams);
+    console.log(payload)
+    // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
+    // console.log({ result })
+    dispatch({ type: GET_USER_LIST, payload });
+  } catch (err) {
+    dispatch({
+      type: FAILURE,
+      payload: err.message,
+    });
+  }
+};
 
+// getUserList
 export const _deleteUser = credentials => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD });
