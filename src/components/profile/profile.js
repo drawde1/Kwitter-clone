@@ -44,6 +44,7 @@ export const Profile = () => {
     userInfo:  state.getUser,
     name: state.getUser.displayName,
     bio: state.getUser.about,
+    count: state.getMessageList.count,
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }))
@@ -208,9 +209,9 @@ export const Profile = () => {
           </button>
           <button type="submit">Update Info</button> 
         </form>
-        <div>{state.displayName}</div>
+        {/* <div>{state.displayName}</div>
         <div>{state.password}</div>
-        <div>{state.bio}</div>
+        <div>{state.bio}</div> */}
         
 
         <h2>your messages</h2>
