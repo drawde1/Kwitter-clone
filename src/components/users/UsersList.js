@@ -4,7 +4,7 @@ import {getUserList} from '../../redux/actions/user'
 import { User } from "./User";
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
-import './scrollBox.css'
+import './user.css'
 
 export const  UsersList = () =>
 {

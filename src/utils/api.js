@@ -198,11 +198,11 @@ class API {
   }
 
   async deleteLikes (id) {
-    //console.log(likeId)
+    console.log('from api',id)
+   
     try {
-      const result = await this.axiosInstance.delete("/likes/" + id, {
-        id,
-      });
+      
+      const result = await this.axiosInstance.delete("/likes/" + id);
       return result;
     } catch (err) {
       helpMeInstructor(err);

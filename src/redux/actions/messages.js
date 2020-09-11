@@ -10,6 +10,7 @@ export const GET_MESSAGE_LIST = 'GET_MESSAGE_LIST'
 export const LIKE_FAILURE = 'LIKE_FAILURE'
 export const LIKE_SUCCESS = 'LIKE_SUCCESS'
 export const DELETE_SUCCESS = 'DELETE_SUCCESS'
+export const DELETE_FAILURE = 'DELETE_FAILURE'
 export const GET_MESSAGE_LIST_USER = 'GET_MESSAGE_LIST_USER'
 
 export const _addMessage= (text) => async (dispatch, getState) => {
@@ -95,8 +96,9 @@ export const profileLikes = (messageId,msgParams, username) => async (dispatch, 
 };
 
 export const _deleteLikes = (id,msgParams) => async (dispatch, getState) => {
-  console.log(id)
+  
   try {
+    console.log('from actions',id)
     dispatch({ type: DELETE_LIKE });
     const payload = await api.deleteLikes(id);
     dispatch({ type: DELETE_SUCCESS, payload})
@@ -104,9 +106,9 @@ export const _deleteLikes = (id,msgParams) => async (dispatch, getState) => {
     // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
     // console.log({ result })
   } catch (err) {
-    //console.log(err)
+    console.log(err)
     dispatch({
-      type: LIKE_FAILURE,
+      type: DELETE_FAILURE,
       payload: err.message,
     });
   }

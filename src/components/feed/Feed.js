@@ -5,7 +5,7 @@ import { addMessage, getMessageList } from "../../redux/actions/messages";
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
-import './scrollBox.css'
+import './Message.css'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 
 
@@ -17,7 +17,7 @@ export const Feed = (props) => {
     const {messageList,loadingList,msgListParams} = useSelector((state)=>({
         msgListParams: state.infiniteScroll,
         messageList: state.getMessageList.messages,
-        loadingList: state.getMessageList.laoding
+        loadingList: state.getMessageList.loading
     })) 
     
   const initialState = {
@@ -66,6 +66,7 @@ return (
   <br/>
   <br/>
   <br/>
+      {loadingList && <Loader/>}
   <div className= 'scrollBox' onScroll ={handleScroll}>
   {messageList.map((message) => (
           <Message text={message.text} 
