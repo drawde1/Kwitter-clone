@@ -1,1 +1,1 @@
-export { UserList as UserListContainer } from "./UsersList";
+export { UsersList as UserListContainer } from "./UsersList";
