@@ -49,12 +49,20 @@ class API {
       throw err;
     }
   }
-  async getUser (username) {
+  async getUser(username) {
     try {
-      const result = await this.axiosInstance.get("/users/" + username, {
-        username,
-      });
-
+    const result = await this.axiosInstance.get("/users/"+username)
+      
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+    
+  async addMessage({text, username}) {
+    try {
+      const result = await this.axiosInstance.delete("/user/" + username,);
       return result;
     } catch (err) {
       helpMeInstructor(err);

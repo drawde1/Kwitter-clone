@@ -14,7 +14,7 @@ export const ProfileScreen = () => (
     <h2>Profile</h2>
     {/* <Picture /> */}
     </div>
-    <h3>Here is my picture  </h3>
+    {/* <h3>Here is my picture  </h3> */}
     {/* <Picture /> */}
     <ProfileContainer />
   </>

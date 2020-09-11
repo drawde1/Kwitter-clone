@@ -89,7 +89,7 @@ const handleScroll = (event) =>
 return (
   <React.Fragment>
   <form id="login-form" onSubmit={postMessage}>
-      <label htmlFor="msg">say something</label>
+      <label htmlFor="msg"></label>
       <input
       type="text"
       name="msg"
@@ -119,6 +119,7 @@ return (
           key = {message.id} 
           likes = {message.likes}
           createdAt ={message.createdAt}
+          userPhoto = {message.pictureLocation}
           />
   ))}
   </div>

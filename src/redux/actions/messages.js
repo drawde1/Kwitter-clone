@@ -89,8 +89,13 @@ export const likes = (messageId,msgParams) => async (dispatch, getState) => {
   .then(() => {return dispatch(getMessageList(msgParams))})
 };
 
-export const _deleteLikes = (id) => async (dispatch, getState) => {
-  //console.log(likeId)
+export const profileLikes = (messageId,msgParams, username) => async (dispatch, getState) => {
+  return dispatch(_likes(messageId))
+  .then(() => {return dispatch(getMessageListByUser(msgParams, username))})
+};
+
+export const _deleteLikes = (id,msgParams) => async (dispatch, getState) => {
+  console.log(id)
   try {
     dispatch({ type: DELETE_LIKE });
     const payload = await api.deleteLikes(id);
@@ -107,7 +112,12 @@ export const _deleteLikes = (id) => async (dispatch, getState) => {
   }
 };
 
-  export const _deleteMessage = (messageId) => async (dispatch, getState) => {
+// export const deleteLikes = (likeId) => async (dispatch, getState) => {
+//   return dispatch(_deleteLikes(likeId))
+//   .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
+// }
+
+export const _deleteMessage = (messageId) => async (dispatch, getState) => {
     try {
       
       const payload = await api.deleteMsg(messageId);
@@ -128,4 +138,5 @@ export const deleteLikes = (id,msgParams) => async (dispatch, getState) => {
   return dispatch(_deleteLikes(id))
   .then(() => {return dispatch(getMessageList(msgParams))})
 };
+
 
