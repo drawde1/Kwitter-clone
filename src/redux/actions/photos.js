@@ -22,7 +22,7 @@ export const setPicture = (credentials) => async (dispatch, getState) => {
         const payload = await api.getPictures(credentials);
         console.log(payload)
             return {
-                type: UPDATE_PICTURE
+                type: UPDATE_PICTURE, payload
             }
     } catch (err) {
         console.log("err")
