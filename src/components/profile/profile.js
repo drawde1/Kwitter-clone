@@ -18,7 +18,7 @@ import {deleteUser} from '../../redux/actions/user'
 
 export const Profile = () => {
   
-  const{username,name,bio,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>
+  const{username,name,bio,count,userPicture,userInfo,messageList,msgListParams } = useSelector((state)=>
   ({
     username: state.auth.username,
     userPicture: state.getUser.pictureLocation,
@@ -159,7 +159,7 @@ export const Profile = () => {
       <div class="content">
         <a class="header">{name}</a>
         <div class="meta">
-          <span class="date">Joined April 2020</span>
+          <span class="date">SE April 2020</span>
         </div>
         <div class="description">
           {bio}
@@ -167,14 +167,15 @@ export const Profile = () => {
       </div>
       <div class="extra content">
         <a>
-          <i class="user icon"></i>
-          {"count"}
-        </a>
+          <i class="envelope icon"></i>
+          {count}
+        </a> 
+            <button class="ui right floated button" onClick ={() => deleteTheUser()}>Delete Account</button>
       </div>
       </div>
         
       {/* {console.log(state.formData)} */}
-      <button onClick ={() => deleteTheUser()}>delete Account</button>
+      {/* <button onClick ={() => deleteTheUser()}>delete Account</button> */}
         {/* <label htmlFor="username">Username</label> */}
         <h2>your messages</h2>
         <div className= 'scrollBox' onScroll ={handleScroll}>
@@ -185,6 +186,7 @@ export const Profile = () => {
                   key = {message.id} 
                   likes = {message.likes}
                   createdAt ={message.createdAt}
+                  profile = {true}
                   />
                   ))}
         </div>

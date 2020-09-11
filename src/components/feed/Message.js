@@ -6,6 +6,7 @@ import {
   addLike,
   deleteLikes,
   deleteMessage,
+  profileLikes,
 } from "../../redux/actions/messages";
 import actions from "redux-form/lib/actions";
 import { likes } from "../../redux/actions/messages";
@@ -27,7 +28,7 @@ export const Message = props => {
 
   const messagListParams = useSelector(state => state.infiniteScroll);
 
-    const{name,bio,userPicture,userInfo,messageList } = useSelector((state)=>
+    const{name,bio,userPicture,userInfo,messageList, msgListParams } = useSelector((state)=>
     ({
       username: state.auth.username,
       userPicture: state.getUser.pictureLocation,
@@ -40,11 +41,11 @@ export const Message = props => {
       msgListParams: state.infiniteScroll,
     }))
 
-    const msgListParams =
-    {
-        limit: 50,
-        offset: 0
-    }
+    // const msgListParams =
+    // {
+    //     limit: 50,
+    //     offset: 0
+    // }
   const handleDelete = () => {
     console.log(props.messageId);
     dispatch(deleteMessage(props.msgId, messagListParams));
@@ -58,13 +59,24 @@ export const Message = props => {
   const [deselect, setDeselect] = useState(false);
 
   const handleLike = messageId => {
-    dispatch(likes(messageId, messagListParams));
+    dispatch(likes(messageId, msgListParams));
+    if (!props.profile) { dispatch(likes(messageId, msgListParams));
+    } else {
+      dispatch(profileLikes(messageId, msgListParams, username));
+    }
+
 
     //dispatch(getMessageList(msgListParams));
   };
 
-  const handleUnlike = id => {
-    dispatch(deleteLikes(id, messagListParams));
+  let yourLike
+  const handleUnlike = () => {
+    for (let like of props.likes) {
+      if (like.username === username) {
+        yourLike = like.id
+      }   
+  }
+  dispatch(deleteLikes(yourLike, msgListParams));
   };
 
   
@@ -72,14 +84,15 @@ export const Message = props => {
 //     dispatch(deleteLikes(id))
 //   }
 
-//   const loggedInUser = () => {
-//     for (let like of message.like) {
-//         console.log(like)
-//         if (like.username === LoggedInUser)
-//         console.log(like.id)
+  
+    
+  
 
-//     }
-//   }
+//   let yourLike = props.likes.filter((like) => {
+//     for(let like of message.likes) {
+//       if (likes.username === username)
+//   }); 
+// }
 
 
  
@@ -117,9 +130,10 @@ export const Message = props => {
             </a>
         </div>
         <div class="ui labeled button" tabIndex="0"> 
-        <button class="ui blue button" onClick={() => handleUnlike(props.likeId)}>
+        <button class="ui blue button" onClick={() => handleUnlike()}>
                  <i class="thumbs down icon"></i> Delete Like(s)
             </button>
+            
         </div>
         <div class="ui labeled button" tabIndex="0">
             <button class="ui red button" onClick={() => setDisClick(disClick + 1 )}>

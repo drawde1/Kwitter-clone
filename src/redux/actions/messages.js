@@ -89,11 +89,16 @@ export const likes = (messageId,msgParams) => async (dispatch, getState) => {
   .then(() => {return dispatch(getMessageList(msgParams))})
 };
 
-export const _deleteLikes = (likeId) => async (dispatch, getState) => {
-  console.log(likeId)
+export const profileLikes = (messageId,msgParams, username) => async (dispatch, getState) => {
+  return dispatch(_likes(messageId))
+  .then(() => {return dispatch(getMessageListByUser(msgParams, username))})
+};
+
+export const _deleteLikes = (id,msgParams) => async (dispatch, getState) => {
+  console.log(id)
   try {
     dispatch({ type: DELETE_LIKE });
-    const payload = await api.deleteLikes(likeId);
+    const payload = await api.deleteLikes(id);
     dispatch({ type: DELETE_SUCCESS, payload})
     console.log(payload)
     // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
