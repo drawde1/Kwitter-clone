@@ -5,6 +5,7 @@ import { User } from "./User";
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
 import './scrollBox.css'
+
 export const  UsersList = () =>
 {
     const dispatch = useDispatch()
