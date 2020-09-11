@@ -52,9 +52,9 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const picture = useRef(null);
 
-  useEffect(()=>{dispatch(getMessageListByUser(msgListParams,startingUsername))},[])
+  useEffect(()=>{dispatch(getMessageListByUser({limit:10, offset:0},startingUsername))},[])
   useEffect(()=>{dispatch(getUserInfo(startingUsername))},[])
-  useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
+  useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
 
   const addPic = async (event) => {
     event.preventDefault();

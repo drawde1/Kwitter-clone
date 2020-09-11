@@ -1,7 +1,7 @@
 import api from "../../utils/api";
 import { FAILURE } from "./defaultuser";
 //import { LIKE_SUCCESS } from "./likes";
-
+import {restInfiniteScroll} from './infiniteScroll'
 export const DELETE_MESSAGE_LOAD = 'DELETE_MESSAGE_LOAD';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const DELETE_MESSAGE_FAIL = 'DELETE_MESSAGE_FAIL';
@@ -36,7 +36,7 @@ export const _addMessage= (text) => async (dispatch, getState) => {
   };
   export const addMessage = (text,msgParams) => async (dispatch, getState) => {
     return dispatch(_addMessage(text))
-    .then(() => {return dispatch(getMessageList(msgParams))})
+    .then(() => {return dispatch(getMessageList({limit:10, offset:0}))})
   };
 
   export const getMessageList = (msgParams) => async (dispatch, getState) => {

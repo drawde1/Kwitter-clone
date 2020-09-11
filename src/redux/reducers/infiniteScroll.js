@@ -13,12 +13,12 @@ export const infiniteScrollReducer = (state = {...INITIAL_STATE},action) =>
         case ADD_TO_LIST:
           return {
             ...INITIAL_STATE,
-            limit: state.limit + action.payload
+            offset: state.offset + action.payload
           };
           case RESET_LIST:
               return{
                 ...INITIAL_STATE,
-                limit: action.payload
+                offset: action.payload
               }
         default:
         return state
