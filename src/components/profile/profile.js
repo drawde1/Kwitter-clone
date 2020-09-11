@@ -18,13 +18,12 @@ import {deleteUser} from '../../redux/actions/user'
 
 export const Profile = () => {
   const INITIALSTATE = {
-    // username: "",
     displayName: "",
     about: "",
     password: "",
   };
 
-  const [state, setState] = useState({ INITIALSTATE });
+  const [state, setState] = useState(INITIALSTATE);
 
   const {
     username,
@@ -74,24 +73,64 @@ export const Profile = () => {
     dispatch(getMessageListByUser(msgListParams,username))
   
   },[])
-  
-  const setPic = async event => {
+
+  const handleUpdate = (event) => {
     event.preventDefault();
-    const picdata = new FormData(picture.current);
-    const results = await Api.getPictures(username, picdata);
+    dispatch(updateuser({...state,username}));
+  }
+
+  const handleChange = (event) => {
+    const inputName = event.target.name;
+    const inputValue = event.target.value;
+    setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
-  const handleScroll = event => {
-    const { scrollHeight, clientHeight, scrollTop } = event.currentTarget;
-    if (clientHeight + scrollTop >= scrollHeight) {
-      dispatch(infiniteScroll(5));
-      dispatch(getMessageListByUser(msgListParams, username));
+
+  const setPic = async (event) => {
+    event.preventDefault();
+    //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
+    //dispatch(setPicture(state))
+    const picdata = new FormData (picture.current)
+    const results = await Api.getPictures( username, picdata )
+    console.log(picdata)
+    console.log(results)
+  };
+
+  const handleScroll = (event) =>
+  {
+    const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
+     // console.log('scrollHeight',scrollHeight)
+     // console.log('clientHeight',clientHeight)
+     // console.log('scrollTop',scrollTop)
+    if(clientHeight + scrollTop >= scrollHeight)
+    {
+      console.log('end')
+      dispatch(infiniteScroll(5))
+      
+      dispatch(getMessageListByUser(msgListParams,username))
     }
-  };
+  }
+
+  // setPic = async event => {
+  //   event.preventDefault();
+  //   const picdata = new FormData(picture.current);
+  //   const results = await Api.getPictures(username, picdata);
+  // };
+
+  // handleScroll = event => {
+  //   const { scrollHeight, clientHeight, scrollTop } = event.currentTarget;
+  //   if (clientHeight + scrollTop >= scrollHeight) {
+  //     dispatch(infiniteScroll(5));
+  //     dispatch(getMessageListByUser(msgListParams, username));
+  //   }
+  // };
+
   const test = () =>
   {
     dispatch(getPicture(username))
     console.log(testPicture)
   }
+  
+
   
   return (
     <React.Fragment>
@@ -130,6 +169,50 @@ export const Profile = () => {
         <input type='file' name='picture'></input>
         <button type='submit'>Upload My Picture</button>
       </form>
+      <form id="update-form" onSubmit={handleUpdate}>
+          <div>Current Name: {name}</div>
+          <label htmlFor="displayName">New Name:</label>
+          <input
+              type="text"
+              name="displayName"
+              value={state.displayName}
+              autoFocus
+              required
+              onChange={handleChange}
+          />
+          <br/>
+          <div>Current Password: {}</div>
+          <label htmlFor="password">New Password:</label>
+          <input
+              type="text"
+              name="password"
+              value={state.password}
+              autoFocus
+              required
+              onChange={handleChange}
+          />
+          <br/>
+          <div>Current Bio: {bio}</div>
+          <label htmlFor="about">New Bio:</label>
+          <input
+            type="text"
+            name="about"
+            value={state.about}
+            autoFocus
+            required
+            onChange={handleChange}
+          />
+          <br/>
+          <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
+          Update Profile
+          </button>
+          <button type="submit">Update Info</button> 
+        </form>
+        <div>{state.displayName}</div>
+        <div>{state.password}</div>
+        <div>{state.bio}</div>
+        
+
         <h2>your messages</h2>
         <div className= 'scrollBox' onScroll ={handleScroll}>
           {messageList.map((message) => (
