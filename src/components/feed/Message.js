@@ -11,14 +11,12 @@ import {
 import actions from "redux-form/lib/actions";
 import { likes } from "../../redux/actions/messages";
 import {userPicture} from '../../components/profile/profile'
-import {profileDeleteMessage} from '../../redux/actions/messages'
+import {profileDeleteMessage,profileDeleteLikes} from '../../redux/actions/messages'
 export const Message = props => {
   //TODO: handle delete message
   //TODO: handle likes add & delete
   const dispatch = useDispatch();
-  const { username } = useSelector(state => ({
-    username: state.auth.username,
-  }));
+  
 
   // id: 0,
   // text:'',
@@ -28,9 +26,9 @@ export const Message = props => {
 
   const messagListParams = useSelector(state => state.infiniteScroll);
 
-    const{name,bio,userPicture,userInfo,messageList, msgListParams } = useSelector((state)=>
+    const{name,bio,userPicture,userInfo,messageList, msgListParams,username } = useSelector((state)=>
     ({
-      username: state.auth.username,
+      username: state.getUser.username,
       userPicture: state.getUser.pictureLocation,
       userInfo:  state.getUser,
       messageList: state.getMessageList.messages,
@@ -49,7 +47,7 @@ export const Message = props => {
   const handleDelete = () => {
     if(props.profile)
     {
-      dispatch(profileDeleteMessage(props.msgId, messagListParams));
+      dispatch(profileDeleteMessage(props.msgId, messagListParams,username));
     }
     else 
     {
@@ -74,7 +72,7 @@ export const Message = props => {
 
     //dispatch(getMessageList(msgListParams));
   };
-
+  
   let yourLike
   const handleUnlike = () => {
     for (let like of props.likes) {
@@ -82,7 +80,10 @@ export const Message = props => {
         yourLike = like.id
       }   
   }
-  dispatch(deleteLikes(yourLike, msgListParams));
+  if (!props.profile) { dispatch(deleteLikes(yourLike, msgListParams))
+  } else {
+    dispatch(profileDeleteLikes(yourLike, msgListParams, username));
+  }
   };
 
   
@@ -149,7 +150,7 @@ export const Message = props => {
                 {disClick}
             </a>
         </div>
-            {username === props.username && !props.profile ? (
+            {username === props.username  ? (
         <div class='ui labeled button' tabIndex='0'>
           <button
             class='ui purple button'

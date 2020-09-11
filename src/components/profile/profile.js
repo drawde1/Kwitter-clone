@@ -139,6 +139,7 @@ export const Profile = () => {
                   key = {message.id} 
                   likes = {message.likes}
                   createdAt ={message.createdAt}
+                  profile ={true}
                   />
                   ))}
         </div>

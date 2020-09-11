@@ -93,7 +93,10 @@ export const profileLikes = (messageId,msgParams, username) => async (dispatch, 
   return dispatch(_likes(messageId))
   .then(() => {return dispatch(getMessageListByUser(msgParams, username))})
 };
-
+export const profileDeleteLikes = (id,msgParams,username) => async (dispatch, getState) => {
+  return dispatch(_deleteLikes(id))
+  .then(() => {return dispatch(getMessageListByUser(msgParams, username))})
+};
 export const _deleteLikes = (id,msgParams) => async (dispatch, getState) => {
   
   try {
@@ -139,8 +142,8 @@ export const _deleteMessage = (messageId) => async (dispatch, getState) => {
     .then(() => {return dispatch(getMessageList(msgParams))})
   };
 
-  export const profileDeleteMessage = (messageId,msgParams) => async (dispatch, getState) => {
+  export const profileDeleteMessage = (messageId,msgParams,username) => async (dispatch, getState) => {
     return dispatch(_deleteMessage(messageId))
-    .then(() => {return dispatch(getMessageListByUser(msgParams))})
+    .then(() => {return dispatch(getMessageListByUser(msgParams,username))})
   };
 
