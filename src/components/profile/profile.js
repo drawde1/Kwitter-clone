@@ -12,7 +12,7 @@ import {Message} from '../feed/Message'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
 import {getMessageListByUser} from '../../redux/actions'
-import "./scrollbox.css"
+
 import {deleteUser} from '../../redux/actions/user'
 
 export const Profile = () => {
@@ -52,7 +52,7 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const picture = useRef(null);
 
-  useEffect(()=>{dispatch(getMessageListByUser(msgListParams,username))},[])
+  useEffect(()=>{dispatch(getMessageListByUser(msgListParams,startingUsername))},[])
   useEffect(()=>{dispatch(getUserInfo(startingUsername))},[])
   useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
 
@@ -99,12 +99,9 @@ export const Profile = () => {
 
     <React.Fragment>
       <h1>Profile Page</h1>
+
+     {/* <button onClick= {test}>test</button> */}
       
-     <button onClick= {test}>test</button>
-      <form ref={picture} onSubmit={addPic}>
-        <input type='file' name='picture'></input>
-        <button type='submit'>Upload My Picture</button>
-      </form>
  
         <h1>Profile Page</h1>
         <div class="ui card">
@@ -114,7 +111,7 @@ export const Profile = () => {
           width="200" 
           height="200"/>
         </div>
-
+       
       <div class="content">
         <a class="header">{name}</a>
         <div class="meta">
@@ -132,7 +129,10 @@ export const Profile = () => {
             <button class="ui right floated button" onClick ={() => deleteTheUser()}>Delete Account</button>
       </div>
       </div>
-        
+      <form ref={picture} onSubmit={addPic}>
+        <input type='file' name='picture'></input>
+        <button type='submit'>Upload My Picture</button>
+      </form>
         <h2>your messages</h2>
         <div className= 'scrollBox' onScroll ={handleScroll}>
           {messageList.map((message) => (
