@@ -18,9 +18,10 @@ const INITIAL_STATE = {
               laoding: true
             };
          case GET_USER_LIST:
+             const {users}  = action.payload
            return {
              ...INITIAL_STATE,
-             users: action.payload
+             users: users
            };
            case FAILURE:
                return{

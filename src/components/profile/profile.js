@@ -29,7 +29,6 @@ export const Profile = () => {
   const {
     username,
     userPicture,
-    userInfo,
     messageList,
     bio,
     name,
