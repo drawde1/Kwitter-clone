@@ -13,8 +13,7 @@ export const LoginForm = ({ login }) => {
 
   const dispatch = useDispatch();
 
-  const INITIALSTATE =
-  {
+  const INITIALSTATE = {
     username: '',
     displayName: '',
     password: '',

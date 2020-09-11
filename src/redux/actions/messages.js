@@ -121,7 +121,6 @@ export const _deleteLikes = (id,msgParams) => async (dispatch, getState) => {
 
 export const _deleteMessage = (messageId) => async (dispatch, getState) => {
     try {
-      
       const payload = await api.deleteMsg(messageId);
         console.log(payload)
       dispatch({ type: DELETE_MESSAGE, payload });
@@ -131,11 +130,11 @@ export const _deleteMessage = (messageId) => async (dispatch, getState) => {
         payload: err.message,
       });
     }
-  };
-  export const deleteMessage = (messageId,msgParams) => async (dispatch, getState) => {
-    return dispatch(_deleteMessage(messageId))
-    .then(() => {return dispatch(getMessageList(msgParams))})
-  };
+};
+export const deleteMessage = (messageId,msgParams) => async (dispatch, getState) => {
+  return dispatch(_deleteMessage(messageId))
+  .then(() => {return dispatch(getMessageList(msgParams))})
+};
 export const deleteLikes = (id,msgParams) => async (dispatch, getState) => {
   return dispatch(_deleteLikes(id))
   .then(() => {return dispatch(getMessageList(msgParams))})
