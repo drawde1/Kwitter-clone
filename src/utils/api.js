@@ -4,17 +4,12 @@ class API {
   axiosInstance = null;
 
   constructor () {
-    /* 
-      🚨1 point EXTRA CREDIT 🚨 👉🏿 get the baseURL from the environment
-      https://create-react-app.dev/docs/adding-custom-environment-variables/
-    */
     const axiosInstance = axios.create({
       baseURL: "https://kwitter-api.herokuapp.com/",
       timeout: 30000,
       headers: { Authorization: `Bearer ${getToken()}` },
     });
 
-    // Add a request interceptor to attach a
     axiosInstance.interceptors.request.use(
       config => ({
         ...config,
@@ -49,20 +44,10 @@ class API {
       throw err;
     }
   }
-  async getUser(username) {
+  async getUser (username) {
     try {
-    const result = await this.axiosInstance.get("/users/"+username)
-      
-      return result;
-    } catch (err) {
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
-    
-  async addMessage({text, username}) {
-    try {
-      const result = await this.axiosInstance.delete("/user/" + username,);
+      const result = await this.axiosInstance.get("/users/" + username);
+
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -70,12 +55,9 @@ class API {
     }
   }
 
-  async addMessage ({ text }) {
+  async addMessage ({ username }) {
     try {
-      const result = await this.axiosInstance.post("/messages", {
-        text,
-      });
-
+      const result = await this.axiosInstance.delete("/user/" + username);
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -138,9 +120,8 @@ class API {
 
   async deleteUser (username) {
     try {
-      const result = await this.axiosInstance.delete(`/users/${username}`,
-      {
-        username
+      const result = await this.axiosInstance.delete(`/users/${username}`, {
+        username,
       });
 
       return result;
@@ -198,11 +179,10 @@ class API {
   }
 
   async deleteLikes (id) {
-    //console.log(likeId)
+    console.log("from api", id);
+
     try {
-      const result = await this.axiosInstance.delete("/likes/" + id, {
-        id,
-      });
+      const result = await this.axiosInstance.delete("/likes/" + id);
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -225,11 +205,25 @@ class API {
     }
   }
 
+  async getUserList ({ limit, offset }) {
+    try {
+      const result = await this.axiosInstance.get(
+        "/users?limit=" + limit + "&offset=" + offset,
+        { limit, offset }
+      );
+      console.log(result);
+      return result;
+    } catch (err) {
+      console.log({ err });
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
   async getPictures (username) {
     try {
       const result = await this.axiosInstance.get(
-         "/users/"+ username +"/picture",
-        username
+        "/users/" + username + "/picture"
       );
 
       return result;
@@ -267,4 +261,3 @@ function getToken () {
 }
 
 export default new API();
-// "I have a good idea of what I need to do with the API, but I'm a little unsure about where I should be implementing it. I am also not strong on redux."

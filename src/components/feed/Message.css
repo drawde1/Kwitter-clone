@@ -1,0 +1,8 @@
+.scrollBox
+{
+    background-color: rgb(181, 185, 185);
+    height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
