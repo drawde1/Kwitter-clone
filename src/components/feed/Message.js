@@ -110,7 +110,7 @@ export const Message = props => {
   <div class="event">
     <div class="label">
     <img 
-          src = {"https://kwitter-api.herokuapp.com"+userPicture}
+          src = {`https://kwitter-api.herokuapp.com/users/${props.username}/picture`}
           width="200" 
           height="200"/>
     </div>
@@ -140,7 +140,6 @@ export const Message = props => {
         <button class="ui blue button" onClick={() => handleUnlike()}>
                  <i class="thumbs down icon"></i> Delete Like(s)
             </button>
-            
         </div>
         <div class="ui labeled button" tabIndex="0">
             <button class="ui red button" onClick={() => setDisClick(disClick + 1 )}>
