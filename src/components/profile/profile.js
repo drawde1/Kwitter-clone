@@ -15,7 +15,6 @@ import { restInfiniteScroll } from "../../redux/actions/infiniteScroll";
 import { getMessageListByUser } from "../../redux/actions";
 import "./scrollbox.css";
 import { deleteUser } from "../../redux/actions/user";
-
 export const Profile = () => {
   const INITIALSTATE = {
     // username: "",
@@ -23,9 +22,7 @@ export const Profile = () => {
     about: "",
     password: "",
   };
-
   const [state, setState] = useState({ INITIALSTATE });
-
   const {
     username,
     userPicture,
@@ -51,7 +48,6 @@ export const Profile = () => {
   //   limit: 10,
   //   offset: 0
   // }
-
   useEffect(() => {
     dispatch(getMessageListByUser(msgListParams, username));
   }, []);
@@ -62,35 +58,29 @@ export const Profile = () => {
     dispatch(restInfiniteScroll(10));
   }, []);
   // const handleGetUser = (username) =>
-
   const addPic = async event => {
     event.preventDefault();
     const picdata = new FormData(picture.current);
     const results = await Api.addPicture(username, picdata);
     dispatch(getUserInfo(username));
   };
-
   const deleteTheUser = () => {
-    console.log("??");
     dispatch(deleteUser(username));
-    // dispatch(dispatch(actions.logout()))
+    console.log("??");
+    dispatch(dispatch(actions.logout()));
   };
-
   useEffect(() => {
     dispatch(getMessageListByUser(msgListParams, username));
   }, []);
-
   const handleUpdate = event => {
     event.preventDefault();
     dispatch(updateuser({ ...state, username }));
   };
-
   const handleChange = event => {
     const inputName = event.target.name;
     const inputValue = event.target.value;
     setState(prevState => ({ ...prevState, [inputName]: inputValue }));
   };
-
   const setPic = async event => {
     event.preventDefault();
     //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
@@ -108,11 +98,9 @@ export const Profile = () => {
     if (clientHeight + scrollTop >= scrollHeight) {
       console.log("end");
       dispatch(infiniteScroll(5));
-
       dispatch(getMessageListByUser(msgListParams, username));
     }
   };
-
   return (
     <React.Fragment>
       <h1>Profile Page</h1>
@@ -123,10 +111,9 @@ export const Profile = () => {
       />
       <form ref={picture} onSubmit={addPic}>
         <input type='file' name='picture'></input>
-        <button type='submit'>Upload My Picture</button>
+        <button type='submit'>upload picture</button>
       </form>
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
-
       <form id='update-form' onSubmit={handleUpdate}>
         <div>Current Name: {name}</div>
         <label htmlFor='displayName'>New Name:</label>
@@ -175,12 +162,12 @@ export const Profile = () => {
       <div>{state.password}</div>
       <div>{state.bio}</div>
       <div>{userPicture}</div>
-
+      <h2>your messages</h2>
       {/* {console.log("State.action")} */}
       {/* {console.log(state.formData)} */}
-      <button onClick={() => deleteTheUser()}>Delete My Account</button>
+      <button onClick={() => deleteTheUser()}>delete Account</button>
       {/* <label htmlFor="username">Username</label> */}
-      <h2>My Kwit</h2>
+      <h2>your messages</h2>
       <div className='scrollBox' onScroll={handleScroll}>
         {messageList.map(message => (
           <Message
