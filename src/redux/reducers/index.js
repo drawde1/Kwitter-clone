@@ -10,8 +10,10 @@ import {getUserReducer} from './getUser'
 import {infiniteScrollReducer} from './infiniteScroll'
 import {getMessageListByUserReducer} from './getMessageListByUser'
 import { addLikeReducer } from './addLike'
+import {getUserListReducer} from './getUserList'
 export default combineReducers({ 
   pic:picReducer,
+  userList:getUserListReducer,
   getMessageListByUser:getMessageListByUserReducer,
   auth: authReducer,
   infiniteScroll: infiniteScrollReducer,

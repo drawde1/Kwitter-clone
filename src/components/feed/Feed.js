@@ -3,7 +3,7 @@ import {  useDispatch,useSelector} from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
 //import { IncrementClick, RemoveClick, ToggleSelection } from '../likes'
 
-
+import {getUserList} from '../../redux/actions/user'
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
@@ -86,8 +86,13 @@ const handleScroll = (event) =>
        dispatch(getMessageList(msgListParams))
      }
    }
+   const test = () => {
+     console.log("$$$")
+     dispatch(getUserList(msgListParams))
+   }
 return (
   <React.Fragment>
+    <button onClick = {test}> test</button>
   <form id="login-form" onSubmit={postMessage}>
       <label htmlFor="msg">say something</label>
       <input

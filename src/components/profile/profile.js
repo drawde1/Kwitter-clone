@@ -71,6 +71,7 @@ export const Profile = () => {
   const addPic = async event => {
     event.preventDefault();
     const picdata = new FormData(picture.current);
+    console.log(picdata)
     const results = await Api.addPicture(username, picdata);
     dispatch(getUserInfo(username));
   };
@@ -132,7 +133,7 @@ export const Profile = () => {
         height='200'
       />
       
-     
+     <button onClick= {test}>test</button>
       <form ref={picture} onSubmit={addPic}>
         <input type='file' name='picture'></input>
         <button type='submit'>Upload My Picture</button>

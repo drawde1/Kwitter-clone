@@ -217,6 +217,22 @@ class API {
     }
   }
   
+  async getUserList ({limit, offset}) {
+    try {
+      const result = await this.axiosInstance.get(
+        "/users?limit="+limit+"&offset="+ offset,
+        {limit,offset}
+      
+      );
+      console.log(result);
+      return result;
+    } catch (err) {
+      console.log({ err });
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+  
   async getPictures (username) {
     try {
       const result = await this.axiosInstance.get(
