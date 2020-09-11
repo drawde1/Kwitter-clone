@@ -11,22 +11,26 @@ const mapDispatchToProps = {
   decrementAction
 }
 
- const Counter = props =>
-  <div class="ui labeled button" tabIndex="0">
-  <button class="ui blue button" onClick={props.onIncrement}>
-      <i class="heart icon"></i> Like(s)
-  </button>
-  <a class="ui basic blue left pointing label">
-      {props.likes.length} 
-  </a>
-  </div>
-  <div class="ui labeled button" tabIndex="0">
-  <button class="ui red button" onClick={props.onDecrement}>
-      <i class="frown icon"></i> Dislikes
-  </button>
-  <a class="ui basic left pointing red label">
-      {props.counter.value}
-  </a>
-  </div>
-
+const Counter = props => {
+  return(
+    <React.Fragment>
+      <div class="ui labeled button" tabIndex="0">
+        <button class="ui blue button" onClick={props.onIncrement}>
+          <i class="heart icon"></i> Like(s)
+        </button>
+        <a class="ui basic blue left pointing label">
+          {props.likes.length} 
+        </a>
+      </div>
+      <div class="ui labeled button" tabIndex="0">
+        <button class="ui red button" onClick={props.onDecrement}>
+          <i class="frown icon"></i> Dislikes
+        </button>
+        <a class="ui basic left pointing red label">
+          {props.counter.value}
+        </a>
+      </div>
+    </React.Fragment>
+  )
+}
 export default connect(mapStatetoProps, mapDispatchToProps)(Counter)

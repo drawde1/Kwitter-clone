@@ -15,6 +15,7 @@ import {getMessageListByUser} from '../../redux/actions'
 
 import {deleteUser} from '../../redux/actions/user'
 
+
 export const Profile = () => {
   const INITIALSTATE = {
     // username: "",
@@ -44,11 +45,10 @@ export const Profile = () => {
     userInfo:  state.getUser,
     name: state.getUser.displayName,
     bio: state.getUser.about,
-    count: state.getMessageList.count,
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }))
-
+  console.log(state)
   const dispatch = useDispatch();
   const picture = useRef(null);
 
@@ -58,7 +58,6 @@ export const Profile = () => {
 
   const addPic = async (event) => {
     event.preventDefault();
-  
     const picdata = new FormData (picture.current)
     const results = await Api.addPicture( username, picdata )
     dispatch(getUserInfo(username))
@@ -70,7 +69,6 @@ export const Profile = () => {
     console.log('??')
   };
  
-  
   
   useEffect(()=>{
     dispatch(getMessageListByUser(msgListParams,username))
@@ -96,7 +94,6 @@ export const Profile = () => {
   }
   
   return (
-
     <React.Fragment>
       <h1>Profile Page</h1>
 
@@ -142,10 +139,9 @@ export const Profile = () => {
                   key = {message.id} 
                   likes = {message.likes}
                   createdAt ={message.createdAt}
-                  profile = {true}
                   />
                   ))}
         </div>
     </React.Fragment>
   );
-  }
+}

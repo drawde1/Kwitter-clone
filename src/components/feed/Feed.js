@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
-import {  useDispatch,useSelector} from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
+import {createTimestamp} from '../functions/createTimestamp'
 //import { IncrementClick, RemoveClick, ToggleSelection } from '../likes'
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
@@ -24,6 +25,7 @@ export const Feed = (props) => {
     text: "",
     isActive: false
   }
+
   const [state, setState] = useState(initialState);
   
   const handleChange = (event) => {
@@ -37,7 +39,6 @@ export const Feed = (props) => {
 
 const handleScroll = (event) =>
    {
-     
      const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
      if(clientHeight + scrollTop >= scrollHeight-30)
      {
@@ -59,7 +60,7 @@ return (
       onChange={handleChange}
       />
       <button type="submit" >
-      send
+        send
       </button>
   </form>
   <br/>
@@ -80,7 +81,6 @@ return (
   ))}
   </div>
   </React.Fragment>
-
 );
 
 

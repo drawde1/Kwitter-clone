@@ -13,8 +13,7 @@ export const LoginForm = ({ login }) => {
 
   const dispatch = useDispatch();
 
-  const INITIALSTATE =
-  {
+  const INITIALSTATE = {
     username: '',
     displayName: '',
     password: '',
@@ -59,7 +58,7 @@ export const LoginForm = ({ login }) => {
   return (
     <React.Fragment>
     <div id="login">
-
+    <div id="spaceleft"></div>
       <div id="logform">
       <form id="login-form" onSubmit={handleLogin}>
         <label htmlFor="username">Username</label>
@@ -79,12 +78,14 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleChange}
         />
+        <div>
         <button type="submit" disabled={loading}>
           Login
         </button>
+        </div>
       </form>
     </div>
-    </div>
+    <div id="divspace"></div>
     <div id="regform">
       <form id="register-form" onSubmit={handleRegister}>
         <label htmlFor="username">Username</label>
@@ -113,12 +114,14 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleRegChange}
         />
-        
+        <div>
         <button type="submit" disabled={loading}>
-          Login
+          Register
         </button>
+        </div>
         </form>
         </div> 
+        </div>
           {/* <form id="login-form" onSubmit={handleLogin}>
           <div>
             <h2><label htmlFor="username">Username</label></h2>
