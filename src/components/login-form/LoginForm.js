@@ -181,6 +181,13 @@ export const LoginForm = ({ login }) => {
           </form>
       </div> */}
       {loading && <Loader />}
+      {/* <div class="ui success manager">
+          <i class="close icon"></i>
+          <div class="header">
+            Your registration was successful.
+          </div>
+          <p>You may now log-in with the username you have chosen</p>
+        </div> */}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </React.Fragment>
   );

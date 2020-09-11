@@ -5,9 +5,9 @@ export const UPDATE_PICTURE = "UPDATE_PICTURE";
 export const NO_PICTURE = "NO_PICTURE"
 
 
-export const getPicture = (credentials) => async (dispatch, getState) => {
+export const getPicture = (username) => async (dispatch, getState) => {
     try {
-        const payload = await api.addPicture(credentials);
+        const payload = await api.getPictures(username);
         console.log(payload)
             return {
                 type: ADD_PICTURE, payload

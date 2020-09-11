@@ -15,32 +15,29 @@ import { restInfiniteScroll } from "../../redux/actions/infiniteScroll";
 import { getMessageListByUser } from "../../redux/actions";
 import "./scrollbox.css";
 import { deleteUser } from "../../redux/actions/user";
+
 export const Profile = () => {
-  const INITIALSTATE = {
-    // username: "",
-    displayName: "",
-    about: "",
-    password: "",
-  };
-  const [state, setState] = useState({ INITIALSTATE });
   const {
     username,
+    name,
+    bio,
+    count,
     userPicture,
     userInfo,
     messageList,
-    bio,
-    name,
     msgListParams,
   } = useSelector(state => ({
     username: state.auth.username,
     userPicture: state.getUser.pictureLocation,
     userInfo: state.getUser,
+    messageList: state.getMessageList.messages,
     name: state.getUser.displayName,
     bio: state.getUser.about,
+    count: state.getMessageList.count,
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }));
-  console.log(state);
+
   const dispatch = useDispatch();
   const picture = useRef(null);
   // const msgListParams =
@@ -48,6 +45,7 @@ export const Profile = () => {
   //   limit: 10,
   //   offset: 0
   // }
+
   useEffect(() => {
     dispatch(getMessageListByUser(msgListParams, username));
   }, []);
@@ -58,29 +56,56 @@ export const Profile = () => {
     dispatch(restInfiniteScroll(10));
   }, []);
   // const handleGetUser = (username) =>
+  // restInfiniteScroll
+
   const addPic = async event => {
     event.preventDefault();
+
     const picdata = new FormData(picture.current);
     const results = await Api.addPicture(username, picdata);
     dispatch(getUserInfo(username));
   };
+
   const deleteTheUser = () => {
     dispatch(deleteUser(username));
     console.log("??");
-    dispatch(dispatch(actions.logout()));
+    // dispatch(dispatch(actions.logout()))
   };
+
   useEffect(() => {
     dispatch(getMessageListByUser(msgListParams, username));
   }, []);
-  const handleUpdate = event => {
-    event.preventDefault();
-    dispatch(updateuser({ ...state, username }));
-  };
-  const handleChange = event => {
-    const inputName = event.target.name;
-    const inputValue = event.target.value;
-    setState(prevState => ({ ...prevState, [inputName]: inputValue }));
-  };
+
+  // export const Picture = () => {
+
+  //   const { username,userPicture,userInfo,messageList } = useSelector((state)=>
+  //   ({
+  //     username: state.auth.username,
+  //     userPicture: state.getUser.pictureLocation,
+  //     userInfo:  state.getUser,
+  //     messageList: state.getMessageList.messages,
+  //   }))
+
+  //   const dispatch = useDispatch();
+  //   const picture = useRef(null);
+
+  //   const handleGetUser = (username) =>
+  //   {
+  //     dispatch(getUserInfo(username))
+  //     console.log(userInfo)
+  //   }
+  // //    handleGetUser()
+  // //   useEffect(handleGetUser(username))
+
+  //   const addPic = async (event) => {
+  //     event.preventDefault();
+  //     //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
+  //     //dispatch(getPicture(state))
+  //     const picdata = new FormData (picture.current)
+  //     const results = await Api.addPicture( username, picdata )
+  //     dispatch(getUserInfo(username))
+  //   };
+
   const setPic = async event => {
     event.preventDefault();
     //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
@@ -98,74 +123,54 @@ export const Profile = () => {
     if (clientHeight + scrollTop >= scrollHeight) {
       console.log("end");
       dispatch(infiniteScroll(5));
+
       dispatch(getMessageListByUser(msgListParams, username));
     }
   };
+
   return (
     <React.Fragment>
       <h1>Profile Page</h1>
-      <img
-        src={"https://kwitter-api.herokuapp.com" + userPicture}
-        width='200'
-        height='200'
-      />
-      <form ref={picture} onSubmit={addPic}>
-        <input type='file' name='picture'></input>
-        <button type='submit'>upload picture</button>
+      <div class='ui card'>
+        <div class='image'>
+          <img
+            src={"https://kwitter-api.herokuapp.com" + userPicture}
+            width='200'
+            height='200'
+          />
+        </div>
+
+        {/* <form ref={picture} onSubmit = {addPic}>
+       <input type="file" name="picture">
+        </input>
+        <button type="submit">upload picture</button> 
       </form>
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
-      <form id='update-form' onSubmit={handleUpdate}>
-        <div>Current Name: {name}</div>
-        <label htmlFor='displayName'>New Name:</label>
-        <input
-          type='text'
-          name='displayName'
-          value={state.displayName}
-          autoFocus
-          required
-          onChange={handleChange}
-        />
-        <br />
-        <div>Current Password: {}</div>
-        <label htmlFor='password'>New Password:</label>
-        <input
-          type='text'
-          name='password'
-          value={state.password}
-          autoFocus
-          required
-          onChange={handleChange}
-        />
-        <br />
-        <div>Current Bio: {bio}</div>
-        <label htmlFor='about'>New Bio:</label>
-        <input
-          type='text'
-          name='about'
-          value={state.about}
-          autoFocus
-          required
-          onChange={handleChange}
-        />
-        <br />
-        <button
-          onClick={() =>
-            updateuser(state.displayName, state.password, state.about, username)
-          }
-          type='submit'
-        >
-          Update Profile
-        </button>
-        <button type='submit'>Update Info</button>
-      </form>
-      <div>{state.displayName}</div>
-      <div>{state.password}</div>
-      <div>{state.bio}</div>
-      <div>{userPicture}</div>
-      <h2>your messages</h2>
-      {/* {console.log("State.action")} */}
+        {/* {console.log("State.action")} */}
+
+        <div class='content'>
+          <a class='header'>{name}</a>
+          <div class='meta'>
+            <span class='date'>SE April 2020</span>
+          </div>
+          <div class='description'>{bio}</div>
+        </div>
+        <div class='extra content'>
+          <a>
+            <i class='envelope icon'></i>
+            {count}
+          </a>
+          <button
+            class='ui right floated button'
+            onClick={() => deleteTheUser()}
+          >
+            Delete Account
+          </button>
+        </div>
+      </div>
+
       {/* {console.log(state.formData)} */}
-      <button onClick={() => deleteTheUser()}>delete Account</button>
+      {/* <button onClick ={() => deleteTheUser()}>delete Account</button> */}
       {/* <label htmlFor="username">Username</label> */}
       <h2>your messages</h2>
       <div className='scrollBox' onScroll={handleScroll}>
@@ -177,6 +182,7 @@ export const Profile = () => {
             key={message.id}
             likes={message.likes}
             createdAt={message.createdAt}
+            profile={true}
           />
         ))}
       </div>
