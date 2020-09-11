@@ -6,45 +6,21 @@ import {createTimestamp} from '../functions/createTimestamp'
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
-import './scrollBox.css'
+import './Message.css'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
+
 
 export const Feed = (props) => {
  
-    // const { loading, error } = useSelector((state) => ({
-    //     loading: state.auth.loading,
-    //     error: state.auth.error,
-    //   }));
-
-    // id: 0,
-    // text:'',
-    // username: '',
-    // createdAT:'', 
-    // likes:[],
-    // loading: false,
-    // error: ''
-  const dispatch = useDispatch();
-
-  useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
-
-  const {messageList,loadingMessage,loadingList,msgListParams} = useSelector((state)=>({
-      messageList: state.getMessageList.messages,
-      loadingMessage: state.addMsg.loading,
-      loadingList: state.getMessageList.loading,
-      msgListParams: state.infiniteScroll,
-  })) 
+    const dispatch = useDispatch();
+    useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
+    useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
+    const {messageList,loadingList,msgListParams} = useSelector((state)=>({
+        msgListParams: state.infiniteScroll,
+        messageList: state.getMessageList.messages,
+        loadingList: state.getMessageList.loading
+    })) 
     
-  msgListParams =
-  {
-    limit: 10,
-    offset: 0
-  }
-  
-  // const msgListParams =
-  // {
-  //   limit: 10,
-  //   offset: 0
-  // }
   const initialState = {
     text: "",
     isActive: false
@@ -64,34 +40,31 @@ export const Feed = (props) => {
 //innerHeight = visable window
 //scrollHeight = the length of the entire page
 const handleChange = (event) => {
- //console.log(state)
   let inputValue = event.target.value;
   setState((prevState) => ({ ...prevState, text: inputValue }));
 };
+
 const postMessage = (event) => {
   event.preventDefault();
-  //console.log(state)
   dispatch(addMessage(state,msgListParams));
   dispatch(addMessage(state));
 };
+  
+
 
 const handleScroll = (event) =>
    {
      const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
-     // console.log('scrollHeight',scrollHeight)
-     // console.log('clientHeight',clientHeight)
-     // console.log('scrollTop',scrollTop)
      if(clientHeight + scrollTop >= scrollHeight-30)
      {
        console.log('end')
        dispatch(infiniteScroll(5))
-       
        dispatch(getMessageList(msgListParams))
      }
    }
 return (
   <React.Fragment>
-    <form id="login-form" onSubmit={postMessage}>
+  <form id="feed" onSubmit={postMessage}>
       <label htmlFor="msg"></label>
       <input
       type="text"
@@ -104,24 +77,24 @@ return (
       <button type="submit" >
         send
       </button>
-      <div></div>
-    </form>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <div className= 'scrollBox' onScroll ={handleScroll}>
-    {messageList.map((message) => (
-      <Message text={message.text} 
-      username={message.username}
-      msgId ={message.id}
-      key = {message.id} 
-      likes = {message.likes}
-      createdAt ={message.createdAt}
-      userPhoto = {message.pictureLocation}
-      />
-    ))}
-    </div>
+  </form>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+    {loadingList && <Loader/>}
+  <div className= 'scrollBox' onScroll ={handleScroll}>
+  {messageList.map((message) => (
+          <Message text={message.text} 
+          username={message.username}
+          msgId ={message.id}
+          key = {message.id} 
+          likes = {message.likes}
+          createdAt ={message.createdAt}
+          userPhoto = {message.pictureLocation}
+          />
+  ))}
+  </div>
   </React.Fragment>
 );
 

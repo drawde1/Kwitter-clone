@@ -58,7 +58,8 @@ export const LoginForm = ({ login }) => {
   return (
     <React.Fragment>
     <div id="login">
-      <div id="logform">
+      <div id="spaceleft"></div>
+        <div id="logform">
         <form id="login-form" onSubmit={handleLogin}>
           <label htmlFor="username">Username</label>
           <input
@@ -77,47 +78,50 @@ export const LoginForm = ({ login }) => {
             required
             onChange={handleChange}
           />
+          <div>
           <button type="submit" disabled={loading}>
             Login
           </button>
+          </div>
         </form>
       </div>
+      <div id="divspace"></div>
+      <div id="regform">
+        <form id="register-form" onSubmit={handleRegister}>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            value={registerState.username}
+            autoFocus
+            required
+            onChange={handleRegChange}
+          />
+          <label htmlFor="displayName">Name</label>
+          <input
+            type="text"
+            name="displayName"
+            value={registerState.displayName}
+            autoFocus
+            required
+            onChange={handleRegChange}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            value={registerState.password}
+            required
+            onChange={handleRegChange}
+          />
+          <div>
+          <button type="submit" disabled={loading}>
+            Register
+          </button>
+          </div>
+        </form>
+      </div> 
     </div>
-    
-    <div id="regform">
-      <form id="register-form" onSubmit={handleRegister}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          value={registerState.username}
-          autoFocus
-          required
-          onChange={handleRegChange}
-        />
-        <label htmlFor="displayName">Name</label>
-        <input
-          type="text"
-          name="displayName"
-          value={registerState.displayName}
-          autoFocus
-          required
-          onChange={handleRegChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={registerState.password}
-          required
-          onChange={handleRegChange}
-        />
-        
-        <button type="submit" disabled={loading}>
-          Login
-        </button>
-      </form>
-    </div> 
           {/* <form id="login-form" onSubmit={handleLogin}>
           <div>
             <h2><label htmlFor="username">Username</label></h2>
