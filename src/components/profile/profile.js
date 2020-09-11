@@ -66,7 +66,6 @@ export const Profile = () => {
   
   const deleteTheUser = () => {
     dispatch(deleteUser(username));
-    console.log('??')
   };
  
   
@@ -98,6 +97,7 @@ export const Profile = () => {
 
   const handleScroll = (event) =>
   {
+      
     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
      // console.log('scrollHeight',scrollHeight)
      // console.log('clientHeight',clientHeight)
