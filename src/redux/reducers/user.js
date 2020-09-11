@@ -1,9 +1,12 @@
 import {
   ADD_USER,
-  FAILURE,
-  LOAD,
+  ADD_USER_FAIL,
+  ADD_USER_LOAD,
   DELETE_USER,
-  DELETE_MESSAGE,
+  DELETE_USER_FAIL,
+  DELETE_USER_LOAD,
+
+ 
 } from "../actions";
 
 const INITIAL_STATE = {
@@ -16,11 +19,16 @@ const INITIAL_STATE = {
 
 export const defaultUserReducer = (state = { ...INITIAL_STATE }, action) => {
   switch (action.type) {
-    case LOAD:
+    case ADD_USER_LOAD:
       return {
         ...INITIAL_STATE,
         loading: true,
       };
+      case DELETE_USER_LOAD:
+        return {
+          ...INITIAL_STATE,
+          loading: true,
+        };
     case ADD_USER:
       const { username, displayname } = action.payload.user;
       return {
@@ -35,7 +43,13 @@ export const defaultUserReducer = (state = { ...INITIAL_STATE }, action) => {
           deletedMsg: action.payload,
         };
         
-    case FAILURE:
+    case ADD_USER_FAIL:
+      return {
+        ...INITIAL_STATE,
+        error: action.payload,
+        loading: false,
+      };
+      case  DELETE_USER_FAIL:
       return {
         ...INITIAL_STATE,
         error: action.payload,

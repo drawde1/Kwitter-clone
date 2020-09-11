@@ -1,4 +1,5 @@
-import { UPDATE_USER, FAILURE, LOAD } from '../actions'
+import { UPDATE_USER, UPDATE_USER_FAIL, UPDATE_USER_LOAD } from '../actions'
+
 
 const INITIAL_STATE = {
     password: "",
@@ -10,7 +11,7 @@ const INITIAL_STATE = {
 
 export const updateUserReducer = (state = { ...INITIAL_STATE }, action) => {
     switch (action.type) {
-      case LOAD:
+      case UPDATE_USER_LOAD:
         return {
           ...INITIAL_STATE,
           loading: true,
@@ -24,7 +25,7 @@ export const updateUserReducer = (state = { ...INITIAL_STATE }, action) => {
           displayname,
           loading: false,
         };
-      case FAILURE:
+      case UPDATE_USER_FAIL:
         return {
           ...INITIAL_STATE,
           error: action.payload,

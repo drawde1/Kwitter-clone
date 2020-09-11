@@ -11,7 +11,7 @@ import {
 import actions from "redux-form/lib/actions";
 import { likes } from "../../redux/actions/messages";
 import {userPicture} from '../../components/profile/profile'
-
+import {profileDeleteMessage} from '../../redux/actions/messages'
 export const Message = props => {
   //TODO: handle delete message
   //TODO: handle likes add & delete
@@ -47,8 +47,14 @@ export const Message = props => {
     //     offset: 0
     // }
   const handleDelete = () => {
-    console.log(props.messageId);
-    dispatch(deleteMessage(props.msgId, messagListParams));
+    if(props.profile)
+    {
+      dispatch(profileDeleteMessage(props.msgId, messagListParams));
+    }
+    else 
+    {
+      dispatch(deleteMessage(props.msgId, messagListParams));
+    }
   };
 
   let timestamp = createTimestamp(props.createdAt);
@@ -143,7 +149,7 @@ export const Message = props => {
                 {disClick}
             </a>
         </div>
-            {username === props.username ? (
+            {username === props.username && !props.profile ? (
         <div class='ui labeled button' tabIndex='0'>
           <button
             class='ui purple button'
