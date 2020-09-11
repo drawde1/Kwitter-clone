@@ -5,7 +5,7 @@ import { addMessage, getMessageList } from "../../redux/actions/messages";
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
-import './scrollBox.css'
+import './Message.css'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 
 
