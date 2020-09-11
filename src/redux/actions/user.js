@@ -2,6 +2,8 @@ import api from '../../utils/api'
 import {actions} from'./auth'
 export const ADD_USER = 'ADD_USER'
 export const UPDATE_USER = 'UPDATE_USER'
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS'
+export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE'
 export const GET_USER = 'GET_USER'
 export const FAILURE = 'FAILURE'
 export const LOAD = 'LOAD'
@@ -72,14 +74,15 @@ export const deleteUser = (credentials) => async (dispatch, getState) => {
 };
 
 export const updateuser = credentials => async (dispatch, getState) => {
-  console.log(credentials);
+  
   try {
-    dispatch({ type: LOAD });
+    dispatch({ type: UPDATE_USER });
     const payload = await api.updateuser(credentials);
-    dispatch({ type: UPDATE_USER, payload });
+    console.log('update user action', payload);
+    dispatch({ type: UPDATE_USER_SUCCESS, payload });
   } catch (err) {
     dispatch({
-      type: FAILURE,
+      type: UPDATE_USER_FAILURE,
       payload: err.message,
     });
   }
