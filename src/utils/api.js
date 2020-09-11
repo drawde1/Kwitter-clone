@@ -198,11 +198,11 @@ class API {
   }
 
   async deleteLikes (id) {
-    //console.log(likeId)
+    console.log('from api',id)
+   
     try {
-      const result = await this.axiosInstance.delete("/likes/" + id, {
-        id,
-      });
+      
+      const result = await this.axiosInstance.delete("/likes/" + id);
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -224,12 +224,28 @@ class API {
       throw err;
     }
   }
-
+  
+  async getUserList ({limit, offset}) {
+    try {
+      const result = await this.axiosInstance.get(
+        "/users?limit="+limit+"&offset="+ offset,
+        {limit,offset}
+      
+      );
+      console.log(result);
+      return result;
+    } catch (err) {
+      console.log({ err });
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+  
   async getPictures (username) {
     try {
       const result = await this.axiosInstance.get(
          "/users/"+ username +"/picture",
-        username
+       
       );
 
       return result;
