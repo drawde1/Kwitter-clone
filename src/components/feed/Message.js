@@ -133,7 +133,6 @@ export const Message = props => {
         <button class="ui blue button" onClick={() => handleUnlike()}>
                  <i class="thumbs down icon"></i> Delete Like(s)
             </button>
-            
         </div>
         <div class="ui labeled button" tabIndex="0">
             <button class="ui red button" onClick={() => setDisClick(disClick + 1 )}>

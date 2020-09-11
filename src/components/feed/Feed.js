@@ -88,6 +88,7 @@ const handleScroll = (event) =>
    }
 return (
   <React.Fragment>
+  
   <form id="login-form" onSubmit={postMessage}>
       <label htmlFor="msg"></label>
       <input
@@ -103,14 +104,9 @@ return (
       send
       </button>
       <div>
-      
       </div>
-      
   </form>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
+  <div class="ui divider"></div>
   <div className= 'scrollBox' onScroll ={handleScroll}>
   {messageList.map((message) => (
           <Message text={message.text} 
