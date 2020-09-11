@@ -1,4 +1,4 @@
-import {GET_USER, FAILURE, LOAD} from '../actions'
+import {GET_USER,  GET_USER_FAIL, GET_USER_LOAD} from '../actions'
 
 const INITIAL_STATE = {
     pictureLocation: "",
@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 
 export const getUserReducer = (state = { ...INITIAL_STATE }, action) => {
     switch (action.type) {
-      case LOAD:
+      case GET_USER_LOAD:
         return {
           ...INITIAL_STATE,
           loading: true,
@@ -32,7 +32,7 @@ export const getUserReducer = (state = { ...INITIAL_STATE }, action) => {
           loading: false,
           
         };
-      case FAILURE:
+      case GET_USER_FAIL:
         return {
           ...INITIAL_STATE,
           error: action.payload,

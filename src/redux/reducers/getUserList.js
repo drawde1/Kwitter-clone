@@ -1,5 +1,5 @@
  
-import {GET_USER_LIST,LOAD,FAILURE} from '../actions'
+import {GET_USER_LIST,GET_USER_LIST_LOAD,GET_USER_LIST_FAIL} from '../actions'
 
 const INITIAL_STATE = {
   
@@ -12,7 +12,7 @@ const INITIAL_STATE = {
  export const getUserListReducer = (state = {...INITIAL_STATE},action) =>
  {
      switch (action.type) {
-        case LOAD:
+        case GET_USER_LIST_LOAD:
             return {
               ...INITIAL_STATE,
               laoding: true
@@ -23,7 +23,7 @@ const INITIAL_STATE = {
              ...INITIAL_STATE,
              users: users
            };
-           case FAILURE:
+           case GET_USER_LIST_FAIL:
                return{
                  ...INITIAL_STATE,
                  error: action.payload
