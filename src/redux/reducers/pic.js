@@ -1,21 +1,25 @@
 // TODO: implement
-import {ADD_PICTURE, UPDATE_PICTURE, NO_PICTURE} from '../actions/photos'
+import {LOAD_PICTURE, GET_PICTURE, FAIL_PICTURE} from '../actions/photos'
 
 const INITIAL_STATE = {
     error: "",
+    loading: false,
+    
   };
 
 export const picReducer = (state = { ...INITIAL_STATE }, action) => {
     switch (action.type) {
-      case ADD_PICTURE:
+      case LOAD_PICTURE:
         return {
-          ...INITIAL_STATE, 
+          ...INITIAL_STATE,
+          loading: true, 
         };
-        case UPDATE_PICTURE:
+        case GET_PICTURE:
         return {
-          ...INITIAL_STATE, 
+          ...INITIAL_STATE,
+          photo: action.payload, 
         };
-        case NO_PICTURE:
+        case FAIL_PICTURE:
             return {
               ...INITIAL_STATE, error: action.payload
         };
