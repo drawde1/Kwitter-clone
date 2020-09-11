@@ -14,11 +14,12 @@ export const Feed = (props) => {
  
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(getMessageList({limit:10, offset:0}))},[])
+    
     useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
-    const {messageList,loadingList,msgListParams} = useSelector((state)=>({
+    const {messageList,loadingList,msgListParams,} = useSelector((state)=>({
         msgListParams: state.infiniteScroll,
         messageList: state.getMessageList.messages,
-        loadingList: state.getMessageList.loading
+        loadingList: state.getMessageList.loading,
     })) 
     
   const initialState = {
@@ -43,13 +44,8 @@ const handleScroll = (event) =>
    {
      
      const{scrollHeight,clientHeight,scrollTop} = event.currentTarget
-     console.log('scrollH',scrollHeight)
-     console.log('clientH',clientHeight)
-     console.log('scrollTop',scrollTop)
      if(clientHeight + scrollTop >= scrollHeight-30)
      {
-       
-       console.log('end')
        dispatch(infiniteScroll(10))
        dispatch(getMessageList(msgListParams))
        
@@ -85,6 +81,7 @@ return (
           likes = {message.likes}
           createdAt ={message.createdAt}
           userPhoto = {message.pictureLocation}
+         
           />
   ))}
   </div>

@@ -44,7 +44,7 @@ export const Profile = () => {
     userInfo:  state.getUser,
     name: state.getUser.displayName,
     bio: state.getUser.about,
-    count: state.getMessageList.count,
+    count: state.getMessageListByUser.count,
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }))
@@ -102,11 +102,12 @@ export const Profile = () => {
      // console.log('scrollHeight',scrollHeight)
      // console.log('clientHeight',clientHeight)
      // console.log('scrollTop',scrollTop)
-    if(clientHeight + scrollTop >= scrollHeight)
+     
+    if(clientHeight + scrollTop >= scrollHeight && msgListParams.offset < count)
     {
       console.log('end')
       dispatch(infiniteScroll(5))
-      
+      console.log('count',count,'offset',msgListParams.offset)
       dispatch(getMessageListByUser(msgListParams,username))
     }
   }
