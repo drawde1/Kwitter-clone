@@ -76,7 +76,7 @@ export const deleteUser = (credentials) => async (dispatch, getState) => {
   .then(() => {return dispatch(actions.logout())})
 };
 
-export const updateuser = credentials => async (dispatch, getState) => {
+export const _updateuser = credentials => async (dispatch, getState) => {
   
   try {
     dispatch({ type:UPDATE_USER_LOAD});
@@ -89,6 +89,10 @@ export const updateuser = credentials => async (dispatch, getState) => {
       payload: err.message,
     });
   }
+};
+export const updateuser = (credentials) => async (dispatch, getState) => {
+  return dispatch(_updateuser(credentials))
+  .then(() => {return dispatch(getUserInfo(credentials.username))})
 };
 
 // export const updateuser = credentials => async (dispatch, getState) => {
