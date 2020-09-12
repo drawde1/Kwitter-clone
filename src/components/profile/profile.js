@@ -146,7 +146,7 @@ export const Profile = () => {
           <div class="image">
             <img 
           src = {userPicture?"https://kwitter-api.herokuapp.com" + userPicture:'/kwitter-user.png'}
-          width="200" 
+          // width="200" 
           height="200"/>
         </div>
        

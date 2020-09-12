@@ -32,21 +32,21 @@ export const Menu = () => {
           </div>
         </div>
         <div class="item">
-          <img src={"https://kwitter-api.herokuapp.com/users/shanquetta/picture"} class="ui mini circular image" />
+          <img class="ui mini circular image" src={"https://kwitter-api.herokuapp.com/users/Elijah/picture"} />
           <div class="content">
             <div class="ui sub header">Elijah Camara</div>
             QA
           </div>
         </div>
         <div class="item">
-          <img src={"https://kwitter-api.herokuapp.com/users/tawright31/picture"} class="ui mini circular image" />
+          <img class="ui mini circular image" src={"https://kwitter-api.herokuapp.com/users/tawright31/picture"} />
           <div class="content">
             <div class="ui sub header">Tuan Wright</div>
             Developer
           </div>
         </div>
         <div class="item">
-          <img src={"https://kwitter-api.herokuapp.com/users/tester5/picture"} class="ui mini circular image" />
+          <img class="ui mini circular image" src={"https://kwitter-api.herokuapp.com/users/tester5/picture"} />
           <div class="content">
             <div class="ui sub header">Charles Campbell</div>
             Developer
