@@ -44,6 +44,7 @@ export const Profile = () => {
     userInfo:  state.getUser,
     name: state.getUser.displayName,
     bio: state.getUser.about,
+    count: state.getMessageListByUser.count,
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }))
@@ -51,9 +52,9 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const picture = useRef(null);
 
-  useEffect(()=>{dispatch(getMessageListByUser(msgListParams,startingUsername))},[])
+  useEffect(()=>{dispatch(getMessageListByUser({limit:10, offset:0},startingUsername))},[])
   useEffect(()=>{dispatch(getUserInfo(startingUsername))},[])
-  useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
+  useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
 
   const addPic = async (event) => {
     event.preventDefault();
@@ -101,11 +102,12 @@ export const Profile = () => {
      // console.log('scrollHeight',scrollHeight)
      // console.log('clientHeight',clientHeight)
      // console.log('scrollTop',scrollTop)
-    if(clientHeight + scrollTop >= scrollHeight)
+     
+    if(clientHeight + scrollTop >= scrollHeight && msgListParams.offset < count)
     {
       console.log('end')
       dispatch(infiniteScroll(5))
-      
+      console.log('count',count,'offset',msgListParams.offset)
       dispatch(getMessageListByUser(msgListParams,username))
     }
   }
@@ -201,6 +203,12 @@ export const Profile = () => {
           Update Profile
           </button> 
         </form>
+<<<<<<< HEAD
+=======
+        {/* <div>{state.displayName}</div>
+        <div>{state.password}</div>
+        <div>{state.bio}</div> */}
+>>>>>>> 8f0df7e4b766290ccc9182b23368185a7fa12565
         
       <div>
         <h2>Your Messages</h2>
@@ -212,6 +220,7 @@ export const Profile = () => {
                   key = {message.id} 
                   likes = {message.likes}
                   createdAt ={message.createdAt}
+                  profile ={true}
                   />
                   ))}
         </div>

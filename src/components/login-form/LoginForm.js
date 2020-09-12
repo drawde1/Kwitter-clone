@@ -37,7 +37,9 @@ export const LoginForm = ({ login }) => {
 
   const handleRegister = (event) => { 
     event.preventDefault();
+    
     dispatch(user(registerState));
+    console.log(registerState)
   };
 
   

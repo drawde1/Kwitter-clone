@@ -13,12 +13,13 @@ import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 export const Feed = (props) => {
  
     const dispatch = useDispatch();
-    useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
-    useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
-    const {messageList,loadingList,msgListParams} = useSelector((state)=>({
+    useEffect(()=>{dispatch(getMessageList({limit:10, offset:0}))},[])
+    
+    useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
+    const {messageList,loadingList,msgListParams,} = useSelector((state)=>({
         msgListParams: state.infiniteScroll,
         messageList: state.getMessageList.messages,
-        loadingList: state.getMessageList.loading
+        loadingList: state.getMessageList.loading,
     })) 
     
   const initialState = {
@@ -34,17 +35,20 @@ export const Feed = (props) => {
   };
   const postMessage = (event) => {
     event.preventDefault();
+    
     dispatch(addMessage(state,msgListParams));
+    
   };
 
 const handleScroll = (event) =>
    {
-     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
+     
+     const{scrollHeight,clientHeight,scrollTop} = event.currentTarget
      if(clientHeight + scrollTop >= scrollHeight-30)
      {
-       console.log('end')
-       dispatch(infiniteScroll(5))
+       dispatch(infiniteScroll(10))
        dispatch(getMessageList(msgListParams))
+       
      }
    } 
 return (
@@ -77,6 +81,7 @@ return (
           likes = {message.likes}
           createdAt ={message.createdAt}
           userPhoto = {message.pictureLocation}
+         
           />
   ))}
   </div>
