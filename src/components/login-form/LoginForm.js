@@ -83,9 +83,11 @@ export const LoginForm = ({ login }) => {
           onChange={handleChange}
         />
         <div>
+        <div id ="submit2">
         <button type="submit" disabled={loading}>
           Login
         </button>
+        </div>
         </div>
       </form>
       </div>
@@ -121,7 +123,7 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleRegChange}
         />
-        <div>
+        <div id ="submit1">
         <button type="submit" disabled={loading}>
           Register
         </button>
