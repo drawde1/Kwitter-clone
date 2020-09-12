@@ -131,6 +131,7 @@ export const LoginForm = ({ login }) => {
         </form>
         </div>
         </div> 
+        <div id="spaceright"></div>
         </div>
           {/* <form id="login-form" onSubmit={handleLogin}>
           <div>
