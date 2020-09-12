@@ -24,7 +24,7 @@ export const Profile = () => {
   };
 
   const [state, setState] = useState(INITIALSTATE);
-
+  const [isToggled, setToggle] = useState({isToggled:false});
   const {
     username,
     startingUsername,
@@ -36,7 +36,11 @@ export const Profile = () => {
     testPicture,
     count,
     userInfo,
+    loadingUserInfo,
+    loadingMsg,
   } = useSelector(state => ({
+    loadingUserInfo:state.getUser.loading,
+    loadingMsg: state.getMessageListByUser.loading,
     startingUsername: state.auth.username,
     testPicture: state.pic.photo,
     username: state.getUser.username,
@@ -48,7 +52,7 @@ export const Profile = () => {
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }))
-  console.log(state)
+  
   const dispatch = useDispatch();
   const picture = useRef(null);
 
@@ -58,15 +62,14 @@ export const Profile = () => {
 
   const addPic = async (event) => {
     event.preventDefault();
-    const picdata = new FormData (picture.current)
-    const results = await Api.addPicture( username, picdata )
-    dispatch(getUserInfo(username))
+    const picdata = new FormData (picture.current);
+    const results = await Api.addPicture( username, picdata );
+    dispatch(getUserInfo(username));
   };
 
   
   const deleteTheUser = () => {
     dispatch(deleteUser(username));
-    console.log('??')
   };
  
   
@@ -74,10 +77,12 @@ export const Profile = () => {
     dispatch(getMessageListByUser(msgListParams,username))
   
   },[])
-
+  
   const handleUpdate = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     dispatch(updateuser({...state,username}));
+    setToggle((prevState)=> ({...prevState,isToggled:false}))
+    
   }
 
   const handleChange = (event) => {
@@ -86,56 +91,39 @@ export const Profile = () => {
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
 
-  const setPic = async (event) => {
-    event.preventDefault();
-    //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-    //dispatch(setPicture(state))
-    const picdata = new FormData (picture.current)
-    const results = await Api.getPictures( username, picdata )
-    console.log(picdata)
-    console.log(results)
-  };
+  
 
   const handleScroll = (event) =>
   {
+      
     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
-     // console.log('scrollHeight',scrollHeight)
-     // console.log('clientHeight',clientHeight)
-     // console.log('scrollTop',scrollTop)
-     
     if(clientHeight + scrollTop >= scrollHeight && msgListParams.offset < count)
     {
-      console.log('end')
+      
       dispatch(infiniteScroll(5))
-      console.log('count',count,'offset',msgListParams.offset)
+      
       dispatch(getMessageListByUser(msgListParams,username))
     }
   }
-
-  // setPic = async event => {
-  //   event.preventDefault();
-  //   const picdata = new FormData(picture.current);
-  //   const results = await Api.getPictures(username, picdata);
-  // };
-
-  // handleScroll = event => {
-  //   const { scrollHeight, clientHeight, scrollTop } = event.currentTarget;
-  //   if (clientHeight + scrollTop >= scrollHeight) {
-  //     dispatch(infiniteScroll(5));
-  //     dispatch(getMessageListByUser(msgListParams, username));
-  //   }
-  // };
-
-  const test = () =>
-  {
-    dispatch(getPicture(username))
-    console.log(testPicture)
-  }
   
+   const handleToggle = () =>
+   {
+        setToggle((prevState)=> ({...prevState,isToggled:true}))
+        setState((prevState)=> ({...prevState,INITIALSTATE}))
+   }
+ 
+
 
   
   return (
     <React.Fragment>
+      <h1>Profile Page</h1>
+
+     {/* <button onClick= {test}>test</button> */}
+      
+ 
+        <h1>Profile Page</h1>
+        {loadingUserInfo && <Loader/>}
         <div class="ui card">
           <div class="image">
             <img 
@@ -161,10 +149,13 @@ export const Profile = () => {
             <button class="ui right floated button" onClick ={() => deleteTheUser()}>Delete Account</button>
       </div>
       </div>
+      <button onClick = {handleToggle}className={isToggled.isToggled?"hidden":"show"}>edit profile</button>
+      <div className ={!isToggled.isToggled?"hidden":"show"}>
       <form ref={picture} onSubmit={addPic}>
         <input type='file' name='picture'></input>
         <button type='submit'>Upload My Picture</button>
       </form>
+      
       <form id="update-form" onSubmit={handleUpdate}>
           <div>Current Name: {name}</div>
           <label htmlFor="displayName">New Name:</label>
@@ -203,7 +194,7 @@ export const Profile = () => {
           Update Profile
           </button> 
         </form>
-        
+        </div>
       <div>
         <h2>Your Messages</h2>
         <div className= 'scrollBox' onScroll ={handleScroll}>

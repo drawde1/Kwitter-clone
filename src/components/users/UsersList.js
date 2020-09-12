@@ -5,15 +5,16 @@ import { User } from "./User";
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
 import './user.css'
-
+import {Loader} from '../loader/Loader'
 export const  UsersList = () =>
 {
     const dispatch = useDispatch()
     useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
     useEffect(()=>{dispatch(getUserList({limit:10, offset:0}))},[])
-    const {userList,userListParams} = useSelector((state)=>({
+    const {userList,userListParams,userListLoader} = useSelector((state)=>({
         userList: state.userList.users,
         userListParams: state.infiniteScroll,
+        userListLoader: state.userList.loading,
     }))
     
     
@@ -30,6 +31,7 @@ export const  UsersList = () =>
     console.log(userList)
     return(
         <>
+        {userListLoader && <Loader/>}
           <div className= 'scrollBox' onScroll ={handleScroll}>
             {userList.map((user) => (
           <User pictureLocation={user.pictureLocation} 
@@ -40,6 +42,7 @@ export const  UsersList = () =>
           createdAt ={user.createdAt}
           about = {user.about}
           />
+
             ))}
         </div>
         </>

@@ -15,7 +15,7 @@ const INITIAL_STATE = {
         case GET_USER_LIST_LOAD:
             return {
               ...INITIAL_STATE,
-              laoding: true
+              loading: true
             };
          case GET_USER_LIST:
              const {users}  = action.payload

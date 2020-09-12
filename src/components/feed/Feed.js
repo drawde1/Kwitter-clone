@@ -16,27 +16,30 @@ export const Feed = (props) => {
     useEffect(()=>{dispatch(getMessageList({limit:10, offset:0}))},[])
     
     useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
-    const {messageList,loadingList,msgListParams,} = useSelector((state)=>({
+    const {messageList,loadingList,msgListParams,count,} = useSelector((state)=>({
         msgListParams: state.infiniteScroll,
         messageList: state.getMessageList.messages,
         loadingList: state.getMessageList.loading,
+        count: state.getMessageList.count
     })) 
     
   const initialState = {
     text: "",
-    isActive: false
+   
   }
 
   const [state, setState] = useState(initialState);
-  
+  // setState((prevState) => ({ ...prevState, text: "" }))
   const handleChange = (event) => {
     let inputValue = event.target.value;
     setState((prevState) => ({ ...prevState, text: inputValue }));
   };
   const postMessage = (event) => {
-    event.preventDefault();
     
+    event.preventDefault();
+    console.log(state)
     dispatch(addMessage(state,msgListParams));
+    setState((prevState) => ({ ...prevState, text: "" }))
     
   };
 
@@ -44,7 +47,7 @@ const handleScroll = (event) =>
    {
      
      const{scrollHeight,clientHeight,scrollTop} = event.currentTarget
-     if(clientHeight + scrollTop >= scrollHeight-30)
+     if(clientHeight + scrollTop >= scrollHeight-30 && msgListParams.offset < count)
      {
        dispatch(infiniteScroll(10))
        dispatch(getMessageList(msgListParams))
