@@ -12,7 +12,7 @@ import {Message} from '../feed/Message'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
 import {getMessageListByUser} from '../../redux/actions'
-
+import 'semantic-ui-css/semantic.min.css'
 import {deleteUser} from '../../redux/actions/user'
 
 
@@ -85,31 +85,6 @@ export const Profile = () => {
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
 
-  const setPic = async (event) => {
-    event.preventDefault();
-    //setState((prevState) => ({ ...prevState, formData: new FormData (picture)}));
-    //dispatch(setPicture(state))
-    const picdata = new FormData (picture.current)
-    const results = await Api.getPictures( username, picdata )
-    console.log(picdata)
-    console.log(results)
-  };
-
-  const handleScroll = (event) =>
-  {
-    const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
-     // console.log('scrollHeight',scrollHeight)
-     // console.log('clientHeight',clientHeight)
-     // console.log('scrollTop',scrollTop)
-    if(clientHeight + scrollTop >= scrollHeight)
-    {
-      console.log('end')
-      dispatch(infiniteScroll(5))
-      
-      dispatch(getMessageListByUser(msgListParams,username))
-    }
-  }
-
   const setPic = async event => {
     event.preventDefault();
     const picdata = new FormData(picture.current);
@@ -132,12 +107,9 @@ export const Profile = () => {
   
   return (
     <React.Fragment>
-        
-        <h1>Profile Page</h1>
         <img 
         src = {"https://kwitter-api.herokuapp.com"+userPicture}
-        width="200" 
-        height="200"/>
+        height="200" />
       <form ref={picture} onSubmit = {addPic}>
        <input type="file" name="picture">
         </input>
@@ -157,7 +129,6 @@ export const Profile = () => {
               onChange={handleChange}
           />
           <br/>
-          <div>Current Password: {}</div>
           <label htmlFor="password">New Password:</label>
           <input
               type="text"
@@ -184,10 +155,7 @@ export const Profile = () => {
           </button>
           <button type="submit">Update Info</button> 
         </form>
-        <div>{state.displayName}</div>
-        <div>{state.password}</div>
-        <div>{state.bio}</div>
-        <div>{userPicture}</div>
+
         <h2>your messages</h2>
       <button onClick ={() => deleteTheUser()}>delete Account</button>
       {/* <label htmlFor="username">Username</label> */}

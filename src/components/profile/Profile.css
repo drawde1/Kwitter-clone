@@ -5,3 +5,11 @@
     overflow: hidden;
     overflow-y: scroll;
 }
+
+#update-form {
+    text-align: center;
+}
+
+label {
+    margin: 8px;
+}
