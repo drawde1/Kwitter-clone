@@ -118,7 +118,7 @@ export const Profile = () => {
       {/* <button  onClick={addPicChange}>Change Picture</button> */}
       
         <form id="update-form" onSubmit={handleUpdate}>
-          <div>Current Name: {name}</div>
+  
           <label htmlFor="displayName">New Name:</label>
           <input
               type="text"
@@ -139,7 +139,7 @@ export const Profile = () => {
               onChange={handleChange}
           />
           <br/>
-          <div>Current Bio: {bio}</div>
+          
           <label htmlFor="about">New Bio:</label>
           <input
             type="text"
@@ -152,8 +152,7 @@ export const Profile = () => {
           <br/>
           <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
           Update Profile
-          </button>
-          <button type="submit">Update Info</button> 
+          </button> 
         </form>
 
         <h2>your messages</h2>

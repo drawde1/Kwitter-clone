@@ -8,8 +8,18 @@
 
 #update-form {
     text-align: center;
+    width: 30%;
+    background-color: lightskyblue;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-beteen;
+    padding: 15px;
 }
 
 label {
-    margin: 8px;
+    display: flex;
+    flex-direction: left;
+
 }
+
