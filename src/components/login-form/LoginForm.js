@@ -37,7 +37,9 @@ export const LoginForm = ({ login }) => {
 
   const handleRegister = (event) => { 
     event.preventDefault();
+    
     dispatch(user(registerState));
+    console.log(registerState)
   };
 
   
@@ -60,7 +62,9 @@ export const LoginForm = ({ login }) => {
     <div id="login">
       <div id="spaceleft"></div>
         <div id="logform">
+        <div id="logformborder">
         <form id="login-form" onSubmit={handleLogin}>
+        <b><p id="log">Current Users</p></b>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -84,42 +88,46 @@ export const LoginForm = ({ login }) => {
           </button>
           </div>
         </form>
+        </div>
       </div>
       <div id="divspace"></div>
       <div id="regform">
-        <form id="register-form" onSubmit={handleRegister}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            value={registerState.username}
-            autoFocus
-            required
-            onChange={handleRegChange}
-          />
-          <label htmlFor="displayName">Name</label>
-          <input
-            type="text"
-            name="displayName"
-            value={registerState.displayName}
-            autoFocus
-            required
-            onChange={handleRegChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={registerState.password}
-            required
-            onChange={handleRegChange}
-          />
-          <div>
-          <button type="submit" disabled={loading}>
-            Register
-          </button>
-          </div>
-        </form>
+        <div id="regformborder">
+          <form id="register-form" onSubmit={handleRegister}>
+            <b><p id="create">Create an Account</p></b>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              value={registerState.username}
+              autoFocus
+              required
+              onChange={handleRegChange}
+            />
+            <label htmlFor="displayName">Name</label>
+            <input
+              type="text"
+              name="displayName"
+              value={registerState.displayName}
+              autoFocus
+              required
+              onChange={handleRegChange}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={registerState.password}
+              required
+              onChange={handleRegChange}
+            />
+            <div>
+              <button type="submit" disabled={loading}>
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
       </div> 
     </div>
           {/* <form id="login-form" onSubmit={handleLogin}>

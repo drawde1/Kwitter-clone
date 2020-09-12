@@ -9,8 +9,8 @@ import './user.css'
 export const  UsersList = () =>
 {
     const dispatch = useDispatch()
-    useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
-    useEffect(()=>{dispatch(getUserList(userListParams))},[])
+    useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
+    useEffect(()=>{dispatch(getUserList({limit:10, offset:0}))},[])
     const {userList,userListParams} = useSelector((state)=>({
         userList: state.userList.users,
         userListParams: state.infiniteScroll,
@@ -23,7 +23,7 @@ export const  UsersList = () =>
      const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
      if(clientHeight + scrollTop >= scrollHeight-30)
      {
-       dispatch(infiniteScroll(5))
+       dispatch(infiniteScroll(10))
        dispatch(getUserList(userListParams))
      }
    }

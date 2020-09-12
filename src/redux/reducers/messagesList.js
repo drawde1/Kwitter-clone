@@ -1,4 +1,13 @@
-import {GET_MESSAGE_LIST,DELETE_MESSAGE,LOAD,FAILURE} from '../actions'
+import {
+  GET_MESSAGE_LIST,
+  GET_MESSAGE_LIST_LOAD,
+  GET_MESSAGE_LIST_FAIL,
+  DELETE_MESSAGE,
+  DELETE_MESSAGE_LOAD,
+  DELETE_MESSAGE_FAIL,
+
+} from '../actions'
+
 
 
 const INITIAL_STATE = {
@@ -11,7 +20,12 @@ const INITIAL_STATE = {
 
 export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
     switch (action.type) {
-      case LOAD:
+      case GET_MESSAGE_LIST_LOAD:
+        return{
+          ...INITIAL_STATE,
+          loading: true,
+        }
+        case DELETE_MESSAGE_LOAD:
         return{
           ...INITIAL_STATE,
           loading: true,
@@ -41,7 +55,13 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
           loading: false,
         };
 
-      case FAILURE:
+      case GET_MESSAGE_LIST_FAIL:
+        return {
+          ...INITIAL_STATE,
+          error: action.payload,
+          loading: false,
+        };
+        case DELETE_MESSAGE_FAIL:
         return {
           ...INITIAL_STATE,
           error: action.payload,

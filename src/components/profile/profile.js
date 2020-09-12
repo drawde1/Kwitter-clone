@@ -44,6 +44,7 @@ export const Profile = () => {
     userInfo:  state.getUser,
     name: state.getUser.displayName,
     bio: state.getUser.about,
+    count: state.getMessageListByUser.count,
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }))
@@ -51,9 +52,9 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const picture = useRef(null);
 
-  useEffect(()=>{dispatch(getMessageListByUser(msgListParams,startingUsername))},[])
+  useEffect(()=>{dispatch(getMessageListByUser({limit:10, offset:0},startingUsername))},[])
   useEffect(()=>{dispatch(getUserInfo(startingUsername))},[])
-  useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
+  useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
 
   const addPic = async (event) => {
     event.preventDefault();
@@ -90,14 +91,19 @@ export const Profile = () => {
     const picdata = new FormData(picture.current);
     const results = await Api.getPictures(username, picdata);
   };
+  
 
-  const handleScroll = event => {
-    const { scrollHeight, clientHeight, scrollTop } = event.currentTarget;
-    if (clientHeight + scrollTop >= scrollHeight) {
-      dispatch(infiniteScroll(5));
-      dispatch(getMessageListByUser(msgListParams, username));
+  const handleScroll = (event) => {
+
+    const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
+     
+    if(clientHeight + scrollTop >= scrollHeight && msgListParams.offset < count) {
+      console.log('end')
+      dispatch(infiniteScroll(5))
+      console.log('count',count,'offset',msgListParams.offset)
+      dispatch(getMessageListByUser(msgListParams,username))
     }
-  };
+  }
 
   const test = () =>
   {
@@ -107,19 +113,41 @@ export const Profile = () => {
   
   return (
     <React.Fragment>
-        <img 
-        src = {"https://kwitter-api.herokuapp.com"+userPicture}
-        height="200" />
-      <form ref={picture} onSubmit = {addPic}>
-       <input type="file" name="picture">
-        </input>
-        <button type="submit">upload picture</button> 
-      </form>
-      {/* <button  onClick={addPicChange}>Change Picture</button> */}
-      
-        <form id="update-form" onSubmit={handleUpdate}>
-  
-          <label htmlFor="displayName">New Name:</label>
+      <div id="account">
+        <div class="ui card" >
+          <div class="image">
+            <img 
+            src = {userPicture?"https://kwitter-api.herokuapp.com" + userPicture:'/kwitter-user.png'} 
+            height="200"/>
+          </div>
+        
+          <div class="content">
+            <a class="header">{name}</a>
+            <div class="meta">
+              <span class="date">SE April 2020</span>
+            </div>
+            <div class="description">
+              {bio}
+          </div>
+          </div>
+          <div class="extra content">
+            <a>
+              <i class="envelope icon"></i>
+              {count}
+            </a> 
+              <button class="ui right floated button" onClick ={() => deleteTheUser()}>Delete Account</button>
+          </div>
+        </div>
+      </div>
+      <div class="upload">
+        <form ref={picture} onSubmit={addPic}>
+          <input class="choose" type='file' name='picture'></input>
+          <button class="move" type='submit'>Upload My Picture</button>
+        </form>
+      </div>
+      <div class="updating">
+      <form id="update-form" onSubmit={handleUpdate}>
+          <label htmlFor="displayName">New Name</label>
           <input
               type="text"
               name="displayName"
@@ -129,7 +157,7 @@ export const Profile = () => {
               onChange={handleChange}
           />
           <br/>
-          <label htmlFor="password">New Password:</label>
+          <label htmlFor="password">New Password</label>
           <input
               type="text"
               name="password"
@@ -139,8 +167,7 @@ export const Profile = () => {
               onChange={handleChange}
           />
           <br/>
-          
-          <label htmlFor="about">New Bio:</label>
+          <label htmlFor="about">New Bio</label>
           <input
             type="text"
             name="about"
@@ -154,21 +181,21 @@ export const Profile = () => {
           Update Profile
           </button> 
         </form>
-
-        <h2>your messages</h2>
-      <button onClick ={() => deleteTheUser()}>delete Account</button>
-      {/* <label htmlFor="username">Username</label> */}
-      <h2>your messages</h2>
-      <div className= 'scrollBox' onScroll ={handleScroll}>
-        {messageList.map((message) => (
-                <Message text={message.text} 
-                username={message.username}
-                msgId ={message.id}
-                key = {message.id} 
-                likes = {message.likes}
-                createdAt ={message.createdAt}
-                />
-                ))}
+        </div>
+      <div>
+        <h2>Your Messages</h2>
+        <div className= 'scrollBox' onScroll ={handleScroll}>
+          {messageList.map((message) => (
+                  <Message text={message.text} 
+                  username={message.username}
+                  msgId ={message.id}
+                  key = {message.id} 
+                  likes = {message.likes}
+                  createdAt ={message.createdAt}
+                  profile ={true}
+                  />
+                  ))}
+        </div>
       </div>
     </React.Fragment>
   );

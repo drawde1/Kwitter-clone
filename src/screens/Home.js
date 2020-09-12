@@ -5,9 +5,8 @@ import "./Home.css";
 export const HomeScreen = () => (
   <>
     <MenuContainer />
-    {/* <center><h2>Your favorite microblogging platform</h2></center> */}
     <div id="div1">
-    <div id="homediv">Microblogging Platform</div>
+    <center><h2 id="plat">Microblogging Platform</h2></center>
     </div>
     <LoginFormContainer />
   </>

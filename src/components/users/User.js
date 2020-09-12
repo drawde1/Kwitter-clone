@@ -10,14 +10,22 @@ export const User = (props) =>
     
     return(
         <>
-        <p>{props.username}</p>
-        <p>{props.displayName}</p>
-        <p>{props.about}</p>
-        <img
-        src={!props.pictureLocation?'/kwitter-user.png':"https://kwitter-api.herokuapp.com" + props.pictureLocation}
-        width='50'
-        height='50'
-      />
+        <div className = 'username'>
+            <p>{props.username}</p>
+        </div>
+        <div className = 'displayname'>
+            <p>{props.displayName}</p>
+        </div>
+        <div  className = 'about'>
+            <p>{props.about}</p>
+        </div>
+        <div className = 'photo'>
+            <img
+            src={!props.pictureLocation?'/kwitter-user.png':"https://kwitter-api.herokuapp.com" + props.pictureLocation}
+            width='50'
+            height='50'
+            />
+       </div>
       
         </>
     )

@@ -1,25 +1,63 @@
+#account 
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.upload 
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.choose {
+    position: relative;
+    top: 10px;
+    left: 35px;
+}
+
+.move {
+    position: relative;
+    top: 10px;
+    right: 35px
+}
+
 .scrollBox
 {
     background-color: rgb(181, 185, 185);
     height: 250px;
+    width: 300px;
     overflow: hidden;
     overflow-y: scroll;
 }
 
-#update-form {
+#update-form 
+{
     text-align: center;
+    margin-left: 50px;
     width: 30%;
     background-color: lightskyblue;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    align-items: space-beteen;
     padding: 15px;
+    border: 6px solid black;
 }
 
-label {
+.updating {
+    position: relative;
+    bottom: 289px;
+}
+
+label 
+{
     display: flex;
     flex-direction: left;
-
 }
 
+img 
+{
+    border-radius: 50%;
+}

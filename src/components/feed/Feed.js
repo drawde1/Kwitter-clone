@@ -13,12 +13,13 @@ import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 export const Feed = (props) => {
  
     const dispatch = useDispatch();
-    useEffect(()=>{dispatch(getMessageList(msgListParams))},[])
-    useEffect(()=>{dispatch(restInfiniteScroll(10))},[])
-    const {messageList,loadingList,msgListParams} = useSelector((state)=>({
+    useEffect(()=>{dispatch(getMessageList({limit:10, offset:0}))},[])
+    
+    useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
+    const {messageList,loadingList,msgListParams,} = useSelector((state)=>({
         msgListParams: state.infiniteScroll,
         messageList: state.getMessageList.messages,
-        loadingList: state.getMessageList.loading
+        loadingList: state.getMessageList.loading,
     })) 
     
   const initialState = {
@@ -32,36 +33,26 @@ export const Feed = (props) => {
     dispatch(getMessageList(msgListParams))
   },[])
 
-//  let feedMessages = []
-//  feedMessages = messageList
-  //TODO infinite scroll use scroll event useinmg window.(scroll arguments)
-  //scroll argumentrs include 
-//   scrollY = y off set
-//innerHeight = visable window
-//scrollHeight = the length of the entire page
-const handleChange = (event) => {
-  let inputValue = event.target.value;
-  setState((prevState) => ({ ...prevState, text: inputValue }));
-};
+  const handleChange = (event) => {
+    let inputValue = event.target.value;
+    setState((prevState) => ({ ...prevState, text: inputValue }));
+  };
 
-const postMessage = (event) => {
-  event.preventDefault();
-  dispatch(addMessage(state,msgListParams));
-  dispatch(addMessage(state));
-};
+  const postMessage = (event) => {
+    event.preventDefault();
+    dispatch(addMessage(state,msgListParams));
+  };
   
 
 
-const handleScroll = (event) =>
-   {
-     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
-     if(clientHeight + scrollTop >= scrollHeight-30)
-     {
-       console.log('end')
-       dispatch(infiniteScroll(5))
-       dispatch(getMessageList(msgListParams))
-     }
-   }
+  const handleScroll = (event) =>{
+    const{scrollHeight,clientHeight,scrollTop} = event.currentTarget
+    if(clientHeight + scrollTop >= scrollHeight-30) {
+      dispatch(infiniteScroll(10))
+      dispatch(getMessageList(msgListParams))
+    }
+  }
+  
 return (
   <React.Fragment>
   <form id="feed" onSubmit={postMessage}>
@@ -92,6 +83,7 @@ return (
           likes = {message.likes}
           createdAt ={message.createdAt}
           userPhoto = {message.pictureLocation}
+         
           />
   ))}
   </div>
