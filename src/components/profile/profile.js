@@ -203,12 +203,6 @@ export const Profile = () => {
           Update Profile
           </button> 
         </form>
-<<<<<<< HEAD
-=======
-        {/* <div>{state.displayName}</div>
-        <div>{state.password}</div>
-        <div>{state.bio}</div> */}
->>>>>>> 8f0df7e4b766290ccc9182b23368185a7fa12565
         
       <div>
         <h2>Your Messages</h2>
