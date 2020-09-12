@@ -134,12 +134,6 @@ export const Profile = () => {
   
   return (
     <React.Fragment>
-      <h1>Profile Page</h1>
-
-     {/* <button onClick= {test}>test</button> */}
-      
- 
-        <h1>Profile Page</h1>
         <div class="ui card">
           <div class="image">
             <img 
@@ -205,15 +199,11 @@ export const Profile = () => {
           <br/>
           <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
           Update Profile
-          </button>
-          <button type="submit">Update Info</button> 
+          </button> 
         </form>
-        <div>{state.displayName}</div>
-        <div>{state.password}</div>
-        <div>{state.bio}</div>
         
-
-        <h2>your messages</h2>
+      <div>
+        <h2>Your Messages</h2>
         <div className= 'scrollBox' onScroll ={handleScroll}>
           {messageList.map((message) => (
                   <Message text={message.text} 
@@ -225,6 +215,7 @@ export const Profile = () => {
                   />
                   ))}
         </div>
+      </div>
     </React.Fragment>
   );
 }

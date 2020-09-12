@@ -13,9 +13,9 @@ export const Menu = () => {
 
   return (
     <div id="menu">
-      
-      <h1>Kwitter</h1>
-
+      <div id="kwitterhead">
+      <p>Kwitter</p>
+      </div>
       <div class="ui horizontal list">
         <div class="item">
           <img class="ui mini circular image" src={"https://kwitter-api.herokuapp.com/users/shanquetta/picture"} />
@@ -62,9 +62,6 @@ export const Menu = () => {
             <Link to="/feed">Message Feed</Link>
             <Link to="/" onClick={logout}>
               Logout
-            </Link>
-            <Link to="/profile">
-              View Profile
             </Link>
           </>
         ) : null}
