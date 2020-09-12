@@ -1,10 +1,15 @@
 #div1 {
-    display: flex;
-    height: 80px;
-    align-items: center;
+    height: 56px;
 
 }
 #homediv {
     display: flex;
-    font-size: 30px;
+    font-size: 25px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    height: 50px;
+}
+#plat {
+    margin-top: 20px;
 }

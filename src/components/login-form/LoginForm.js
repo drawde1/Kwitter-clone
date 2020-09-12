@@ -62,7 +62,9 @@ export const LoginForm = ({ login }) => {
     <div id="login">
     <div id="spaceleft"></div>
       <div id="logform">
+      <div id="logformborder">
       <form id="login-form" onSubmit={handleLogin}>
+      <b><p id="log">Current Users</p></b>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -81,15 +83,20 @@ export const LoginForm = ({ login }) => {
           onChange={handleChange}
         />
         <div>
+        <div id ="submit2">
         <button type="submit" disabled={loading}>
           Login
         </button>
         </div>
+        </div>
       </form>
+      </div>
     </div>
     <div id="divspace"></div>
     <div id="regform">
+      <div id="regformborder">
       <form id="register-form" onSubmit={handleRegister}>
+      <b><p id="create">Create an Account</p></b>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -116,12 +123,13 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleRegChange}
         />
-        <div>
+        <div id ="submit1">
         <button type="submit" disabled={loading}>
           Register
         </button>
         </div>
         </form>
+        </div>
         </div> 
         </div>
           {/* <form id="login-form" onSubmit={handleLogin}>
