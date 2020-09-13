@@ -24,7 +24,7 @@ export const Feed = (props) => {
     
   const initialState = {
     text: "",
-    isActive: false
+   
   }
 
   const [state, setState] = useState(initialState);
@@ -41,6 +41,7 @@ export const Feed = (props) => {
   const postMessage = (event) => {
     event.preventDefault();
     dispatch(addMessage(state,msgListParams));
+    setState((prevState) => ({ ...prevState, text: "" }))
   };
   
 

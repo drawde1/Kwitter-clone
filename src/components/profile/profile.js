@@ -24,7 +24,7 @@ export const Profile = () => {
   };
 
   const [state, setState] = useState(INITIALSTATE);
-
+  const [isToggled, setToggle] = useState({isToggled:false});
   const {
     username,
     startingUsername,
@@ -36,7 +36,11 @@ export const Profile = () => {
     testPicture,
     count,
     userInfo,
+    loadingUserInfo,
+    loadingMsg,
   } = useSelector(state => ({
+    loadingUserInfo:state.getUser.loading,
+    loadingMsg: state.getMessageListByUser.loading,
     startingUsername: state.auth.username,
     testPicture: state.pic.photo,
     username: state.getUser.username,
@@ -48,7 +52,7 @@ export const Profile = () => {
     messageList: state.getMessageListByUser.messages,
     msgListParams: state.infiniteScroll,
   }))
-  console.log(state)
+  
   const dispatch = useDispatch();
   const picture = useRef(null);
 
@@ -66,7 +70,6 @@ export const Profile = () => {
   
   const deleteTheUser = () => {
     dispatch(deleteUser(username));
-    console.log('??')
   };
  
   
@@ -74,10 +77,12 @@ export const Profile = () => {
     dispatch(getMessageListByUser(msgListParams,username))
   
   },[])
-
+  
   const handleUpdate = (event) => {
-    event.preventDefault();
+    
     dispatch(updateuser({...state,username}));
+    setToggle((prevState)=> ({...prevState,isToggled:false}))
+    
   }
 
   const handleChange = (event) => {
@@ -100,7 +105,7 @@ export const Profile = () => {
     if(clientHeight + scrollTop >= scrollHeight && msgListParams.offset < count) {
       console.log('end')
       dispatch(infiniteScroll(5))
-      console.log('count',count,'offset',msgListParams.offset)
+      
       dispatch(getMessageListByUser(msgListParams,username))
     }
   }
@@ -108,13 +113,18 @@ export const Profile = () => {
   const test = () =>
   {
     dispatch(getPicture(username))
-    console.log(testPicture)
   }
-  
+
+  const handleToggle = () =>
+   {
+    setToggle((prevState)=> ({...prevState,isToggled:true}))
+   }
   return (
     <React.Fragment>
       <div id="account">
         <div class="ui card" >
+        <h1>Profile Page</h1>
+        {loadingUserInfo && <Loader/>}
           <div class="image">
             <img 
             src = {userPicture?"https://kwitter-api.herokuapp.com" + userPicture:'/kwitter-user.png'} 
@@ -139,51 +149,61 @@ export const Profile = () => {
           </div>
         </div>
       </div>
+
       <div class="upload">
         <form ref={picture} onSubmit={addPic}>
           <input class="choose" type='file' name='picture'></input>
           <button class="move" type='submit'>Upload My Picture</button>
         </form>
       </div>
-      <div class="updating">
-      <form id="update-form" onSubmit={handleUpdate}>
-          <label htmlFor="displayName">New Name</label>
-          <input
+
+      <div className = {isToggled.isToggled?"hidden":"show"}>
+        <button onClick ={handleToggle}>edit profile??</button>
+      </div>
+
+      <div className = {!isToggled.isToggled?"hidden":"show"}>
+        <div class="updating">
+          <form id="update-form" onSubmit={handleUpdate}>
+            <label htmlFor="displayName">New Name</label>
+            <input
+                type="text"
+                name="displayName"
+                value={state.displayName}
+                autoFocus
+                required
+                onChange={handleChange}
+            />
+            <br/>
+            <label htmlFor="password">New Password</label>
+            <input
+                type="text"
+                name="password"
+                value={state.password}
+                autoFocus
+                required
+                onChange={handleChange}
+            />
+            <br/>
+            <label htmlFor="about">New Bio</label>
+            <input
               type="text"
-              name="displayName"
-              value={state.displayName}
+              name="about"
+              value={state.about}
               autoFocus
               required
               onChange={handleChange}
-          />
-          <br/>
-          <label htmlFor="password">New Password</label>
-          <input
-              type="text"
-              name="password"
-              value={state.password}
-              autoFocus
-              required
-              onChange={handleChange}
-          />
-          <br/>
-          <label htmlFor="about">New Bio</label>
-          <input
-            type="text"
-            name="about"
-            value={state.about}
-            autoFocus
-            required
-            onChange={handleChange}
-          />
-          <br/>
-          <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
-          Update Profile
-          </button> 
-        </form>
+            />
+            <br/>
+            <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
+            Update Profile
+            </button> 
+          </form>
         </div>
-      <div>
+      </div>
+      
+      <div class="trough">
         <h2>Your Messages</h2>
+        {loadingMsg && <Loader/>}
         <div className= 'scrollBox' onScroll ={handleScroll}>
           {messageList.map((message) => (
                   <Message text={message.text} 

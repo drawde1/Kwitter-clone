@@ -5,3 +5,10 @@
     overflow: hidden;
     overflow-y: scroll;
 }
+
+.photo
+{
+   border-style: solid;
+   width: 60px;
+   
+}
