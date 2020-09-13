@@ -35,17 +35,17 @@ export const Feed = (props) => {
     setState((prevState) => ({ ...prevState, text: inputValue }));
   };
   const postMessage = (event) => {
-    
+
     event.preventDefault();
     console.log(state)
     dispatch(addMessage(state,msgListParams));
-    setState((prevState) => ({ ...prevState, text: "" }))
-    
+    setState((prevState) => ({ ...prevState, text: "" }))  
+
   };
 
 const handleScroll = (event) =>
    {
-     
+    
      const{scrollHeight,clientHeight,scrollTop} = event.currentTarget
      if(clientHeight + scrollTop >= scrollHeight-30 && msgListParams.offset < count)
      {

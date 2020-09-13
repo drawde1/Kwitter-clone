@@ -117,12 +117,6 @@ export const Profile = () => {
   
   return (
     <React.Fragment>
-      <h1>Profile Page</h1>
-
-     {/* <button onClick= {test}>test</button> */}
-      
- 
-        <h1>Profile Page</h1>
         {loadingUserInfo && <Loader/>}
         <div class="ui card">
           <div class="image">
