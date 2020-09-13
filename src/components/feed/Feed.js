@@ -11,10 +11,10 @@ import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 
 
 export const Feed = (props) => {
- 
+
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(getMessageList({limit:10, offset:0}))},[])
-    
+
     useEffect(()=>{dispatch(restInfiniteScroll(0))},[])
     const {messageList,loadingList,msgListParams,count,} = useSelector((state)=>({
         msgListParams: state.infiniteScroll,
@@ -35,7 +35,7 @@ export const Feed = (props) => {
     setState((prevState) => ({ ...prevState, text: inputValue }));
   };
   const postMessage = (event) => {
-
+    
     event.preventDefault();
     console.log(state)
     dispatch(addMessage(state,msgListParams));
@@ -45,7 +45,7 @@ export const Feed = (props) => {
 
 const handleScroll = (event) =>
    {
-    
+
      const{scrollHeight,clientHeight,scrollTop} = event.currentTarget
      if(clientHeight + scrollTop >= scrollHeight-30 && msgListParams.offset < count)
      {
@@ -74,7 +74,7 @@ return (
   <br/>
   <br/>
   <br/>
-      {loadingList && <Loader/>}
+  {loadingList && <Loader/>}
   <div className= 'scrollBox' onScroll ={handleScroll}>
   {messageList.map((message) => (
           <Message text={message.text} 
