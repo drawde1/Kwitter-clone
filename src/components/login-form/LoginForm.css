@@ -13,6 +13,7 @@
   justify-content: space-evenly;
   border-radius: 30px;
   background-color: lightblue;
+  flex-direction: column;
 }
 #regform {
   display:flex;
@@ -23,6 +24,7 @@
   justify-content: space-evenly;
   border-radius: 30px;
   background-color: lightblue;
+  flex-direction: column;
 } 
   #logintitle {
     color:blue;
@@ -59,6 +61,9 @@
 }
 
 #spaceleft {
+  width: 13px;
+}
+#spaceright {
   width: 13px;
 }
 
@@ -118,6 +123,15 @@
     display: none;
 }
 .showL
+{
+  color: red;
+    display: initial;
+}
+.hiddenR
+{
+    display: none;
+}
+.showR
 {
   color: red;
     display: initial;
