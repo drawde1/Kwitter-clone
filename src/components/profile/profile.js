@@ -117,10 +117,12 @@ export const Profile = () => {
   
   return (
     <React.Fragment>
+      <div id="bigsplit">
+      <div id="smallsplit">
         {loadingUserInfo && <Loader/>}
         <div class="ui card">
           <div class="image">
-            <img 
+            <img id="image2"
           src = {userPicture?"https://kwitter-api.herokuapp.com" + userPicture:'/kwitter-user.png'}
           width="200" 
           height="200"/>
@@ -189,8 +191,11 @@ export const Profile = () => {
           </button> 
         </form>
         </div>
+        </div>
       <div>
-        <h2>Your Messages</h2>
+        <div id="msgtitle">
+        <center><h2>Your Messages</h2></center>
+        </div>
         <div className= 'scrollBox' onScroll ={handleScroll}>
           {messageList.map((message) => (
                   <Message text={message.text} 
@@ -203,6 +208,7 @@ export const Profile = () => {
                   />
                   ))}
         </div>
+      </div>
       </div>
     </React.Fragment>
   );

@@ -2,6 +2,7 @@
 {
     background-color: rgb(181, 185, 185);
     height: 250px;
+    width: 900px;
     overflow: hidden;
     overflow-y: scroll;
 }
@@ -12,4 +13,18 @@
 .show
 {
     display: initial;
+}
+
+#bigsplit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 550px;
+}
+#image2 {
+    height: 300px;
+    border-radius: 30px;
+}
+h2 {
+    color: blue;
 }
