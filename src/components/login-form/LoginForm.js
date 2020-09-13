@@ -24,6 +24,7 @@ export const LoginForm = ({ login }) => {
     password: "",
   });
   const [isToggled, setToggle] = useState({isToggled:false});
+  const [isToggled2, setToggle2] = useState({isToggled2:false});
   const [registerState, setRegisterState] = useState({INITIALSTATE})
 
   const handleLogin = (event) => {
@@ -39,6 +40,7 @@ export const LoginForm = ({ login }) => {
     event.preventDefault();
     
     dispatch(user(registerState));
+    setToggle2((prevState)=> ({...prevState,isToggled2:true}))
     console.log(registerState)
   };
 
@@ -90,9 +92,11 @@ export const LoginForm = ({ login }) => {
           Login
         </button>
         </div>
+        
         </div>
       </form>
       </div>
+      <p></p>
     </div>
     <div id="divspace"></div>
     <div id="regform">
@@ -131,8 +135,11 @@ export const LoginForm = ({ login }) => {
         </button>
         </div>
         </form>
+        
         </div>
+        <b><p className={isToggled2.isToggled2?"showR":"hiddenR"}>Register complete, you can now login.</p></b>
         </div> 
+        
         <div id="spaceright"></div>
         </div>
           
