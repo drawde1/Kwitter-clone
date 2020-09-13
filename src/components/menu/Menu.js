@@ -39,7 +39,7 @@ export const Menu = () => {
           </div>
         </div>
         <div class="item">
-          <img src={"https://kwitter-api.herokuapp.com/users/tawright31/picture"} class="ui mini circular image" />
+          <img src={"https://kwitter-api.herokuapp.com/users/tawright28/picture"} class="ui mini circular image" />
           <div class="content">
             <div class="ui sub header">Tuan Wright</div>
             Developer
