@@ -147,8 +147,4 @@ export const _deleteMessage = (messageId) => async (dispatch, getState) => {
     .then(() => {return dispatch(getMessageListByUser(msgParams,username))})
   };
 
-  const onSubmit = async (values, {setSubmitting, setErrors, setStatus, resetForm}) => {
-    try {
-      await auth
-    }
-  }
+  
