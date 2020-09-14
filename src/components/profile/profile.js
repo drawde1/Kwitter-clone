@@ -147,11 +147,21 @@ export const Profile = () => {
       </div>
       <button onClick = {handleToggle}className={isToggled.isToggled?"hidden":"show"}>edit profile</button>
       <div className ={!isToggled.isToggled?"hidden":"show"}>
+       <br/>
+        <div id="photo">
+          <h2>Add or Change photo</h2>
       <form ref={picture} onSubmit={addPic}>
         <input type='file' name='picture'></input>
+        <br/>
+        <br/>
+        <br/>
         <button type='submit'>Upload My Picture</button>
       </form>
-      
+      </div>
+      <br/>
+      <br/>
+      <div id="user">
+        <h2>Update User Info</h2>
       <form id="update-form" onSubmit={handleUpdate}>
           <div>Current Name: {name}</div>
           <label htmlFor="displayName">New Name:</label>
@@ -164,7 +174,6 @@ export const Profile = () => {
               onChange={handleChange}
           />
           <br/>
-          <div>Current Password: {}</div>
           <label htmlFor="password">New Password:</label>
           <input
               type="text"
@@ -186,10 +195,12 @@ export const Profile = () => {
             onChange={handleChange}
           />
           <br/>
+          <br/>
           <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
           Update Profile
           </button> 
         </form>
+        </div>
         </div>
         </div>
       <div>
