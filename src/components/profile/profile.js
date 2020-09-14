@@ -62,9 +62,9 @@ export const Profile = () => {
 
   const addPic = async (event) => {
     event.preventDefault();
-    const picdata = new FormData (picture.current)
-    const results = await Api.addPicture( username, picdata )
-    dispatch(getUserInfo(username))
+    const picdata = new FormData (picture.current);
+    const results = await Api.addPicture( username, picdata );
+    dispatch(getUserInfo(username));
   };
 
   
@@ -79,7 +79,7 @@ export const Profile = () => {
   },[])
   
   const handleUpdate = (event) => {
-    
+    event.preventDefault()
     dispatch(updateuser({...state,username}));
     setToggle((prevState)=> ({...prevState,isToggled:false}))
     
@@ -109,25 +109,29 @@ export const Profile = () => {
       dispatch(getMessageListByUser(msgListParams,username))
     }
   }
+  
+   const handleToggle = () =>
+   {
+        setToggle((prevState)=> ({...prevState,isToggled:true}))
+        setState((prevState)=> ({...prevState,INITIALSTATE}))
+   }
+ 
 
   const test = () =>
   {
     dispatch(getPicture(username))
   }
 
-  const handleToggle = () =>
-   {
-    setToggle((prevState)=> ({...prevState,isToggled:true}))
-   }
   return (
     <React.Fragment>
-      <div id="account">
-        <div class="ui card" >
-        <h1>Profile Page</h1>
-        {loadingUserInfo && <Loader/>}
-          <div class="image">
-            <img 
-            src = {userPicture?"https://kwitter-api.herokuapp.com" + userPicture:'/kwitter-user.png'} 
+      <div id="bigsplit">
+        <div id="smallsplit">
+          {loadingUserInfo && <Loader/>}
+          <div class="ui card">
+            <div class="image">
+              <img id="image2"
+            src = {userPicture?"https://kwitter-api.herokuapp.com" + userPicture:'/kwitter-user.png'}
+            width="200" 
             height="200"/>
           </div>
         
@@ -138,72 +142,59 @@ export const Profile = () => {
             </div>
             <div class="description">
               {bio}
-          </div>
-          </div>
-          <div class="extra content">
-            <a>
-              <i class="envelope icon"></i>
-              {count}
-            </a> 
-              <button class="ui right floated button" onClick ={() => deleteTheUser()}>Delete Account</button>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="upload">
-        <form ref={picture} onSubmit={addPic}>
-          <input class="choose" type='file' name='picture'></input>
-          <button class="move" type='submit'>Upload My Picture</button>
-        </form>
-      </div>
-
-      <div className = {isToggled.isToggled?"hidden":"show"}>
-        <button onClick ={handleToggle}>edit profile??</button>
-      </div>
-
-      <div className = {!isToggled.isToggled?"hidden":"show"}>
-        <div class="updating">
-          <form id="update-form" onSubmit={handleUpdate}>
-            <label htmlFor="displayName">New Name</label>
-            <input
-                type="text"
-                name="displayName"
-                value={state.displayName}
-                autoFocus
-                required
-                onChange={handleChange}
-            />
-            <br/>
-            <label htmlFor="password">New Password</label>
-            <input
-                type="text"
-                name="password"
-                value={state.password}
-                autoFocus
-                required
-                onChange={handleChange}
-            />
-            <br/>
-            <label htmlFor="about">New Bio</label>
-            <input
+      <div/>
+    
+      <button onClick = {handleToggle}className={isToggled.isToggled?"hidden":"show"}>edit profile</button>
+      <div className ={!isToggled.isToggled?"hidden":"show"}>
+      <form ref={picture} onSubmit={addPic}>
+        <input type='file' name='picture'></input>
+        <button type='submit'>Upload My Picture</button>
+      </form>
+      
+      <form id="update-form" onSubmit={handleUpdate}>
+          <label htmlFor="displayName">New Name:</label>
+          <input
               type="text"
-              name="about"
-              value={state.about}
+              name="displayName"
+              value={state.displayName}
               autoFocus
               required
               onChange={handleChange}
-            />
-            <br/>
-            <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
-            Update Profile
-            </button> 
-          </form>
+          />
+          <br/>
+          <label htmlFor="password">New Password:</label>
+          <input
+              type="text"
+              name="password"
+              value={state.password}
+              autoFocus
+              required
+              onChange={handleChange}
+          />
+          <br/>
+          <label htmlFor="about">New Bio:</label>
+          <input
+            type="text"
+            name="about"
+            value={state.about}
+            autoFocus
+            required
+            onChange={handleChange}
+          />
+          <br/>
+          <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
+          Update Profile
+          </button> 
+        </form>
         </div>
-      </div>
-      
-      <div class="trough">
-        <h2>Your Messages</h2>
-        {loadingMsg && <Loader/>}
+        </div>
+      <div>
+        <div id="msgtitle">
+        <center><h2>Your Messages</h2></center>
+        </div>
         <div className= 'scrollBox' onScroll ={handleScroll}>
           {messageList.map((message) => (
                   <Message text={message.text} 
@@ -216,6 +207,7 @@ export const Profile = () => {
                   />
                   ))}
         </div>
+      </div>
       </div>
     </React.Fragment>
   );
