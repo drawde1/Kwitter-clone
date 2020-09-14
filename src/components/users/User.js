@@ -1,13 +1,8 @@
-import React, { useState, useEffect} from "react";
-import {  useDispatch,useSelector} from "react-redux";
-import {createTimestamp} from '../functions/createTimestamp'
+import React from "react";
 import './user.css'
 
 export const User = (props) =>
 {
-    
-    const createdTimestamp = createTimestamp(props.createdAt)
-    const updatedTimestamp = createTimestamp(props.updatedAt)
     
     return(
         <>
