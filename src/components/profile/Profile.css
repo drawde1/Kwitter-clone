@@ -21,23 +21,6 @@
     overflow-y: scroll;
 }
 
-#update-form 
-{
-    text-align: center;
-    background-color: lightskyblue;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    border: 6px solid black;
-}
-
-label 
-{
-    display: flex;
-    flex-direction: left;
-}
-
 img 
 {
     border-radius: 50%;
