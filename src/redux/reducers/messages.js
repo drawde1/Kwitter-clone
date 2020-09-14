@@ -1,4 +1,3 @@
-// TODO: implement
 
 import { ADD_MESSAGE, ADD_MESSAGE_FAIL,ADD_MESSAGE_LOAD } from "../actions";
 
@@ -15,7 +14,7 @@ const INITIAL_STATE = {
       "createdAt": "2020-09-03T17:10:37.7422",
     },
   ],
-  // isActive: false,
+
   loading: false,
   error: "",
   delete_message: "",
@@ -48,11 +47,7 @@ export const addMessageReducer = (state = { ...INITIAL_STATE }, action) => {
         error: action.payload,
         loading: false,
       };
-    // case DELETE_MESSAGE:
-    //   const { delete_message } = action.payload.delete_message;
-    //   return {
-    //     ...INITIAL_STATE,
-    //   };
+
     default:
       return state;
   }

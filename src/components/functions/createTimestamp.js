@@ -1,14 +1,10 @@
 
- // 2020-09-03T14:27:16.454Z 
 export const createTimestamp =(messyTimeStamp) =>
 {
    let date = reformateDate(messyTimeStamp)
     let time = reformateTime(messyTimeStamp)
    return({date,time})
 }
-
-
-
 
 const reformateTime = (messyTime) =>
 {
@@ -39,15 +35,13 @@ const reformateDate = (messyDate) =>
    let date = dateTime.splice(0,10)
    let yearArr = date.splice(0,4)
    let dayArr = date.splice(1,2)
-   let monthArr = date.splice(2,4)
+   date.splice(2,4)
    let year = yearArr.join('')
    let day = dayArr.join('')
    let month = dayArr.join('')
    month= reformatMonth(month)
    return(month+"/"+day+"/"+ year)
 }
-
-
 
 const reformatMonth = (month) =>
 {

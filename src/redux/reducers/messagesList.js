@@ -42,13 +42,6 @@ export const getMessageListReducer = (state = { ...INITIAL_STATE }, action) => {
 
         case DELETE_MESSAGE:
           const {id} = action.payload
-        //   let newMessages = []
-        //   INITIAL_STATE.messages.forEach((message) => {
-        //       if(message.id !== id)
-        //       {
-        //           newMessages.push(message)
-        //       }
-        //     })
 
         return {
           ...INITIAL_STATE,
