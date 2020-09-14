@@ -136,12 +136,49 @@ export const LoginForm = ({ login }) => {
         </form>
         
         </div>
-        <b><p className={isToggled2.isToggled2?"showR":"hiddenR"}>Register complete, you can now login.</p></b>
-        </div> 
-        
-        <div id="spaceright"></div>
+      </div>
+      <div id="divspace"></div>
+      <div id="regform">
+        <div id="regformborder">
+          <form id="register-form" onSubmit={handleRegister}>
+            <b><p id="create">Create an Account</p></b>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              value={registerState.username}
+              autoFocus
+              required
+              onChange={handleRegChange}
+            />
+            <label htmlFor="displayName">Name</label>
+            <input
+              type="text"
+              name="displayName"
+              value={registerState.displayName}
+              autoFocus
+              required
+              onChange={handleRegChange}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={registerState.password}
+              required
+              onChange={handleRegChange}
+            />
+            <div>
+              <button type="submit" disabled={loading}>
+                Register
+              </button>
+            </div>
+          </form>
         </div>
-          
+      </div> 
+    </div>     
+    <b><p className={isToggled2.isToggled2?"showR":"hiddenR"}>Register complete, you can now login.</p></b> 
+    <div id="spaceright"></div>
       {loading && <Loader />}
      
       {error && <p style={{ color: "red" }}>{error.message}</p>}

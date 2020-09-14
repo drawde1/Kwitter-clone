@@ -9,7 +9,7 @@ import {Message} from '../feed/Message'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
 import {getMessageListByUser} from '../../redux/actions'
-
+import 'semantic-ui-css/semantic.min.css'
 import {deleteUser} from '../../redux/actions/user'
 
 
@@ -83,15 +83,19 @@ export const Profile = () => {
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
 
+  const setPic = async event => {
+    event.preventDefault();
+    const picdata = new FormData(picture.current);
+    const results = await Api.getPictures(username, picdata);
+  };
   
 
-  const handleScroll = (event) =>
-  {
-      
+  const handleScroll = (event) => {
+
     const {scrollHeight,clientHeight,scrollTop} = event.currentTarget
-    if(clientHeight + scrollTop >= scrollHeight && msgListParams.offset < count)
-    {
-      
+     
+    if(clientHeight + scrollTop >= scrollHeight && msgListParams.offset < count) {
+      console.log('end')
       dispatch(infiniteScroll(5))
       
       dispatch(getMessageListByUser(msgListParams,username))
@@ -103,40 +107,32 @@ export const Profile = () => {
         setToggle((prevState)=> ({...prevState,isToggled:true}))
         setState((prevState)=> ({...prevState,INITIALSTATE}))
    }
- 
 
-
-  
   return (
     <React.Fragment>
       <div id="bigsplit">
-      <div id="smallsplit">
-        {loadingUserInfo && <Loader/>}
-        <div class="ui card">
-          <div class="image">
-            <img id="image2"
-          src = {userPicture?"https://kwitter-api.herokuapp.com" + userPicture:'/kwitter-user.png'}
-          width="200" 
-          height="200"/>
+        <div id="smallsplit">
+          {loadingUserInfo && <Loader/>}
+          <div class="ui card">
+            <div class="image">
+              <img id="image2"
+            src = {userPicture?"https://kwitter-api.herokuapp.com" + userPicture:'/kwitter-user.png'}
+            width="200" 
+            height="200"/>
+          </div>
+        
+          <div class="content">
+            <a class="header">{name}</a>
+            <div class="meta">
+              <span class="date">SE April 2020</span>
+            </div>
+            <div class="description">
+              {bio}
+            </div>
+          </div>
         </div>
-       
-      <div class="content">
-        <a class="header">{name}</a>
-        <div class="meta">
-          <span class="date">SE April 2020</span>
-        </div>
-        <div class="description">
-          {bio}
-        </div>
-      </div>
-      <div class="extra content">
-        <a>
-          <i class="envelope icon"></i>
-          {count}
-        </a> 
-            <button class="ui right floated button" onClick ={() => deleteTheUser()}>Delete Account</button>
-      </div>
-      </div>
+      <div/>
+    
       <button onClick = {handleToggle}className={isToggled.isToggled?"hidden":"show"}>edit profile</button>
       <div className ={!isToggled.isToggled?"hidden":"show"}>
        <br/>
@@ -155,7 +151,6 @@ export const Profile = () => {
       <div id="user">
         <h2>Update User Info</h2>
       <form id="update-form" onSubmit={handleUpdate}>
-          <div>Current Name: {name}</div>
           <label htmlFor="displayName">New Name:</label>
           <input
               type="text"
@@ -176,7 +171,6 @@ export const Profile = () => {
               onChange={handleChange}
           />
           <br/>
-          <div>Current Bio: {bio}</div>
           <label htmlFor="about">New Bio:</label>
           <input
             type="text"

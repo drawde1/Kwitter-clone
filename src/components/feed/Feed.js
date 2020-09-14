@@ -27,27 +27,30 @@ export const Feed = () => {
   }
 
   const [state, setState] = useState(initialState);
+
+  useEffect(()=>{
+    dispatch(getMessageList(msgListParams))
+  },[])
+
   const handleChange = (event) => {
     let inputValue = event.target.value;
     setState((prevState) => ({ ...prevState, text: inputValue }));
   };
+
   const postMessage = (event) => {
-    
     event.preventDefault();
     dispatch(addMessage(state,msgListParams));
-    setState((prevState) => ({ ...prevState, text: "" }))  
-
+    setState((prevState) => ({ ...prevState, text: "" }))
   };
+  
 
 const handleScroll = (event) =>
    {
-
      const{scrollHeight,clientHeight,scrollTop} = event.currentTarget
      if(clientHeight + scrollTop >= scrollHeight-30 && msgListParams.offset < count)
      {
-       dispatch(infiniteScroll(10))
-       dispatch(getMessageList(msgListParams))
-       
+      dispatch(infiniteScroll(10))
+      dispatch(getMessageList(msgListParams)) 
      }
    } 
 return (
@@ -86,5 +89,4 @@ return (
   </div>
   </React.Fragment>
 );
-
- };
+};
