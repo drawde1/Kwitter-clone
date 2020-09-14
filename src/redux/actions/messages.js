@@ -1,7 +1,4 @@
 import api from "../../utils/api";
-import { FAILURE } from "./defaultuser";
-//import { LIKE_SUCCESS } from "./likes";
-import {restInfiniteScroll} from './infiniteScroll'
 export const DELETE_MESSAGE_LOAD = 'DELETE_MESSAGE_LOAD';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const DELETE_MESSAGE_FAIL = 'DELETE_MESSAGE_FAIL';
@@ -34,7 +31,7 @@ export const _addMessage= (text) => async (dispatch, getState) => {
       });
     }
   };
-  export const addMessage = (text,msgParams) => async (dispatch, getState) => {
+  export const addMessage = (text) => async (dispatch, getState) => {
     return dispatch(_addMessage(text))
     .then(() => {return dispatch(getMessageList({limit:10, offset:0}))})
   };
@@ -55,16 +52,11 @@ export const _addMessage= (text) => async (dispatch, getState) => {
 
 
 export const _likes = (messageId) => async (dispatch, getState) => {
-  console.log(messageId)
   try {
     dispatch({ type: ADD_LIKE });
     const payload = await api.likes(messageId);
     dispatch({ type: LIKE_SUCCESS, payload})
-    console.log(payload)
-    // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
-    // console.log({ result })
   } catch (err) {
-    //console.log(err)
     dispatch({
       type: LIKE_FAILURE,
       payload: err.message,
@@ -100,15 +92,10 @@ export const profileDeleteLikes = (id,msgParams,username) => async (dispatch, ge
 export const _deleteLikes = (id,msgParams) => async (dispatch, getState) => {
   
   try {
-    console.log('from actions',id)
     dispatch({ type: DELETE_LIKE });
     const payload = await api.deleteLikes(id);
     dispatch({ type: DELETE_SUCCESS, payload})
-    console.log(payload)
-    // ℹ️ℹ️This is how you woud debug the response to a requestℹ️ℹ️
-    // console.log({ result })
   } catch (err) {
-    console.log(err)
     dispatch({
       type: DELETE_FAILURE,
       payload: err.message,
@@ -119,10 +106,6 @@ export const deleteLikes = (id,msgParams) => async (dispatch, getState) => {
   return dispatch(_deleteLikes(id))
   .then(() => {return dispatch(getMessageList(msgParams))})
 };
-// export const deleteLikes = (likeId) => async (dispatch, getState) => {
-//   return dispatch(_deleteLikes(likeId))
-//   .then(() => {return dispatch(getMessageList({limit: 100, offset: 0}))})
-// }
 
 export const _deleteMessage = (messageId) => async (dispatch, getState) => {
     try {

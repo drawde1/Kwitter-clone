@@ -41,7 +41,6 @@ export const LoginForm = ({ login }) => {
     
     dispatch(user(registerState));
     setToggle2((prevState)=> ({...prevState,isToggled2:true}))
-    console.log(registerState)
   };
 
   

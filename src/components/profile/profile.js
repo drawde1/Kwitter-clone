@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./Profile.css";
 import {updateuser} from "../../redux/actions/user";
-import { getPicture } from "../../redux/actions/photos";
-import { useRef } from "react";
 import Api from "../../utils/api"
 import { getUserInfo} from '../../redux/actions'
 import {Message} from '../feed/Message'
@@ -33,19 +30,14 @@ export const Profile = () => {
     bio,
     name,
     msgListParams,
-    testPicture,
     count,
-    userInfo,
     loadingUserInfo,
-    loadingMsg,
+
   } = useSelector(state => ({
     loadingUserInfo:state.getUser.loading,
-    loadingMsg: state.getMessageListByUser.loading,
     startingUsername: state.auth.username,
-    testPicture: state.pic.photo,
     username: state.getUser.username,
     userPicture: state.getUser.pictureLocation,
-    userInfo:  state.getUser,
     name: state.getUser.displayName,
     bio: state.getUser.about,
     count: state.getMessageListByUser.count,
@@ -115,12 +107,6 @@ export const Profile = () => {
         setToggle((prevState)=> ({...prevState,isToggled:true}))
         setState((prevState)=> ({...prevState,INITIALSTATE}))
    }
- 
-
-  const test = () =>
-  {
-    dispatch(getPicture(username))
-  }
 
   return (
     <React.Fragment>
@@ -149,11 +135,21 @@ export const Profile = () => {
     
       <button onClick = {handleToggle}className={isToggled.isToggled?"hidden":"show"}>edit profile</button>
       <div className ={!isToggled.isToggled?"hidden":"show"}>
+       <br/>
+        <div id="photo">
+          <h2>Add or Change photo</h2>
       <form ref={picture} onSubmit={addPic}>
         <input type='file' name='picture'></input>
+        <br/>
+        <br/>
+        <br/>
         <button type='submit'>Upload My Picture</button>
       </form>
-      
+      </div>
+      <br/>
+      <br/>
+      <div id="user">
+        <h2>Update User Info</h2>
       <form id="update-form" onSubmit={handleUpdate}>
           <label htmlFor="displayName">New Name:</label>
           <input
@@ -185,10 +181,12 @@ export const Profile = () => {
             onChange={handleChange}
           />
           <br/>
+          <br/>
           <button onClick={()=>updateuser(state.displayName, state.password, state.about, username)} type="submit">
           Update Profile
           </button> 
         </form>
+        </div>
         </div>
         </div>
       <div>

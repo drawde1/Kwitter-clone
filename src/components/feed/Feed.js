@@ -1,8 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { addMessage, getMessageList } from "../../redux/actions/messages";
-import {createTimestamp} from '../functions/createTimestamp'
-//import { IncrementClick, RemoveClick, ToggleSelection } from '../likes'
 import {Message} from './Message'
 import {Loader} from '../loader/Loader'
 import {restInfiniteScroll} from '../../redux/actions/infiniteScroll'
@@ -10,7 +8,7 @@ import './Message.css'
 import {infiniteScroll} from '../../redux/actions/infiniteScroll'
 
 
-export const Feed = (props) => {
+export const Feed = () => {
 
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(getMessageList({limit:10, offset:0}))},[])
@@ -90,5 +88,5 @@ return (
   ))}
   </div>
   </React.Fragment>
-)
+);
 };

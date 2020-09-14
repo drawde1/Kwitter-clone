@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
@@ -9,7 +8,6 @@ export const Menu = () => {
   const {isAuthenticated,username} = useSelector(state => ({isAuthenticated:!!state.auth.isAuthenticated, username:state.auth.username}));
   const dispatch = useDispatch();
   const logout = () => dispatch(actions.logout());
-  const loginuser = useSelector((state) => state.auth.isAuthenticated) 
 
   return (
     <div id="menu">
@@ -32,7 +30,7 @@ export const Menu = () => {
           </div>
         </div>
         <div class="item">
-          <img src={"https://kwitter-api.herokuapp.com/users/shanquetta/picture"} class="ui mini circular image" />
+          <img src={"https://kwitter-api.herokuapp.com/users/Elijah/picture"} class="ui mini circular image" />
           <div class="content">
             <div class="ui sub header">Elijah Camara</div>
             QA
@@ -46,7 +44,7 @@ export const Menu = () => {
           </div>
         </div>
         <div class="item">
-          <img src={"https://kwitter-api.herokuapp.com/users/tester5/picture"} class="ui mini circular image" />
+          <img src={"https://kwitter-api.herokuapp.com/users/Tutwiler/picture"} class="ui mini circular image" />
           <div class="content">
             <div class="ui sub header">Charles Campbell</div>
             Developer

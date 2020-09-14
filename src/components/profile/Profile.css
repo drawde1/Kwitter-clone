@@ -66,3 +66,18 @@ img
 h2 {
     color: blue;
 }
+
+#photo {
+    border: 5px solid lightslategrey;
+    border-radius: 10px;
+    justify-content: center;
+    align-content: space-around;
+    height: 150px;
+}
+#user {
+    border: 5px solid lightslategrey;
+    border-radius: 10px;
+    justify-content: center;
+    align-content: space-around;
+    height: 220px;
+}
