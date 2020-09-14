@@ -59,16 +59,6 @@ class API {
       throw err;
     }
   }
-    
-  async addMessage({text, username}) {
-    try {
-      const result = await this.axiosInstance.delete("/user/" + username,);
-      return result;
-    } catch (err) {
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
 
   async addMessage ({ text }) {
     try {
@@ -120,7 +110,7 @@ class API {
       throw err;
     }
   }
-  // &username=user
+
   async updateuser ({ password, about, displayName, username }) {
     try {
       const result = await this.axiosInstance.patch(`/users/${username}`, {
@@ -185,7 +175,6 @@ class API {
   }
 
   async likes (messageId) {
-    console.log(messageId);
     try {
       const result = await this.axiosInstance.post("/likes", {
         messageId,
@@ -198,7 +187,6 @@ class API {
   }
 
   async deleteLikes (id) {
-    console.log('from api',id)
    
     try {
       
@@ -216,10 +204,8 @@ class API {
         "/users/" + username + "/picture",
         picture
       );
-      console.log(result);
       return result;
     } catch (err) {
-      console.log({ err });
       helpMeInstructor(err);
       throw err;
     }
@@ -232,25 +218,8 @@ class API {
         {limit,offset}
       
       );
-      console.log(result);
       return result;
     } catch (err) {
-      console.log({ err });
-      helpMeInstructor(err);
-      throw err;
-    }
-  }
-  
-  async getPictures (username) {
-    try {
-      const result = await this.axiosInstance.get(
-         "/users/"+ username +"/picture",
-       
-      );
-
-      return result;
-    } catch (err) {
-      console.log({ err });
       helpMeInstructor(err);
       throw err;
     }

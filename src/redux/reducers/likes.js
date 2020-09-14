@@ -1,7 +1,6 @@
-// TODO: implement
+
 import { LIKE_SUCCESS, LIKE_FAILURE, DELETE_LIKE, DELETE_SUCCESS,DELETE_FAILURE} from '../actions/messages'
 import { LIKES } from '../actions/likes'
-// Default State
 const DEFAULT_STATE = {
   likes: [
     {

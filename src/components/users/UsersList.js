@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useEffect} from "react";
 import {  useDispatch,useSelector} from "react-redux";
 import {getUserList} from '../../redux/actions/user'
 import { User } from "./User";
@@ -28,7 +28,7 @@ export const  UsersList = () =>
        dispatch(getUserList(userListParams))
      }
    }
-    console.log(userList)
+
     return(
         <>
         {userListLoader && <Loader/>}
@@ -38,8 +38,6 @@ export const  UsersList = () =>
           username={user.username}
           displayName ={user.displayName}
           key = {user.username} 
-          updatedAt = {user.updatedAt}
-          createdAt ={user.createdAt}
           about = {user.about}
           />
 

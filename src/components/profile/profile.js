@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./Profile.css";
 import {updateuser} from "../../redux/actions/user";
-import { getPicture } from "../../redux/actions/photos";
-import { useRef } from "react";
 import Api from "../../utils/api"
 import { getUserInfo} from '../../redux/actions'
 import {Message} from '../feed/Message'
@@ -33,19 +30,14 @@ export const Profile = () => {
     bio,
     name,
     msgListParams,
-    testPicture,
     count,
-    userInfo,
     loadingUserInfo,
-    loadingMsg,
+
   } = useSelector(state => ({
     loadingUserInfo:state.getUser.loading,
-    loadingMsg: state.getMessageListByUser.loading,
     startingUsername: state.auth.username,
-    testPicture: state.pic.photo,
     username: state.getUser.username,
     userPicture: state.getUser.pictureLocation,
-    userInfo:  state.getUser,
     name: state.getUser.displayName,
     bio: state.getUser.about,
     count: state.getMessageListByUser.count,
