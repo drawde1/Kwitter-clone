@@ -1,11 +1,25 @@
+stages: 
+    - build
+    - deploy
+build-pages:
+  stage: build
+  script:
+    - rm -rf build
+    - CI = false npm install
+    - CI = false npm run build
+    - rm -rf public
+    - cp build/index.html build/404.html
+    - my build public
+  artifacts:
+    paths:
+      - public
+only:
+  - master
+
 pages:
   stage: deploy
   script:
-  - mkdir .public
-  - cp -r * .public
-  - mv .public public
+    -ls
   artifacts:
-    paths:
-    - public
-  only:
-  - master
+    path:
+      -public
