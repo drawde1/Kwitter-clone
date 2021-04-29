@@ -1,6 +1,11 @@
+image: latest
 stages: 
     - build
     - deploy
+cache:
+  path:
+    -node_modules
+
 build-pages:
   stage: build
   script:
