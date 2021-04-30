@@ -55,9 +55,9 @@ export const Menu = () => {
       <div id='menu-links'>
         {isAuthenticated ? (
           <>
-            <Link to={"/profile/" + username}>Profile</Link>
-            <Link to="/users">Users</Link>
-            <Link to="/feed">Message Feed</Link>
+            <Link to={"/Kwitter-clone/profile/" + username}>Profile</Link>
+            <Link to="/Kwitter-clone/users">Users</Link>
+            <Link to="/Kwitter-clone/feed">Message Feed</Link>
             <Link to="/Kwitter-clone/" onClick={logout}>
               Logout
             </Link>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NotFound = ({ location }) => (
   <>
     <p>Page not found for {location.pathname}</p>
-    <Link to="/">Go Home</Link>
+    <Link to="/Kwitter-clone/">Go Home</Link>
   </>
 );
 

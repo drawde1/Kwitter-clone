@@ -31,7 +31,7 @@ export function ConnectedRoute({
         render={({ location }) => (
           <Redirect
             to={{
-              pathname: `/profile/${username}`,
+              pathname: `/Kwitter-clone/profile/${username}`,
               state: { from: location },
             }}
           />
@@ -55,7 +55,7 @@ export function ConnectedRoute({
       render={({ location }) => (
         <Redirect
           to={{
-            pathname: `/`,
+            pathname: `/Kwitter-clone/`,
             state: { from: location },
           }}
         />
