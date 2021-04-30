@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "94ef7d68effc67506358a2f637cf7ffc",
+    "revision": "0e9a49897a6383a5b21f1b8ed9e89af6",
     "url": "/Kwitter-clone/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Kwitter-clone/static/css/2.87f771ae.chunk.css"
   },
   {
-    "revision": "2481193005629ec9f505",
+    "revision": "8caf39945ed49e3eda46",
     "url": "/Kwitter-clone/static/css/main.25cd138b.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Kwitter-clone/static/js/2.41ab9fe6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2481193005629ec9f505",
-    "url": "/Kwitter-clone/static/js/main.f6fbd7dc.chunk.js"
+    "revision": "8caf39945ed49e3eda46",
+    "url": "/Kwitter-clone/static/js/main.5d092826.chunk.js"
   },
   {
     "revision": "54f04a16295263ede66e",
