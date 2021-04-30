@@ -23,7 +23,7 @@ export const Menu = () => {
           </div>
         </div>
         <div class="item">
-          <img class="ui mini circular image" src={'/kwitter-clone/kwitter-user.png'} />
+          <img class="ui mini circular image" src={'https://drawde1.github.io/Kwitter-clone/kwitter-user.png'} />
           <div class="content">
             <div class="ui sub header">Edward Perkins</div>
             Scrum Master
