@@ -115,7 +115,7 @@ export const Profile = () => {
           <div class="ui card">
             <div class="image">
               <img id="image2"
-                src={userPicture ? "https://kwitter-api.herokuapp.com" + userPicture : 'https://drawde1.github.io/Kwitter-user.png'}
+                src={userPicture ? "https://kwitter-api.herokuapp.com" + userPicture : 'https://drawde1.github.io/Kwitter-clone/Kwitter-user.png'}
                 width="200"
                 height="200" />
             </div>

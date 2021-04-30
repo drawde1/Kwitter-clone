@@ -16,7 +16,7 @@ export const Menu = () => {
       </div>
       <div class="ui horizontal list">
         <div class="item">
-          <img class="ui mini circular image" src={'/kwitter-clone/q.png'} />
+          <img class="ui mini circular image" src={'https://drawde1.github.io/Kwitter-clone/q.png'} />
           <div class="content">
             <div class="ui sub header">Shanquetta Pelzer</div>
             Product Owner
