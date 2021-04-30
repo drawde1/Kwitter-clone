@@ -62,7 +62,7 @@ export const Message = props => {
       <div class="event">
         <div class="label">
           <img
-            src={props.userPhoto ? `https://kwitter-api.herokuapp.com/users/${props.username}/picture` : '/kwitter-clone/kwitter-user.png'}
+            src={props.userPhoto ? `https://kwitter-api.herokuapp.com/users/${props.username}/picture` : 'https://drawde1.github.io/kwitter-clone/kwitter-user.png'}
             width="200"
             height="200" />
         </div>

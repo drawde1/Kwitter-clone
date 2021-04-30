@@ -30,21 +30,21 @@ export const Menu = () => {
           </div>
         </div>
         <div class="item">
-          <img src={'/kwitter-clone/elijah.jpg'} class="ui mini circular image" />
+          <img src={'https://drawde1.github.io/kwitter-clone/elijah.jpg'} class="ui mini circular image" />
           <div class="content">
             <div class="ui sub header">Elijah Camara</div>
             QA
           </div>
         </div>
         <div class="item">
-          <img src={'/kwitter-clone/tune.jpg'} class="ui mini circular image" />
+          <img src={'https://drawde1.github.io/kwitter-clone/tune.jpg'} class="ui mini circular image" />
           <div class="content">
             <div class="ui sub header">Tuan Wright</div>
             Developer
           </div>
         </div>
         <div class="item">
-          <img src={"/charles.jpg"} class="ui mini circular image" />
+          <img src={"https://drawde1.github.io/charles.jpg"} class="ui mini circular image" />
           <div class="content">
             <div class="ui sub header">Charles Campbell</div>
             Developer
