@@ -17,19 +17,19 @@ export const Navigation = () => (
       <ConnectedRoute
         exact
         isProtected
-        path="/feed"
+        path="/Kwitter-clone/feed"
         component={Feed}
       />
       <ConnectedRoute
         exact
         isProtected
-        path="/users"
+        path="/Kwitter-clone/users"
         component={UsersList}
       />
       <ConnectedRoute
         exact
         isProtected
-        path="/profile/:username"
+        path="/Kwitter-clone/profile/:username"
         component={ProfileScreen}
       />
 
