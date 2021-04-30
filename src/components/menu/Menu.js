@@ -44,7 +44,7 @@ export const Menu = () => {
           </div>
         </div>
         <div class="item">
-          <img src={"/kwitter-clone/charles.jpg"} class="ui mini circular image" />
+          <img src={"/charles.jpg"} class="ui mini circular image" />
           <div class="content">
             <div class="ui sub header">Charles Campbell</div>
             Developer
@@ -58,7 +58,7 @@ export const Menu = () => {
             <Link to={"/profile/" + username}>Profile</Link>
             <Link to="/users">Users</Link>
             <Link to="/feed">Message Feed</Link>
-            <Link to="/" onClick={logout}>
+            <Link to="/Kwitter-clone/" onClick={logout}>
               Logout
             </Link>
 
