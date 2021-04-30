@@ -9,11 +9,11 @@ export const Navigation = () => (
     <Switch>
       <ConnectedRoute
         exact
-        path="/"
+        path="/Kwitter-clone/"
         redirectIfAuthenticated
         component={HomeScreen}
       />
-      
+
       <ConnectedRoute
         exact
         isProtected
@@ -32,7 +32,7 @@ export const Navigation = () => (
         path="/profile/:username"
         component={ProfileScreen}
       />
-      
+
       <ConnectedRoute path="*" component={NotFoundScreen} />
     </Switch>
   </BrowserRouter>
