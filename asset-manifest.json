@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/kwitter-clone/static/css/main.25cd138b.chunk.css",
+    "main.js": "/kwitter-clone/static/js/main.e560dbe2.chunk.js",
+    "main.js.map": "/kwitter-clone/static/js/main.e560dbe2.chunk.js.map",
+    "runtime-main.js": "/kwitter-clone/static/js/runtime-main.ffc6acbe.js",
+    "runtime-main.js.map": "/kwitter-clone/static/js/runtime-main.ffc6acbe.js.map",
+    "static/css/2.c7cfde35.chunk.css": "/kwitter-clone/static/css/2.c7cfde35.chunk.css",
+    "static/js/2.41ab9fe6.chunk.js": "/kwitter-clone/static/js/2.41ab9fe6.chunk.js",
+    "static/js/2.41ab9fe6.chunk.js.map": "/kwitter-clone/static/js/2.41ab9fe6.chunk.js.map",
+    "index.html": "/kwitter-clone/index.html",
+    "precache-manifest.ee5c9a2b3a472a1b6d0437c5653bcab4.js": "/kwitter-clone/precache-manifest.ee5c9a2b3a472a1b6d0437c5653bcab4.js",
+    "service-worker.js": "/kwitter-clone/service-worker.js",
+    "static/css/2.c7cfde35.chunk.css.map": "/kwitter-clone/static/css/2.c7cfde35.chunk.css.map",
+    "static/css/main.25cd138b.chunk.css.map": "/kwitter-clone/static/css/main.25cd138b.chunk.css.map",
+    "static/js/2.41ab9fe6.chunk.js.LICENSE.txt": "/kwitter-clone/static/js/2.41ab9fe6.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/kwitter-clone/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ffc6acbe.js",
+    "static/css/2.c7cfde35.chunk.css",
+    "static/js/2.41ab9fe6.chunk.js",
+    "static/css/main.25cd138b.chunk.css",
+    "static/js/main.e560dbe2.chunk.js"
+  ]
+}
