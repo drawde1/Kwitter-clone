@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Kwitter-clone/static/css/main.25cd138b.chunk.css",
-    "main.js": "/Kwitter-clone/static/js/main.51355aff.chunk.js",
-    "main.js.map": "/Kwitter-clone/static/js/main.51355aff.chunk.js.map",
+    "main.js": "/Kwitter-clone/static/js/main.659446bd.chunk.js",
+    "main.js.map": "/Kwitter-clone/static/js/main.659446bd.chunk.js.map",
     "runtime-main.js": "/Kwitter-clone/static/js/runtime-main.71dfb81d.js",
     "runtime-main.js.map": "/Kwitter-clone/static/js/runtime-main.71dfb81d.js.map",
     "static/css/2.87f771ae.chunk.css": "/Kwitter-clone/static/css/2.87f771ae.chunk.css",
     "static/js/2.41ab9fe6.chunk.js": "/Kwitter-clone/static/js/2.41ab9fe6.chunk.js",
     "static/js/2.41ab9fe6.chunk.js.map": "/Kwitter-clone/static/js/2.41ab9fe6.chunk.js.map",
     "index.html": "/Kwitter-clone/index.html",
-    "precache-manifest.a75795714c525b0207f539601df43d16.js": "/Kwitter-clone/precache-manifest.a75795714c525b0207f539601df43d16.js",
+    "precache-manifest.573f7934aa765382f1b89d949aaf9b3d.js": "/Kwitter-clone/precache-manifest.573f7934aa765382f1b89d949aaf9b3d.js",
     "service-worker.js": "/Kwitter-clone/service-worker.js",
     "static/css/2.87f771ae.chunk.css.map": "/Kwitter-clone/static/css/2.87f771ae.chunk.css.map",
     "static/css/main.25cd138b.chunk.css.map": "/Kwitter-clone/static/css/main.25cd138b.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.87f771ae.chunk.css",
     "static/js/2.41ab9fe6.chunk.js",
     "static/css/main.25cd138b.chunk.css",
-    "static/js/main.51355aff.chunk.js"
+    "static/js/main.659446bd.chunk.js"
   ]
 }
