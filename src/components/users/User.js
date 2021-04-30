@@ -11,7 +11,7 @@ export const User = (props) => {
                     <div class="content">
                         <div className='photo'>
                             <img
-                                src={!props.pictureLocation ? '/kwitter-clone/build/static/kwitter-user.png' : "https://kwitter-api.herokuapp.com" + props.pictureLocation}
+                                src={!props.pictureLocation ? '/kwitter-clone/build/kwitter-user.png' : "https://kwitter-api.herokuapp.com" + props.pictureLocation}
                                 width='50'
                                 height='50'
                             />
